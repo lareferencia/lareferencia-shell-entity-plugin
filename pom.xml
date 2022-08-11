@@ -40,11 +40,6 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>org.lareferencia</groupId>
-			<artifactId>lareferencia-core-lib</artifactId>
-			<version>4.1.0</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.lareferencia</groupId>
