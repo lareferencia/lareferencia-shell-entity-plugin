@@ -26,6 +26,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lareferencia.core.entity.domain.EntityRelationException;
 import org.lareferencia.core.entity.domain.EntityType;
+import org.lareferencia.core.entity.indexing.filters.IFieldOccurrenceFilter;
 import org.lareferencia.core.entity.indexing.service.IEntityIndexer;
 import org.lareferencia.core.entity.indexing.solr.EntityIndexerSolrImpl;
 import org.lareferencia.core.entity.repositories.jpa.EntityRepository;
@@ -65,6 +66,15 @@ public class EntityIndexingCommands {
 	public void listIndexers()  {
 			
 		for (String beanName : applicationContext.getBeanNamesForType(IEntityIndexer.class) ) {
+			System.out.println(beanName);
+		}
+		
+	}
+	
+	@ShellMethod("List all indexing filters beans currently available (note: not the filter name to be used in indexing config)")
+	public void listIndexingFilters()  {
+			
+		for (String beanName : applicationContext.getBeanNamesForType(IFieldOccurrenceFilter.class) ) {
 			System.out.println(beanName);
 		}
 		
