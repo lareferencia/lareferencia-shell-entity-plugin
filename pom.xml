@@ -30,12 +30,12 @@
 	<artifactId>lareferencia-shell-entity-plugin</artifactId>
 	<name>LA Referencia shell entity plugin</name>
 	<description>LA Referencia Shell App Entity-Relation plugin</description>
-	<version>4.1.0</version>
+	<version>4.2.0</version>
 
 	<parent>
 		<groupId>org.lareferencia</groupId>
 		<artifactId>lareferencia-parent</artifactId>
-		<version>4.1.0</version>
+		<version>4.2.0</version>
 	</parent>
 
 	<dependencies>
@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>org.lareferencia</groupId>
 			<artifactId>lareferencia-entity-lib</artifactId>
-			<version>4.1.0</version>
+			<version>4.2.0</version>
 		</dependency>
 
 		<dependency>
