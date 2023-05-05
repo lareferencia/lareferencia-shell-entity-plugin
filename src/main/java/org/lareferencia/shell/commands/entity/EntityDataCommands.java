@@ -61,7 +61,7 @@ public class EntityDataCommands {
 //	@Autowired
 //	EntityLRUCache entityCache;
 
-	
+	/**
 	@ShellMethod("Load entity-relation data from  from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded ")
 	public String load_data(String path, @ShellOption(defaultValue = "1000") Integer entityCacheSize, @ShellOption(defaultValue = "false") String doProfile) throws Exception {
 			
@@ -110,8 +110,52 @@ public class EntityDataCommands {
 		return String.format("Processing %s finished \n\n",path);
 		
 	}
+	**/
 	
-	private void load_directory(String path, Boolean profileMode) {
+	@ShellMethod("Load entity-relation data from from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded ")
+	public String load_data(String path, @ShellOption(defaultValue = "1000") Integer entityCacheSize, @ShellOption(defaultValue = "false") String doProfile, @ShellOption(defaultValue = "false") Boolean dryRun) throws Exception {
+
+	    logger.info("Running in dry-run mode: "+dryRun+". No changes will be made.");
+	    
+	    
+	    Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
+
+	     
+		Boolean profileMode = Boolean.valueOf(doProfile);		
+		File fileOrDirectory = new File(path);
+	
+		boolean exists =      fileOrDirectory.exists();      // Check if the file exists
+		boolean isFile =      fileOrDirectory.isFile();      // Check if it's a regular file
+	
+		if ( !exists ) {
+			
+			logger.error( String.format("%s does not exists.", path ) );
+			throw new Exception("Path: " + path + "doesn exists.");
+		
+		} else if ( isFile ) {
+			
+			logger.info( String.format("Processing path: %s", path ) );
+			load_xml_file(fileOrDirectory, profileMode,dryRun);
+		
+		} else { // is a directory
+			
+			load_directory(fileOrDirectory.getAbsolutePath(), profileMode,dryRun);
+		}
+		
+		logger.info( "Running post processing tasks" );
+		
+		if(!dryRun) {
+			erService.mergeEntityRelationData();
+		}
+
+		
+		generalProfiler.report(logger);
+		return String.format("Processing %s finished \n\n",path);
+
+	}
+
+	
+	private void load_directory(String path, Boolean profileMode, Boolean dryRun) {
 		
 		File fileOrDirectory = new File(path);
 		
@@ -121,18 +165,18 @@ public class EntityDataCommands {
 	        	
 	        	if ( fileEntry.getName().endsWith(".xml") ) {
 	    			logger.info( String.format("Processing file: %s", fileEntry.getAbsolutePath() ) );
-	        		load_xml_file(fileEntry, profileMode);
+	        		load_xml_file(fileEntry, profileMode,dryRun);
 	        	}
 	        	
 	        } else {
 	        	logger.info("Entering directory: " + fileEntry.getAbsolutePath() );
-	        	load_directory( fileEntry.getAbsolutePath(), profileMode);
+	        	load_directory( fileEntry.getAbsolutePath(), profileMode,dryRun);
 	        }
 		}
 	}
 	
 	
-	private void load_xml_file(File file, Boolean profileMode) {
+	private void load_xml_file(File file, Boolean profileMode, Boolean dryRun) {
 		
 		
 		profiler = new Profiler(profileMode, "File: " + file.getAbsolutePath() + " ").start();
@@ -144,7 +188,13 @@ public class EntityDataCommands {
 			Document doc = dBuilder.parse(input);
 			profiler.messure("XMLParse");
 			
-			erService.parseAndPersistEntityRelationDataFromXMLDocument(doc);
+			if(dryRun) {
+				erService.parseAndValidateEntityRelationDataFromXMLDocument(doc);
+			}
+			if(!dryRun) {
+				erService.parseAndPersistEntityRelationDataFromXMLDocument(doc);
+			}
+
 			profiler.report(logger);
 		
 		} catch (Exception e) {
