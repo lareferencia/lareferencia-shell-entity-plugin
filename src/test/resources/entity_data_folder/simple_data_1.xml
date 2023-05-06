@@ -18,8 +18,7 @@
   ~   This file is part of LA Referencia software platform LRHarvester v4.x
   ~   For any further information please contact Lautaro Matas <lmatas@gmail.com>
   -->
-
-<entity-relation-data source="SOURCE1" record="RECORD001" lastUpdate="2020-10-02 18:48:05.125300" >
+<entity-relation-data source="SOURCE1" record="RECORD001" lastUpdate="2020-10-02 18:48:05.125300" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./entity-relation-metamodel.xsd">
 	<entities>
 		<entity type="Person" ref="Person1">
 			<semanticIdentifier>dummy::person00001</semanticIdentifier>
@@ -27,7 +26,6 @@
 			<field name="name" value="John Doe" />
 			<field name="complex">
 				<field name="subfield1" value="John Doe Complex Subfield1" />
-				<field name="subfield2" value="John Doe Complex Subfield2" />
 			</field>>
 		</entity>
 
@@ -41,7 +39,7 @@
 		</entity>
 	</entities>
 	<relations>
-		<relation type="Authorship" fromEntityRef="Person1" toEntityRef="Publication1" > />
+		<relation type="Authorship" fromEntityRef="Person1" toEntityRef="Publication1">
 			<attributes>
 				<field name="order" value="1" />
 			</attributes>
