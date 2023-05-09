@@ -22,19 +22,28 @@ package org.lareferencia.shell.commands.entity;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Paths;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lareferencia.core.entity.services.EntityDataService;
+import org.lareferencia.core.entity.xml.validation.report.DocumentValitaionReport;
+import org.lareferencia.core.entity.xml.validation.report.DocumentValitaionReportEnum;
+import org.lareferencia.core.entity.xml.validation.report.DocumentValitaionReportTO;
 import org.lareferencia.core.util.Profiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import org.w3c.dom.Document;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ShellComponent
 public class EntityDataCommands {
@@ -178,7 +187,7 @@ public class EntityDataCommands {
 	
 	private void load_xml_file(File file, Boolean profileMode, Boolean dryRun) {
 		
-		
+
 		profiler = new Profiler(profileMode, "File: " + file.getAbsolutePath() + " ").start();
 		erService.setProfiler(profiler);
 		
@@ -189,9 +198,13 @@ public class EntityDataCommands {
 			profiler.messure("XMLParse");
 			
 			if(dryRun) {
-				erService.parseAndValidateEntityRelationDataFromXMLDocument(doc);
+				erService.simulateParseAndPersistEntityRelationDataFromXMLDocument(doc, 
+						new DocumentValitaionReportTO(file.getAbsolutePath(),
+						DocumentValitaionReportEnum.PROCESSING,
+						DocumentValitaionReportEnum.PROCESSING.getDescription()));
+				generateSummaryProcessmentFile(erService.getDocumentValitaionReport(),file.getAbsolutePath());
 			}
-			if(!dryRun) {
+			if(!dryRun) {				
 				erService.parseAndPersistEntityRelationDataFromXMLDocument(doc);
 			}
 
@@ -201,6 +214,34 @@ public class EntityDataCommands {
 			logger.error( String.format("Error loading xml data into entity model - %s was not loaded - details: %s", file.getAbsolutePath(), e.getMessage() ) );
 		} 
 		
+		
+		
+	}
+
+	private void generateSummaryProcessmentFile(DocumentValitaionReport documentValitaionReport, String pathToCreateSummaryFile) throws JsonGenerationException, JsonMappingException, IOException {
+		Long countAllProcessedFiles = Math.addExact(0, new Long(documentValitaionReport.getGenericErroFilesList().size()));
+		countAllProcessedFiles = Math.addExact(countAllProcessedFiles, new Long(documentValitaionReport.getInvalidaStructuredXMLFilesList().size()));
+		countAllProcessedFiles = Math.addExact(countAllProcessedFiles, new Long(documentValitaionReport.getInvalidModelFilesList().size()));
+		countAllProcessedFiles = Math.addExact(countAllProcessedFiles, new Long(documentValitaionReport.getValidFilesList().size()));
+		
+		documentValitaionReport.getProcessedFilesList().addAll(documentValitaionReport.getGenericErroFilesList());
+		documentValitaionReport.getProcessedFilesList().addAll(documentValitaionReport.getInvalidaStructuredXMLFilesList());
+		documentValitaionReport.getProcessedFilesList().addAll(documentValitaionReport.getInvalidModelFilesList());
+		documentValitaionReport.getProcessedFilesList().addAll(documentValitaionReport.getValidFilesList());
+		
+		documentValitaionReport.setTotalProcessedFiles(countAllProcessedFiles);
+		documentValitaionReport.setTotalValidFiles(new Long(documentValitaionReport.getValidFilesList().size()));
+		documentValitaionReport.setTotalInvalidStructuredXMLFiles(new Long(documentValitaionReport.getInvalidaStructuredXMLFilesList().size()));
+		documentValitaionReport.setTotalInvalidModelFiles(new Long(documentValitaionReport.getInvalidModelFilesList().size()));
+		
+	    // create object mapper instance
+	    ObjectMapper mapper = new ObjectMapper();
+
+	    // convert book object to JSON file
+	    String dataPathNameToRemove = pathToCreateSummaryFile.substring(pathToCreateSummaryFile.lastIndexOf("/"), pathToCreateSummaryFile.length());
+	    String summaryPath = pathToCreateSummaryFile.replace(dataPathNameToRemove,"/report.json");
+	    System.out.println("!!====>>> summaryPath: "+summaryPath);
+	    mapper.writeValue(new File(summaryPath), documentValitaionReport);
 		
 		
 	}
