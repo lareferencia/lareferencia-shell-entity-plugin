@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entity-relation-data lastUpdate="2022-05-30 14:32:17.502174" source="lattes+di" record="dbcce5aab9aaef980d83312327680916">
+	<entities>
+		<entity type="Person" ref="Person1">
+			<semanticIdentifier>lattes::5021181563738789</semanticIdentifier>
+			<semanticIdentifier>orcid::0000-0002-2541-9305</semanticIdentifier>
+			<field name="identifier.lattes" value="5021181563738789"/>
+			<field name="identifier.orcid" value="0000-0002-2541-9305"/>
+			<field name="name" value="Tiago Alves de Oliveira"/>
+			<field name="citationName" value="DE OLIVEIRA, TIAGO ALVES"/>
+			<field name="citationName" value="Oliveira, Tiago Alves de"/>
+			<field name="citationName" value="OLIVEIRA, T. A."/>
+			<field name="citationName" value="Oliveira, T. A. de"/>
+			<field name="nationality" value="Brasil"/>
+			<field name="birthCity" value="Formiga"/>
+			<field name="birthState" value="MG"/>
+			<field name="birthCountry" value="Brasil"/>
+			<field name="researchArea" value="Linguagens de Programação"/>
+			<field name="researchArea" value="Ciência da Computação"/>
+			<field name="researchArea" value="Linguagem Formais e Autômatos"/>
+			<field name="researchArea" value="Inteligência Artificial"/>
+			<field name="researchArea" value="Arquitetura de Sistemas de Computação"/>
+			<field name="miniBiography" value="He holds a degree in Computer Science from the Centro Universitário de Formiga (2010) and a master's degree in Informatics from the Federal University of Espírito Santo (2014). He is a doctoral student in Bioengineering at the Federal University of São João del Rei. He is currently a professor at the Federal Center for Technological Education of Minas Gerais. He has experience in Computer Science, emphasizing Artificial Intelligence, working mainly on programming, Parallel Processing, Intelligent Techniques, Artificial Neural Networks, and Vector Support machines. My main interests are in Artificial Intelligence, Computer Vision, and Data Mining. He worked with recognition and detection of traffic lights in the master's degree and detection of melanoma in the graduation. He currently works with computational intelligence techniques for drug discovery and repositioning." lang="eng"/>
+			<field name="miniBiography" value="Possui graduação em Ciência da Computação pelo Centro Universitário de Formiga (2010) e mestrado em Informática pela Universidade Federal do Espírito Santo (2014) e é doutorando em Bioengenharia na Universidade Federal de São João del Rei. Atualmente é professor efetivo do Centro Federal de Educação Tecnológica de Minas Gerais.  Tem experiência na área de Ciência da Computação, com ênfase em Inteligência Artificial, atuando principalmente nos seguintes temas: Programação, Processamento Paralelo, Técnicas Inteligentes, Redes Neurais Artificiais e Máquina de Suporte Vetorial. Meus principais interesses são a área de Inteligência Artificial, Visão Computacional e Mineração de Dados. Atuou com reconhecimento e detecção de semáforos no mestrado e detecção de melanoma na graduação. Atua atualmente com técnicas de inteligência computacional para descoberta e reposicionamento de fármacos."/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit1">
+			<semanticIdentifier>brcris::3a27494d0617ae37a3d23a15cd9fc015</semanticIdentifier>
+			<semanticIdentifier>diSequencial::15387</semanticIdentifier>
+			<semanticIdentifier>cnpq::870400000000</semanticIdentifier>
+			<field name="identifier.brcris" value="3a27494d0617ae37a3d23a15cd9fc015"/>
+			<field name="identifier.diSequencial" value="15387"/>
+			<field name="identifier.cnpq" value="870400000000"/>
+			<field name="name" value="Centro Federal de Educação Tecnológica de Minas Gerais"/>
+			<field name="identifier.cnpj" value="17.220.203/0001-96"/>
+			<field name="acronym" value="CEFET/MG"/>
+			<field name="identifier.cnpq" value="870400000000"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="Avenida Amazonas, 5253"/>
+			<field name="address.neighborhood" value="Nova Suiça"/>
+			<field name="address.city" value="Belo Horizonte"/>
+			<field name="address.state" value="MG"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="30480-000"/>
+			<field name="coordinate.latitude" value="-19.940158"/>
+			<field name="coordinate.longitude" value="-43.995441"/>
+		</entity>
+		<entity type="Publication" ref="Publication1">
+			<semanticIdentifier>brcris::6b86aafcec7d5b2f6824d1c6449b53f6</semanticIdentifier>
+			<field name="identifier.brcris" value="6b86aafcec7d5b2f6824d1c6449b53f6"/>
+			<field name="advisor" value="Alberto Ferreira De Souza"/>
+			<field name="coadvisor" value="Edilson de Aguiar"/>
+			<field name="title" value="Mapeamento, Detecção e Reconhecimento de Semáforos"/>
+			<field name="publicationDate" value="2014"/>
+			<field name="type" value="master thesis"/>
+			<field name="keyword" value="Mapeamento Digital"/>
+			<field name="keyword" value="Reconhecimento de Padrões"/>
+			<field name="keyword" value="Semáforo"/>
+			<field name="keyword" value="Máquina de suporte vetorial"/>
+			<field name="keyword" value="Processamento de Imagens"/>
+			<field name="keyword" value="Detecção"/>
+			<field name="researchArea.cnpq" value="Ciência da Computação"/>
+			<field name="author" value="Tiago Alves de Oliveira"/>
+			<field name="service" value="CVLattes - Formações"/>
+		</entity>
+		<entity type="Person" ref="Person2">
+			<semanticIdentifier>lattes::7573837292080522</semanticIdentifier>
+			<field name="identifier.lattes" value="7573837292080522"/>
+			<field name="name" value="Alberto Ferreira De Souza"/>
+		</entity>
+		<entity type="Community" ref="Community1">
+			<semanticIdentifier>brcris::ad6476ed641680c39535783ddca3d3a9</semanticIdentifier>
+			<field name="identifier.brcris" value="ad6476ed641680c39535783ddca3d3a9"/>
+			<field name="name" value="Equipe"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit2">
+			<semanticIdentifier>diSequencial::32934</semanticIdentifier>
+			<semanticIdentifier>cnpq::039200000000</semanticIdentifier>
+			<semanticIdentifier>brcris::b7965c77034ca4704f0f9ab6ae379f79</semanticIdentifier>
+			<field name="identifier.diSequencial" value="32934"/>
+			<field name="identifier.cnpq" value="039200000000"/>
+			<field name="identifier.brcris" value="b7965c77034ca4704f0f9ab6ae379f79"/>
+			<field name="name" value="Universidade Federal do Espírito Santo"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039200000000"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="Avenida Fernando Ferrari, 514"/>
+			<field name="address.neighborhood" value="Goiabeiras"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29075-910"/>
+			<field name="coordinate.latitude" value="-20.2563022"/>
+			<field name="coordinate.longitude" value="-40.2916303"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit3">
+			<semanticIdentifier>diSequencial::774899</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774899"/>
+			<field name="name" value="Centro de Educação - CE"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit4">
+			<semanticIdentifier>diSequencial::774903</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774903"/>
+			<field name="name" value="Departamento de Teorias do Ensino e Práticas Educacionais - DTEPE"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit5">
+			<semanticIdentifier>diSequencial::774901</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774901"/>
+			<field name="name" value="Departamento de Educação, Política e Sociedade - DEPS"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit6">
+			<semanticIdentifier>diSequencial::774902</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774902"/>
+			<field name="name" value="Departamento de Linguagens, Cultura e Educação - DLCE"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit7">
+			<semanticIdentifier>diSequencial::33206</semanticIdentifier>
+			<semanticIdentifier>cnpq::039211000006</semanticIdentifier>
+			<field name="identifier.diSequencial" value="33206"/>
+			<field name="identifier.cnpq" value="039211000006"/>
+			<field name="name" value="Reitoria"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039211000006"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRAI S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit8">
+			<semanticIdentifier>diSequencial::774925</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774925"/>
+			<field name="name" value="Centro Universitário Norte do Espírito Santo - CEUNES"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit9">
+			<semanticIdentifier>diSequencial::774931</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774931"/>
+			<field name="name" value="Departamento de Educação e Ciências Humanas - DECH"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit10">
+			<semanticIdentifier>diSequencial::774927</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774927"/>
+			<field name="name" value="Departamento de Ciências Agrárias e Biológicas - DCAB"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit11">
+			<semanticIdentifier>diSequencial::774932</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774932"/>
+			<field name="name" value="Departamento de Engenharia e Tecnologia - DET"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit12">
+			<semanticIdentifier>diSequencial::774928</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774928"/>
+			<field name="name" value="Departamento de Ciências Naturais - DCN"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit13">
+			<semanticIdentifier>diSequencial::774930</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774930"/>
+			<field name="name" value="Departamento de Computação e Eletrônica - DCEL"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit14">
+			<semanticIdentifier>diSequencial::774929</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774929"/>
+			<field name="name" value="Departamento de Ciências da Saúde - DCS"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit15">
+			<semanticIdentifier>diSequencial::774933</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774933"/>
+			<field name="name" value="Departamento de Matemática Aplicada - DMA"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit16">
+			<semanticIdentifier>diSequencial::774935</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774935"/>
+			<field name="name" value="Centro de Ciências Exatas, Naturais e da Saúde - CCENS"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit17">
+			<semanticIdentifier>diSequencial::774936</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774936"/>
+			<field name="name" value="Departamento de Biologia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit18">
+			<semanticIdentifier>diSequencial::774939</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774939"/>
+			<field name="name" value="Departamento de Geologia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit19">
+			<semanticIdentifier>diSequencial::774940</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774940"/>
+			<field name="name" value="Departamento de Matemática Pura e Aplicada"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit20">
+			<semanticIdentifier>diSequencial::774941</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774941"/>
+			<field name="name" value="Departamento de Química e Física"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit21">
+			<semanticIdentifier>diSequencial::774937</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774937"/>
+			<field name="name" value="Departamento de Computação"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit22">
+			<semanticIdentifier>diSequencial::774938</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774938"/>
+			<field name="name" value="Departamento de Farmácia e Nutrição"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit23">
+			<semanticIdentifier>diSequencial::774954</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774954"/>
+			<field name="name" value="Centro de Ciências Jurídicas e Econômicas - CCJE"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit24">
+			<semanticIdentifier>cnpq::039207001001</semanticIdentifier>
+			<semanticIdentifier>diSequencial::33212</semanticIdentifier>
+			<field name="identifier.cnpq" value="039207001001"/>
+			<field name="identifier.diSequencial" value="33212"/>
+			<field name="name" value="Departamento de Economia"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039207001001"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit25">
+			<semanticIdentifier>cnpq::039207005007</semanticIdentifier>
+			<semanticIdentifier>diSequencial::33215</semanticIdentifier>
+			<field name="identifier.cnpq" value="039207005007"/>
+			<field name="identifier.diSequencial" value="33215"/>
+			<field name="name" value="Departamento de Ciências Contábeis"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039207005007"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit26">
+			<semanticIdentifier>diSequencial::33213</semanticIdentifier>
+			<semanticIdentifier>cnpq::039207002008</semanticIdentifier>
+			<field name="identifier.diSequencial" value="33213"/>
+			<field name="identifier.cnpq" value="039207002008"/>
+			<field name="name" value="Departamento de Direito"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039207002008"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit27">
+			<semanticIdentifier>diSequencial::33218</semanticIdentifier>
+			<semanticIdentifier>cnpq::039207008006</semanticIdentifier>
+			<field name="identifier.diSequencial" value="33218"/>
+			<field name="identifier.cnpq" value="039207008006"/>
+			<field name="name" value="Departamento de Serviço Social"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039207008006"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit28">
+			<semanticIdentifier>diSequencial::33214</semanticIdentifier>
+			<semanticIdentifier>cnpq::039207004000</semanticIdentifier>
+			<field name="identifier.diSequencial" value="33214"/>
+			<field name="identifier.cnpq" value="039207004000"/>
+			<field name="name" value="Departamento de Administração"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039207004000"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit29">
+			<semanticIdentifier>diSequencial::33217</semanticIdentifier>
+			<semanticIdentifier>cnpq::039207007000</semanticIdentifier>
+			<field name="identifier.diSequencial" value="33217"/>
+			<field name="identifier.cnpq" value="039207007000"/>
+			<field name="name" value="Departamento de Biblioteconomia"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039207007000"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit30">
+			<semanticIdentifier>diSequencial::774737</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774737"/>
+			<field name="name" value="Departamento de Arquivologia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit31">
+			<semanticIdentifier>diSequencial::774738</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774738"/>
+			<field name="name" value="Departamento de Gemologia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit32">
+			<semanticIdentifier>diSequencial::774976</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774976"/>
+			<field name="name" value="Centro de Ciências da Saúde - CCS"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit33">
+			<semanticIdentifier>diSequencial::33181</semanticIdentifier>
+			<semanticIdentifier>cnpq::039204006002</semanticIdentifier>
+			<field name="identifier.diSequencial" value="33181"/>
+			<field name="identifier.cnpq" value="039204006002"/>
+			<field name="name" value="Departamento de Clínica Cirúrgica"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039204006002"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="Av. Marechal Campos, 1468"/>
+			<field name="address.neighborhood" value="Maruípe"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29.040-09"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit34">
+			<semanticIdentifier>diSequencial::774984</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774984"/>
+			<field name="name" value="Departamento de Ginecologia e Obstetrícia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit35">
+			<semanticIdentifier>diSequencial::774978</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774978"/>
+			<field name="name" value="Departamento de Clínica Médica"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit36">
+			<semanticIdentifier>diSequencial::774989</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774989"/>
+			<field name="name" value="Departamento de Pediatria"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit37">
+			<semanticIdentifier>diSequencial::774985</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774985"/>
+			<field name="name" value="Departamento de Medicina Especializada"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit38">
+			<semanticIdentifier>cnpq::039204002007</semanticIdentifier>
+			<semanticIdentifier>diSequencial::33177</semanticIdentifier>
+			<field name="identifier.cnpq" value="039204002007"/>
+			<field name="identifier.diSequencial" value="33177"/>
+			<field name="name" value="Departamento de Ciências Fisiológicas"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039204002007"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="Av. Marechal Campos, 1468"/>
+			<field name="address.neighborhood" value="Maruípe"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29.040-09"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit39">
+			<semanticIdentifier>diSequencial::774987</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774987"/>
+			<field name="name" value="Departamento de Morfologia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit40">
+			<semanticIdentifier>diSequencial::774988</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774988"/>
+			<field name="name" value="Departamento de Patologia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit41">
+			<semanticIdentifier>diSequencial::774979</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774979"/>
+			<field name="name" value="Departamento de Clínica Odontológica"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit42">
+			<semanticIdentifier>diSequencial::774991</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774991"/>
+			<field name="name" value="Departamento de Fonoaudiologia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit43">
+			<semanticIdentifier>diSequencial::774992</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774992"/>
+			<field name="name" value="Departamento de Terapia Ocupacional"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit44">
+			<semanticIdentifier>diSequencial::774990</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774990"/>
+			<field name="name" value="Departamento de Prótese Dentária"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit45">
+			<semanticIdentifier>diSequencial::774986</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774986"/>
+			<field name="name" value="Departamento de Medicina Social"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit46">
+			<semanticIdentifier>diSequencial::774977</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774977"/>
+			<field name="name" value="Departamento de Ciências Farmacêuticas"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit47">
+			<semanticIdentifier>diSequencial::774983</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774983"/>
+			<field name="name" value="Departamento de Enfermagem"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit48">
+			<semanticIdentifier>diSequencial::774980</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774980"/>
+			<field name="name" value="Departamento de Educação Integrada em Saúde"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit49">
+			<semanticIdentifier>diSequencial::774974</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774974"/>
+			<field name="name" value="Centro de Educação Física e Desportos - CEFD"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit50">
+			<semanticIdentifier>diSequencial::774898</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774898"/>
+			<field name="name" value="Departamento de Desportos"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit51">
+			<semanticIdentifier>cnpq::039210001009</semanticIdentifier>
+			<semanticIdentifier>diSequencial::33220</semanticIdentifier>
+			<field name="identifier.cnpq" value="039210001009"/>
+			<field name="identifier.diSequencial" value="33220"/>
+			<field name="name" value="Departamento de Ginástica"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039210001009"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit52">
+			<semanticIdentifier>diSequencial::774904</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774904"/>
+			<field name="name" value="Centro de Ciências Humanas e Naturais - CCHN"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit53">
+			<semanticIdentifier>cnpq::039206008002</semanticIdentifier>
+			<semanticIdentifier>diSequencial::33193</semanticIdentifier>
+			<field name="identifier.cnpq" value="039206008002"/>
+			<field name="identifier.diSequencial" value="33193"/>
+			<field name="name" value="Departamento de Psicologia Social e do Desenvolvimento"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039206008002"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit54">
+			<semanticIdentifier>diSequencial::774924</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774924"/>
+			<field name="name" value="Departamento de Psicologia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit55">
+			<semanticIdentifier>diSequencial::774923</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774923"/>
+			<field name="name" value="Departamento de Oceanografia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit56">
+			<semanticIdentifier>diSequencial::33190</semanticIdentifier>
+			<semanticIdentifier>cnpq::039206004007</semanticIdentifier>
+			<field name="identifier.diSequencial" value="33190"/>
+			<field name="identifier.cnpq" value="039206004007"/>
+			<field name="name" value="Departamento de Línguas e Letras"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039206004007"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit57">
+			<semanticIdentifier>diSequencial::774922</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774922"/>
+			<field name="name" value="Departamento de Geografia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit58">
+			<semanticIdentifier>cnpq::039206003000</semanticIdentifier>
+			<semanticIdentifier>diSequencial::33189</semanticIdentifier>
+			<field name="identifier.cnpq" value="039206003000"/>
+			<field name="identifier.diSequencial" value="33189"/>
+			<field name="name" value="Departamento de Ciências Biológicas"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039206003000"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit59">
+			<semanticIdentifier>diSequencial::33195</semanticIdentifier>
+			<semanticIdentifier>cnpq::039206007006</semanticIdentifier>
+			<field name="identifier.diSequencial" value="33195"/>
+			<field name="identifier.cnpq" value="039206007006"/>
+			<field name="name" value="Departamento de Ciências Sociais"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039206007006"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit60">
+			<semanticIdentifier>cnpq::039206005003</semanticIdentifier>
+			<semanticIdentifier>diSequencial::33191</semanticIdentifier>
+			<field name="identifier.cnpq" value="039206005003"/>
+			<field name="identifier.diSequencial" value="33191"/>
+			<field name="name" value="Departamento de História"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039206005003"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit61">
+			<semanticIdentifier>diSequencial::774921</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774921"/>
+			<field name="name" value="Departamento de Filosofia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit62">
+			<semanticIdentifier>diSequencial::774947</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774947"/>
+			<field name="name" value="Centro de Artes - CAR"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit63">
+			<semanticIdentifier>diSequencial::774949</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774949"/>
+			<field name="name" value="Departamento de Artes Visuais"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit64">
+			<semanticIdentifier>diSequencial::774952</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774952"/>
+			<field name="name" value="Departamento de Teoria da Arte e Música"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit65">
+			<semanticIdentifier>diSequencial::774948</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774948"/>
+			<field name="name" value="Departamento de Arquitetura e Urbanismo"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit66">
+			<semanticIdentifier>diSequencial::774951</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774951"/>
+			<field name="name" value="Departamento de Desenho Industrial"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit67">
+			<semanticIdentifier>diSequencial::774950</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774950"/>
+			<field name="name" value="Departamento de Comunicação Social"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit68">
+			<semanticIdentifier>diSequencial::774953</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774953"/>
+			<field name="name" value="Centro de Ciências Agrárias e Engenharias - CCAE"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit69">
+			<semanticIdentifier>diSequencial::774734</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774734"/>
+			<field name="name" value="Departamento de Medicina Veterinária"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit70">
+			<semanticIdentifier>diSequencial::774732</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774732"/>
+			<field name="name" value="Departamento de Ciências Florestais e da Madeira"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit71">
+			<semanticIdentifier>diSequencial::774731</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774731"/>
+			<field name="name" value="Departamento de Agronomia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit72">
+			<semanticIdentifier>diSequencial::774733</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774733"/>
+			<field name="name" value="Departamento de Engenharia de Alimentos"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit73">
+			<semanticIdentifier>diSequencial::774736</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774736"/>
+			<field name="name" value="Departamento de Engenharia Rural"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit74">
+			<semanticIdentifier>diSequencial::774735</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774735"/>
+			<field name="name" value="Departamento de Zootecnia"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit75">
+			<semanticIdentifier>diSequencial::774973</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774973"/>
+			<field name="name" value="Centro Tecnológico - CT"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit76">
+			<semanticIdentifier>diSequencial::774897</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774897"/>
+			<field name="name" value="Departamento de Tecnologia Industrial"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit77">
+			<semanticIdentifier>diSequencial::774894</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774894"/>
+			<field name="name" value="Departamento de Engenharia Ambiental"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit78">
+			<semanticIdentifier>diSequencial::33164</semanticIdentifier>
+			<semanticIdentifier>cnpq::039201002006</semanticIdentifier>
+			<field name="identifier.diSequencial" value="33164"/>
+			<field name="identifier.cnpq" value="039201002006"/>
+			<field name="name" value="Departamento de Engenharia Elétrica"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039201002006"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit79">
+			<semanticIdentifier>cnpq::039201001000</semanticIdentifier>
+			<semanticIdentifier>diSequencial::33163</semanticIdentifier>
+			<field name="identifier.cnpq" value="039201001000"/>
+			<field name="identifier.diSequencial" value="33163"/>
+			<field name="name" value="Departamento de Engenharia Mecânica"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039201001000"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit80">
+			<semanticIdentifier>diSequencial::774896</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774896"/>
+			<field name="name" value="Departamento de Engenharia de Produção"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit81">
+			<semanticIdentifier>diSequencial::774895</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774895"/>
+			<field name="name" value="Departamento de Engenharia Civil"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit82">
+			<semanticIdentifier>diSequencial::33166</semanticIdentifier>
+			<semanticIdentifier>cnpq::039201004009</semanticIdentifier>
+			<field name="identifier.diSequencial" value="33166"/>
+			<field name="identifier.cnpq" value="039201004009"/>
+			<field name="name" value="Departamento de Informática"/>
+			<field name="identifier.cnpj" value="32.479.123/0001-43"/>
+			<field name="acronym" value="UFES"/>
+			<field name="identifier.cnpq" value="039201004009"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="AV. FERNANDO FERRARI, S/N"/>
+			<field name="address.neighborhood" value="GOIABEIRAS"/>
+			<field name="address.city" value="Vitoria"/>
+			<field name="address.state" value="ES"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="29060-900"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit83">
+			<semanticIdentifier>diSequencial::774942</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774942"/>
+			<field name="name" value="Centro de Ciências Exatas - CCE"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit84">
+			<semanticIdentifier>diSequencial::774946</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774946"/>
+			<field name="name" value="Departamento de Química"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit85">
+			<semanticIdentifier>diSequencial::774945</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774945"/>
+			<field name="name" value="Departamento de Matemática"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit86">
+			<semanticIdentifier>diSequencial::774944</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774944"/>
+			<field name="name" value="Departamento de Física"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit87">
+			<semanticIdentifier>diSequencial::774943</semanticIdentifier>
+			<field name="identifier.diSequencial" value="774943"/>
+			<field name="name" value="Departamento de Estatística"/>
+		</entity>
+		<entity type="Course" ref="Course1">
+			<semanticIdentifier>brcris::ecd27aa91211ad5a20e9074cf613361a</semanticIdentifier>
+			<field name="identifier.brcris" value="ecd27aa91211ad5a20e9074cf613361a"/>
+			<field name="identifier.cnpq" value="30010071"/>
+			<field name="name" value="Informática"/>
+			<field name="name" value="Computer Science" lang="eng"/>
+			<field name="degree" value="master degree"/>
+		</entity>
+		<entity type="Program" ref="Program1">
+			<semanticIdentifier>capes::30001013007P0</semanticIdentifier>
+			<field name="identifier.capes" value="30001013007P0"/>
+			<field name="researchArea.capes" value="10300007"/>
+		</entity>
+		<entity type="Publication" ref="Publication2">
+			<semanticIdentifier>doi::10.3390/ph15020132</semanticIdentifier>
+			<semanticIdentifier>brcris::6e884ccebba7ee6cc601e9a118726ba8</semanticIdentifier>
+			<field name="identifier.brcris" value="6e884ccebba7ee6cc601e9a118726ba8"/>
+			<field name="title" value="Evaluation of Docking Machine Learning and Molecular Dynamics Methodologies for DNA-Ligand Systems"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2022"/>
+			<field name="volume" value="15"/>
+			<field name="series" value="2"/>
+			<field name="startPage" value="132"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="molecular docking"/>
+			<field name="keyword" value="virtual screening"/>
+			<field name="keyword" value="MoLar"/>
+			<field name="keyword" value="DNA intercalating agents"/>
+			<field name="keyword" value="computer drug design"/>
+			<field name="keyword" value="molecular dynamic simulations"/>
+			<field name="resourceUrl" value="http://https://www.mdpi.com/1424-8247/15/2/132"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.3390/ph15020132"/>
+			<field name="author" value="ASSIS, LETÍCIA CRISTINA"/>
+			<field name="author" value="TARANTO, ALEX GUTTERRES"/>
+			<field name="author" value="CARVALHO, PAULO BATISTA DE"/>
+			<field name="author" value="SILVA, ALISSON MARQUES DA"/>
+			<field name="author" value="MAIA, EDUARDO HABIB BECHELANE"/>
+			<field name="author" value="MEDAGLIA, LUCAS ROLIM"/>
+			<field name="author" value="Tiago Alves de Oliveira"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal1">
+			<semanticIdentifier>issn::1424-8247</semanticIdentifier>
+			<field name="identifier.issn" value="1424-8247"/>
+			<field name="title" value="PHARMACEUTICALS"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication3">
+			<semanticIdentifier>doi::10.3389/fchem.2020.00343</semanticIdentifier>
+			<semanticIdentifier>brcris::7eaa81c87a612a8850f2c21e797ff56b</semanticIdentifier>
+			<field name="identifier.brcris" value="7eaa81c87a612a8850f2c21e797ff56b"/>
+			<field name="title" value="Structure-Based Virtual Screening: From Classical to Artificial Intelligence"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2020"/>
+			<field name="volume" value="8"/>
+			<field name="startPage" value="343"/>
+			<field name="type" value="journal article"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.3389/fchem.2020.00343"/>
+			<field name="author" value="ASSIS, LETÍCIA CRISTINA"/>
+			<field name="author" value="TARANTO, ALEX GUTTERRES"/>
+			<field name="author" value="MAIA, EDUARDO HABIB BECHELANE"/>
+			<field name="author" value="DA SILVA, ALISSON MARQUES"/>
+			<field name="author" value="Tiago Alves de Oliveira"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal2">
+			<semanticIdentifier>issn::2296-2646</semanticIdentifier>
+			<field name="identifier.issn" value="2296-2646"/>
+			<field name="title" value="Frontiers in Chemistry"/>
+			<field name="type" value="journal"/>
+		</entity>
+	</entities>
+	<relations>
+		<relation type="Affiliation" fromEntityRef="OrgUnit1" toEntityRef="Person1"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person2"/>
+		<relation type="Adivisoring" fromEntityRef="Publication1" toEntityRef="Person2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit4" toEntityRef="OrgUnit3"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit5" toEntityRef="OrgUnit3"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit6" toEntityRef="OrgUnit3"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit3" toEntityRef="OrgUnit2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit7" toEntityRef="OrgUnit2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit9" toEntityRef="OrgUnit8"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit10" toEntityRef="OrgUnit8"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit11" toEntityRef="OrgUnit8"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit12" toEntityRef="OrgUnit8"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit13" toEntityRef="OrgUnit8"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit14" toEntityRef="OrgUnit8"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit15" toEntityRef="OrgUnit8"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit8" toEntityRef="OrgUnit2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit17" toEntityRef="OrgUnit16"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit18" toEntityRef="OrgUnit16"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit19" toEntityRef="OrgUnit16"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit20" toEntityRef="OrgUnit16"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit21" toEntityRef="OrgUnit16"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit22" toEntityRef="OrgUnit16"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit16" toEntityRef="OrgUnit2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit24" toEntityRef="OrgUnit23"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit25" toEntityRef="OrgUnit23"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit26" toEntityRef="OrgUnit23"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit27" toEntityRef="OrgUnit23"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit28" toEntityRef="OrgUnit23"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit29" toEntityRef="OrgUnit23"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit30" toEntityRef="OrgUnit23"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit31" toEntityRef="OrgUnit23"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit23" toEntityRef="OrgUnit2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit33" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit34" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit35" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit36" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit37" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit38" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit39" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit40" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit41" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit42" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit43" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit44" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit45" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit46" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit47" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit48" toEntityRef="OrgUnit32"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit32" toEntityRef="OrgUnit2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit50" toEntityRef="OrgUnit49"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit51" toEntityRef="OrgUnit49"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit49" toEntityRef="OrgUnit2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit53" toEntityRef="OrgUnit52"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit54" toEntityRef="OrgUnit52"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit55" toEntityRef="OrgUnit52"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit56" toEntityRef="OrgUnit52"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit57" toEntityRef="OrgUnit52"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit58" toEntityRef="OrgUnit52"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit59" toEntityRef="OrgUnit52"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit60" toEntityRef="OrgUnit52"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit61" toEntityRef="OrgUnit52"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit52" toEntityRef="OrgUnit2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit63" toEntityRef="OrgUnit62"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit64" toEntityRef="OrgUnit62"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit65" toEntityRef="OrgUnit62"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit66" toEntityRef="OrgUnit62"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit67" toEntityRef="OrgUnit62"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit62" toEntityRef="OrgUnit2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit69" toEntityRef="OrgUnit68"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit70" toEntityRef="OrgUnit68"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit71" toEntityRef="OrgUnit68"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit72" toEntityRef="OrgUnit68"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit73" toEntityRef="OrgUnit68"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit74" toEntityRef="OrgUnit68"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit68" toEntityRef="OrgUnit2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit76" toEntityRef="OrgUnit75"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit77" toEntityRef="OrgUnit75"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit78" toEntityRef="OrgUnit75"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit79" toEntityRef="OrgUnit75"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit80" toEntityRef="OrgUnit75"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit81" toEntityRef="OrgUnit75"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit82" toEntityRef="OrgUnit75"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit75" toEntityRef="OrgUnit2"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit84" toEntityRef="OrgUnit83"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit85" toEntityRef="OrgUnit83"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit86" toEntityRef="OrgUnit83"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit87" toEntityRef="OrgUnit83"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit83" toEntityRef="OrgUnit2"/>
+		<relation type="CourseOrgUnit" fromEntityRef="OrgUnit2" toEntityRef="Course1"/>
+		<relation type="OrgUnitProgram" fromEntityRef="OrgUnit2" toEntityRef="Program1"/>
+		<relation type="ThesisSponsorship" fromEntityRef="OrgUnit2" toEntityRef="Publication1"/>
+		<relation type="IsProgramOf" fromEntityRef="Program1" toEntityRef="Course1"/>
+		<relation type="CourseThesis" fromEntityRef="Course1" toEntityRef="Publication1"/>
+		<relation type="ProgramThesis" fromEntityRef="Publication1" toEntityRef="Program1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication1"/>
+		<relation type="Authorship" fromEntityRef="Publication1" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication2" toEntityRef="Journal1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication2"/>
+		<relation type="Authorship" fromEntityRef="Publication2" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication3" toEntityRef="Journal2"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication3"/>
+		<relation type="Authorship" fromEntityRef="Publication3" toEntityRef="Person1"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person1"/>
+	</relations>
+</entity-relation-data>

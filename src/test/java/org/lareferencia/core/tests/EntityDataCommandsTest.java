@@ -51,8 +51,8 @@ public class EntityDataCommandsTest {
     private EntityDataCommands entityDataCommands;
 
     @Test
-    public void testLoadData() throws Exception {
-        String XMLFolder = "entity_data_folder";
+    public void loadDataOnDryRunMode() throws Exception {
+        String XMLFolder = "/entity_data_folder/lattes_di/";
 		Resource resource = new ClassPathResource(XMLFolder);
 
         Integer entityCacheSize = 5000;
@@ -69,5 +69,10 @@ public class EntityDataCommandsTest {
 		logger.info("======>>>> resource.getURL().getPath():  "+resource.getURL().getPath());
         String result = entityDataCommands.load_data(resource.getURL().getPath(), entityCacheSize, doProfile, dryRun);
         logger.info("result ===>>>> "+result);
+    }
+    
+    @Test
+    public void validateDateTest() {
+    	String date = "2022-05-30 14:32:17.502174";
     }
 }

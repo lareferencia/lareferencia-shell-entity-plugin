@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entity-relation-data lastUpdate="234567898765" source="lattes+di" record="30d803757db80758167c8a511845f58c">
+	<entities>
+		<entity type="Person" ref="Person1">
+			<semanticIdentifier>orcid::0000-0002-5743-4200</semanticIdentifier>
+			<semanticIdentifier>lattes::3335154224432346</semanticIdentifier>
+			<field name="identifier.orcid" />
+			<field name="identifier.lattes" value="3335154224432346"/>
+			<field name="name" value="José Estevam da Silva e Silva"/>
+			<field name="citationName" value="SILVA, J. E. S."/>
+			<field name="nationality" value="Brasil"/>
+			<field name="birthCity" value="Tarauacá"/>
+			<field name="birthState" value="AC"/>
+			<field name="birthCountry" value="Brasil"/>
+			<field name="researchArea" value="GESTÃO DE PROCESSOS"/>
+			<field name="researchArea" value="INFORMÁTICA NA EDUCAÇÃO"/>
+			<field name="researchArea" value="Sistemas de Informação"/>
+			<field name="researchArea" value="EDUCAÇÃO PROFISSIONAL"/>
+			<field name="miniBiography" value="graduation at Sistemas de Informação from Faculdade Barão do Rio Branco (2017). Has experience in Computer Science" lang="eng"/>
+			<field name="miniBiography" value="José Estevam da Silva e Silva, Sistemas de Informação pela União Educacional do Norte (UNINORTE) em 2018. Pós-graduado em Gerência de Banco de dados (Area de concentração: Banco de dados) pela Faculdade Barão do Rio Branco, em 2020. Mestrando em Ciência da Computação pela Universidade Federal do Acre (UFAC) Em andamento.  Atualmente trabalha como Analista de Sistemas na Fundação Hospital Estadual do Acre (FUNDHACRE)."/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit1">
+			<semanticIdentifier>diSequencial::312013</semanticIdentifier>
+			<semanticIdentifier>brcris::315f31a66f57e53529cdd9a6f4e045c9</semanticIdentifier>
+			<field name="identifier.diSequencial" value="312013"/>
+			<field name="identifier.brcris" value="315f31a66f57e53529cdd9a6f4e045c9"/>
+			<field name="name" value="Fundação Hospital Estadual do Acre"/>
+		</entity>
+		<entity type="Community" ref="Community1">
+			<semanticIdentifier>brcris::ad6476ed641680c39535783ddca3d3a9</semanticIdentifier>
+			<field name="identifier.brcris" value="ad6476ed641680c39535783ddca3d3a9"/>
+			<field name="name" value="Equipe"/>
+		</entity>
+	</entities>
+	<relations>
+		<relation type="Affiliation" fromEntityRef="OrgUnit1" toEntityRef="Person1"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person1"/>
+	</relations>
+</entity-relation-data>

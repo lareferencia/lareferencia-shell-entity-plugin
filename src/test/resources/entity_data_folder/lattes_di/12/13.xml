@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entity-relation-data lastUpdate="2022-05-30 14:32:17.502174" source="lattes+di" record="6f2a3eb4fd714168b61694c636ecd3a8">
+	<entities>
+		<entity type="Person" ref="Person1">
+			<semanticIdentifier>lattes::7645668504078091</semanticIdentifier>
+			<field name="identifier.lattes" value="7645668504078091"/>
+			<field name="name" value="Renan Rangel de Oliveira"/>
+			<field name="citationName" value="OLIVEIRA, R. R."/>
+			<field name="nationality" value="Brasil"/>
+			<field name="birthCountry" value="Brasil"/>
+			<field name="researchArea" value="Análise e Desenvolvimento de Sistemas"/>
+		</entity>
+		<entity type="Community" ref="Community1">
+			<semanticIdentifier>brcris::ad6476ed641680c39535783ddca3d3a9</semanticIdentifier>
+			<field name="identifier.brcris" value="ad6476ed641680c39535783ddca3d3a9"/>
+			<field name="name" value="Equipe"/>
+		</entity>
+	</entities>
+	<relations/>
+</entity-relation-data>

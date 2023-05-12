@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entity-relation-data lastUpdate="2022-05-30 14:32:17.502174" source="lattes+di" record="77014e9297f777524bc7a6076ee8161a">
+	<entities>
+		<entity type="Person" ref="Person1">
+			<semanticIdentifier>lattes::1845547421522138</semanticIdentifier>
+			<semanticIdentifier>cpf::1289234781234782</semanticIdentifier>
+			
+			<field name="identifier.lattes" value="1845547421522138"/>
+			<field name="name" value="Ulisses Argileu Souza E Silva"/>
+			<field name="citationName" value="SILVA, U. A. S."/>
+			<field name="nationality" value="Brasil"/>
+			<field name="birthCountry" value="Brasil"/>
+			<field name="researchArea" value="Robótica, Mecatrônica e Automação"/>
+		</entity>
+		<entity type="Community" ref="Community1">
+			<semanticIdentifier>brcris::ad6476ed641680c39535783ddca3d3a9</semanticIdentifier>
+			<field name="identifier.brcris" value="ad6476ed641680c39535783ddca3d3a9"/>
+			<field name="name" value="Equipe"/>
+		</entity>
+	</entities>
+
+</entity-relation-data>

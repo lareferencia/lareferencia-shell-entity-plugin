@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entity-relation-data lastUpdate="2022-05-30 14:32:17.502174" source="lattes+di" record="948e11945f3945a99b46127ef6e444d1">
+	<entities>
+		<entity type="Person" ref="Person1">
+			<semanticIdentifier>lattes::6322724400053732</semanticIdentifier>
+			<field name="identifier.lattes" value="6322724400053732"/>
+			<field name="name" value="Lautaro J. Matas"/>
+			<field name="citationName" value="MATAS, L. J."/>
+		</entity>
+		<entity type="Publication" ref="Publication1">
+			<semanticIdentifier>brcris::c1846ff4d7e4c1527a4160a6e7f45bd4</semanticIdentifier>
+			<field name="identifier.brcris" value="c1846ff4d7e4c1527a4160a6e7f45bd4"/>
+			<field name="title" value="Utilizando o framework LattesDataXplorer para vincular automaticamente os currículos da Plataforma Lattes à Biblioteca Digital Brasileira de Teses e Dissertações (BDTD)"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2019"/>
+			<field name="volume" value="48"/>
+			<field name="series" value="3"/>
+			<field name="startPage" value="335"/>
+			<field name="endPage" value="340"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="BDTD"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Ciência Aberta"/>
+			<field name="keyword" value="Acesso Aberto"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="researchArea.cnpq" value="Métodos Quantitativos. Bibliometria"/>
+			<field name="resourceUrl" value="http://revista.ibict.br/ciinf/article/view/5003/4466"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="author" value="Lautaro J. Matas"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Community" ref="Community1">
+			<semanticIdentifier>brcris::ad6476ed641680c39535783ddca3d3a9</semanticIdentifier>
+			<field name="identifier.brcris" value="ad6476ed641680c39535783ddca3d3a9"/>
+			<field name="name" value="Equipe"/>
+		</entity>
+	</entities>
+	<relations>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication1"/>
+		<relation type="Authorship" fromEntityRef="Publication1" toEntityRef="Person1"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person1"/>
+	</relations>
+</entity-relation-data>

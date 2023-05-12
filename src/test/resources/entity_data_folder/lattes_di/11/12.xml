@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entity-relation-data lastUpdate="2022-05-30" source="lattes+di" record="df3668d6f730c434f8a93d27fdbbd579">
+	<entities>
+		<entity type="Person" ref="Person1">
+			<semanticIdentifier>lattes::6579166915730771</semanticIdentifier>
+			<field name="identifier.lattes" value="6579166915730771"/>
+			<field name="name" value="Tales Henrique José Moreira"/>
+			<field name="citationName" value="Moreira, T. H. J."/>
+		</entity>
+		<entity type="Publication" ref="Publication1">
+			<semanticIdentifier>brcris::be61174de6e7020ab47769cebc228146</semanticIdentifier>
+			<field name="identifier.brcris" value="be61174de6e7020ab47769cebc228146"/>
+			<field name="title" value="Identificação e Caracterização de Redes Científicas de Dados Curriculares"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2014"/>
+			<field name="volume" value="07"/>
+			<field name="series" value="03"/>
+			<field name="startPage" value="05"/>
+			<field name="endPage" value="18"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Colaboração Científica"/>
+			<field name="keyword" value="Produção Científica"/>
+			<field name="keyword" value="Análise de Redes Sociais"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="resourceUrl" value="http://www.seer.unirio.br/index.php/isys"/>
+			<field name="author" value="Gray Farias Moita"/>
+			<field name="author" value="Tales Moreira"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="author" value="Patrícia Mascarenhas Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Community" ref="Community1">
+			<semanticIdentifier>brcris::ad6476ed641680c39535783ddca3d3a9</semanticIdentifier>
+			<field name="identifier.brcris" value="ad6476ed641680c39535783ddca3d3a9"/>
+			<field name="name" value="Equipe"/>
+		</entity>
+		<entity type="Publication" ref="Publication2">
+			<semanticIdentifier>brcris::eb744d76c5a13b3ebb2172e2d5b8700e</semanticIdentifier>
+			<field name="identifier.brcris" value="eb744d76c5a13b3ebb2172e2d5b8700e"/>
+			<field name="title" value="UMA VISÃO GERAL DO PROCESSO DE ORIENTAÇÃO E DA PRODUÇÃO CIENTÍFICA DA RELAÇÃO ORIENTADOR-ORIENTADO NAS ÁREAS DE ENGENHARIAS"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="2"/>
+			<field name="series" value="10"/>
+			<field name="startPage" value="61"/>
+			<field name="endPage" value="70"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Genealogia Acadêmica"/>
+			<field name="keyword" value="Orientação"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="resourceUrl" value="http://www.periodicos.unb.br/index.php/ripe/article/view/23711"/>
+			<field name="author" value="Tales Henrique José Moreira"/>
+			<field name="author" value="Gray Farias Moita"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication3">
+			<semanticIdentifier>brcris::335a7f66794473da7a86fb7849410078</semanticIdentifier>
+			<field name="identifier.brcris" value="335a7f66794473da7a86fb7849410078"/>
+			<field name="title" value="Um estudo sobre a produção científica do conjunto de docentes dos programas de pós-graduação área interdisciplinar no Brasil"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2018"/>
+			<field name="volume" value="13"/>
+			<field name="series" value="1"/>
+			<field name="startPage" value="109"/>
+			<field name="endPage" value="119"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Cientometria"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Acesso Aberto"/>
+			<field name="keyword" value="Bibliometria"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="resourceUrl" value="http://www.periodicos.ufpb.br/ojs/index.php/pbcib/article/view/40126"/>
+			<field name="author" value="Tales Henrique José Moreira"/>
+			<field name="author" value="Gray Farias Moita"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="author" value="Patrícia Mascarenhas Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication4">
+			<semanticIdentifier>brcris::91f8c7088413cafe8b9eeb75d6b7657a</semanticIdentifier>
+			<field name="identifier.brcris" value="91f8c7088413cafe8b9eeb75d6b7657a"/>
+			<field name="title" value="Árvores genealógicas acadêmicas como estratégia para análises do processo de orientação"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2018"/>
+			<field name="volume" value="13"/>
+			<field name="series" value="2"/>
+			<field name="startPage" value="246"/>
+			<field name="endPage" value="254"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Cientometria"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Arvores Genealógicas Científicas"/>
+			<field name="keyword" value="Bibliometria"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="author" value="Tales Henrique José Moreira"/>
+			<field name="author" value="Gray Farias Moita"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="author" value="Patrícia Mascarenhas Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication5">
+			<semanticIdentifier>brcris::2d56572c42af67e130a2b88bceb15777</semanticIdentifier>
+			<field name="identifier.brcris" value="2d56572c42af67e130a2b88bceb15777"/>
+			<field name="title" value="Análise de redes na produção científica dos egressos de pós-graduação em psicologia de uma universidade pública do Brasil"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2019"/>
+			<field name="volume" value="48"/>
+			<field name="series" value="3"/>
+			<field name="startPage" value="453"/>
+			<field name="endPage" value="459"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Bibliometria"/>
+			<field name="keyword" value="Colaboração Científica"/>
+			<field name="keyword" value="Cientometria"/>
+			<field name="keyword" value="Acesso Aberto"/>
+			<field name="keyword" value="redes de Colaboração"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="researchArea.cnpq" value="Métodos Quantitativos. Bibliometria"/>
+			<field name="resourceUrl" value="http://revista.ibict.br/ciinf/article/view/4874/4493"/>
+			<field name="author" value="Tales Henrique José Moreira"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="author" value="Maria Clarice Lima Batista"/>
+			<field name="author" value="Sérgio Dias Cirino"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication6">
+			<semanticIdentifier>brcris::d4e160921d14865a785e97a3c4dae057</semanticIdentifier>
+			<field name="identifier.brcris" value="d4e160921d14865a785e97a3c4dae057"/>
+			<field name="title" value="Uma visão geral do processo de orientação e da produção científica da relação orientador-orientado nas áreas de engenharias"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2016"/>
+			<field name="volume" value="2"/>
+			<field name="series" value="10"/>
+			<field name="startPage" value="61"/>
+			<field name="endPage" value="70"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Genealogia Acadêmica"/>
+			<field name="researchArea.cnpq" value="Métodos Quantitativos. Bibliometria"/>
+			<field name="author" value="MOREIRA, TALES HENRIQUE JOSÉ"/>
+			<field name="author" value="Gray Farias Moita"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication7">
+			<semanticIdentifier>brcris::aa6ee2c49c00b16eed1fc9a1c35faffe</semanticIdentifier>
+			<field name="identifier.brcris" value="aa6ee2c49c00b16eed1fc9a1c35faffe"/>
+			<field name="title" value="Produção científica em periódicos de acesso aberto no Brasil: uma caracterização dos autores"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2018"/>
+			<field name="volume" value="13"/>
+			<field name="series" value="2"/>
+			<field name="startPage" value="136"/>
+			<field name="endPage" value="145"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Cientometria"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Acesso Aberto"/>
+			<field name="keyword" value="Bibliometria"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="author" value="Tales Henrique José Moreira"/>
+			<field name="author" value="Gray Farias Moita"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="author" value="Patrícia Mascarenhas Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication8">
+			<semanticIdentifier>doi::10.26729/jadi.v3i1.2457</semanticIdentifier>
+			<semanticIdentifier>brcris::e3316e1d33c79842467c530a6df7a5c3</semanticIdentifier>
+			<field name="identifier.brcris" value="e3316e1d33c79842467c530a6df7a5c3"/>
+			<field name="title" value="Uma estratÃ©gia baseada em Text Mining para compreensÃ£o do processo de orientaÃ§Ã£o em repositÃ³rios de dados cientÃficos"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="3"/>
+			<field name="series" value="1"/>
+			<field name="startPage" value="84"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Genealogia Acadêmica"/>
+			<field name="researchArea.cnpq" value="Métodos Quantitativos. Bibliometria"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.26729/jadi.v3i1.2457"/>
+			<field name="resourceUrl" value="doi:10.26729/jadi.v3i1.2457"/>
+			<field name="author" value="Tales Henrique José Moreira"/>
+			<field name="author" value="MOITA, GRAY FARIAS"/>
+			<field name="author" value="DIAS, PATRICIA MASCARENHAS"/>
+			<field name="author" value="DIAS, THIAGO MAGELA RODRIGUES"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal1">
+			<semanticIdentifier>issn::2447-5033</semanticIdentifier>
+			<field name="identifier.issn" value="2447-5033"/>
+			<field name="title" value="JOURNAL ON ADVANCES IN THEORETICAL AND APPLIED INFORMATICS"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication9">
+			<semanticIdentifier>brcris::c78fa9f33f5802f94bbf1944c75dc7fb</semanticIdentifier>
+			<field name="identifier.brcris" value="c78fa9f33f5802f94bbf1944c75dc7fb"/>
+			<field name="title" value="An Overview of the Advice Process and the Scientific Production of the Adviser-Advised Relationship in the Areas of Engineering"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="11"/>
+			<field name="series" value="10"/>
+			<field name="startPage" value="2388"/>
+			<field name="endPage" value="2392"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Cientometria"/>
+			<field name="keyword" value="Genealogia Científica"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Bibliometria"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="author" value="Tales Henrique José Moreira"/>
+			<field name="author" value="Gray Farias Moita"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication10">
+			<semanticIdentifier>brcris::9d3182c172b685061daf6ac22d108466</semanticIdentifier>
+			<field name="identifier.brcris" value="9d3182c172b685061daf6ac22d108466"/>
+			<field name="title" value="Fomento à Pesquisa Científica no Brasil: a Colaboração dos Pesquisadores de Excelência"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2019"/>
+			<field name="volume" value="24"/>
+			<field name="series" value="48"/>
+			<field name="startPage" value="151"/>
+			<field name="endPage" value="166"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Produção Científica"/>
+			<field name="keyword" value="Bibliometria"/>
+			<field name="keyword" value="Colaboração Científica"/>
+			<field name="keyword" value="Cientometria"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="researchArea.cnpq" value="Métodos Quantitativos. Bibliometria"/>
+			<field name="author" value="Tales Henrique José Moreira"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="author" value="Patrícia Mascarenhas Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication11">
+			<semanticIdentifier>brcris::cdb5a32015513f674e383a606dbab5b0</semanticIdentifier>
+			<field name="identifier.brcris" value="cdb5a32015513f674e383a606dbab5b0"/>
+			<field name="title" value="Identification of the profile of productivity researchers in CNPq research using lattes platform"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="7"/>
+			<field name="series" value="4"/>
+			<field name="startPage" value="12366"/>
+			<field name="endPage" value="12370"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Bolsa de Produtividade em Pesquisa"/>
+			<field name="researchArea.cnpq" value="Métodos Quantitativos. Bibliometria"/>
+			<field name="resourceUrl" value="http://www.journalijdr.com/sites/default/files/issue-pdf/8400.pdf"/>
+			<field name="author" value="SANTOS, LEANDRO ROBERTO FERREIRA"/>
+			<field name="author" value="Gray Farias Moita"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="author" value="Patrícia Mascarenhas Dias"/>
+			<field name="author" value="Tales Moreira"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication12">
+			<semanticIdentifier>brcris::414cdc51fba10675b53b195d4d9a93b7</semanticIdentifier>
+			<field name="identifier.brcris" value="414cdc51fba10675b53b195d4d9a93b7"/>
+			<field name="title" value="Academic genealogy: a hierarchical analysis of advisors researchers"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="7"/>
+			<field name="series" value="4"/>
+			<field name="startPage" value="12371"/>
+			<field name="endPage" value="12375"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Genealogia Acadêmica"/>
+			<field name="researchArea.cnpq" value="Métodos Quantitativos. Bibliometria"/>
+			<field name="resourceUrl" value="http://www.journalijdr.com/sites/default/files/issue-pdf/8412.pdf"/>
+			<field name="author" value="Gray Farias Moita"/>
+			<field name="author" value="Tales Moreira"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="author" value="Patrícia Mascarenhas Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication13">
+			<semanticIdentifier>brcris::ebc3b70d8cd31d266d7e44e141e897ce</semanticIdentifier>
+			<field name="identifier.brcris" value="ebc3b70d8cd31d266d7e44e141e897ce"/>
+			<field name="author" value="Tales Henrique José Moreira"/>
+			<field name="title" value="Genealogia Acadêmica Brasileira: Uma caracterização da relação orientador-orientado no Brasil"/>
+			<field name="publicationDate" value="2018"/>
+			<field name="type" value="master thesis"/>
+			<field name="keyword" value="Cientometria"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Genealogia Acadêmica"/>
+			<field name="keyword" value="Bibliometria"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="coadvisor" value="{&lt;Value value='Thiago Magela Rodrigues Dias'&gt;}"/>
+			<field name="service" value="CVLattes - Orientações"/>
+			<field name="service" value="CVLattes - Formações"/>
+		</entity>
+	</entities>
+	<relations>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication1"/>
+		<relation type="Authorship" fromEntityRef="Publication1" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication2"/>
+		<relation type="Authorship" fromEntityRef="Publication2" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication3"/>
+		<relation type="Authorship" fromEntityRef="Publication3" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication4"/>
+		<relation type="Authorship" fromEntityRef="Publication4" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication5"/>
+		<relation type="Authorship" fromEntityRef="Publication5" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication6"/>
+		<relation type="Authorship" fromEntityRef="Publication6" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication7"/>
+		<relation type="Authorship" fromEntityRef="Publication7" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication8" toEntityRef="Journal1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication8"/>
+		<relation type="Authorship" fromEntityRef="Publication8" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication9"/>
+		<relation type="Authorship" fromEntityRef="Publication9" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication10"/>
+		<relation type="Authorship" fromEntityRef="Publication10" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication11"/>
+		<relation type="Authorship" fromEntityRef="Publication11" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication12"/>
+		<relation type="Authorship" fromEntityRef="Publication12" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication13"/>
+		<relation type="Authorship" fromEntityRef="Publication13" toEntityRef="Person1"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person1"/>
+	</relations>
+</entity-relation-data>

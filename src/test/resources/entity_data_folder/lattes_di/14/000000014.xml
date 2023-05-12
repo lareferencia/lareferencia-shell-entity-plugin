@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entity-relation-data lastUpdate="2022-05-30 14:32:17.502174" source="lattes+di" record="d3bf32772fb689d25a53b6a2b1683344">
+	<entities>
+		<entity type="Person" ref="Person1">
+			<semanticIdentifier>lattes::9453481318889500</semanticIdentifier>
+			<field name="identifier.lattes" value="9453481318889500"/>
+			<field name="name" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="citationName" value="SEGUNDO, W. L. R. C."/>
+		</entity>
+		<entity type="Publication" ref="Publication1">
+			<semanticIdentifier>brcris::e04cb6a9efa38d6a1f07daaed77e9156</semanticIdentifier>
+			<field name="identifier.brcris" value="e04cb6a9efa38d6a1f07daaed77e9156"/>
+			<field name="advisor" value="Flávio Leonardo Cavalcanti de Moura"/>
+			<field name="title" value="Verificação de Propriedades do Cálculo Lambda_ex em Coq"/>
+			<field name="publicationDate" value="2011"/>
+			<field name="type" value="master thesis"/>
+			<field name="keyword" value="cálculo lambada ex"/>
+			<field name="keyword" value="vericação formal"/>
+			<field name="keyword" value="cálculos de substituições explícitas"/>
+			<field name="researchArea.cnpq" value="Verificação Formal"/>
+			<field name="researchArea.cnpq" value="Matemática"/>
+			<field name="researchArea.cnpq" value="Computação"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="service" value="CVLattes - Formações"/>
+		</entity>
+		<entity type="Person" ref="Person2">
+			<semanticIdentifier>lattes::4924037693113808</semanticIdentifier>
+			<field name="identifier.lattes" value="4924037693113808"/>
+			<field name="name" value="Flávio Leonardo Cavalcanti de Moura"/>
+		</entity>
+		<entity type="Community" ref="Community1">
+			<semanticIdentifier>brcris::ad6476ed641680c39535783ddca3d3a9</semanticIdentifier>
+			<field name="identifier.brcris" value="ad6476ed641680c39535783ddca3d3a9"/>
+			<field name="name" value="Equipe"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit1">
+			<semanticIdentifier>cnpq::024000000008</semanticIdentifier>
+			<semanticIdentifier>brcris::5dc9ff2aa1ef3f4716e3c176667c9b0d</semanticIdentifier>
+			<semanticIdentifier>diSequencial::5407</semanticIdentifier>
+			<field name="identifier.cnpq" value="024000000008"/>
+			<field name="identifier.brcris" value="5dc9ff2aa1ef3f4716e3c176667c9b0d"/>
+			<field name="identifier.diSequencial" value="5407"/>
+			<field name="name" value="Universidade de Brasília"/>
+			<field name="identifier.cnpj" value="00.038.174/0001-43"/>
+			<field name="acronym" value="UnB"/>
+			<field name="identifier.cnpq" value="024000000008"/>
+			<field name="juridicNature" value="Administração Pública / Fundação Federal"/>
+			<field name="address.description" value="Campus Universitário Darcy Ribeiro"/>
+			<field name="address.neighborhood" value="Asa Norte"/>
+			<field name="address.city" value="Brasilia"/>
+			<field name="address.state" value="DF"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="70310-500"/>
+			<field name="coordinate.latitude" value="-15.763421"/>
+			<field name="coordinate.longitude" value="-47.870926"/>
+		</entity>
+		<entity type="Course" ref="Course1">
+			<semanticIdentifier>brcris::61485acedb45689c86838f49ddd5e05f</semanticIdentifier>
+			<field name="identifier.brcris" value="61485acedb45689c86838f49ddd5e05f"/>
+			<field name="identifier.cnpq" value="60021179"/>
+			<field name="name" value="Informática"/>
+			<field name="name" value="Computer Science" lang="eng"/>
+			<field name="degree" value="master degree"/>
+		</entity>
+		<entity type="Program" ref="Program1">
+			<semanticIdentifier>capes::53001010054P6</semanticIdentifier>
+			<field name="identifier.capes" value="53001010054P6"/>
+			<field name="researchArea.capes" value="10300007"/>
+		</entity>
+		<entity type="Publication" ref="Publication2">
+			<semanticIdentifier>doi::10.1016/j.tcs.2019.02.020</semanticIdentifier>
+			<semanticIdentifier>brcris::82219b5204c28f0f816e1938bfcdc897</semanticIdentifier>
+			<field name="identifier.brcris" value="82219b5204c28f0f816e1938bfcdc897"/>
+			<field name="title" value="A formalisation of nominal &amp;#945;-equivalence with A, C, and AC function symbols"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2019"/>
+			<field name="volume" value="1"/>
+			<field name="startPage" value="1"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Equivalence modulo A, C and AC axioms"/>
+			<field name="keyword" value="Nominal syntax"/>
+			<field name="keyword" value="Alpha equivalence"/>
+			<field name="researchArea.cnpq" value="Teoria da Computação"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="researchArea.cnpq" value="Verificação Formal"/>
+			<field name="resourceUrl" value="http://https://doi.org/10.1016/j.tcs.2019.02.020"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.1016/j.tcs.2019.02.020"/>
+			<field name="author" value="NANTES-SOBRINHO, DANIELE"/>
+			<field name="author" value="FERNÁNDEZ, MARIBEL"/>
+			<field name="author" value="AYALA-RINCÓN, MAURICIO"/>
+			<field name="author" value="ROCHA-OLIVEIRA, ANA CRISTINA"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal1">
+			<semanticIdentifier>issn::0304-3975</semanticIdentifier>
+			<field name="identifier.issn" value="0304-3975"/>
+			<field name="title" value="THEORETICAL COMPUTER SCIENCE"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Person" ref="Person3">
+			<semanticIdentifier>lattes::8466420403941522</semanticIdentifier>
+			<field name="identifier.lattes" value="8466420403941522"/>
+			<field name="name" value="AYALA-RINCÓN, MAURICIO"/>
+			<field name="citationName" value="AYALA-RINCÓN, MAURICIO"/>
+		</entity>
+		<entity type="Person" ref="Person4">
+			<semanticIdentifier>lattes::5525446018095215</semanticIdentifier>
+			<field name="identifier.lattes" value="5525446018095215"/>
+			<field name="name" value="ROCHA-OLIVEIRA, ANA CRISTINA"/>
+			<field name="citationName" value="ROCHA-OLIVEIRA, ANA CRISTINA"/>
+		</entity>
+		<entity type="Person" ref="Person5">
+			<semanticIdentifier>lattes::3436184353817774</semanticIdentifier>
+			<field name="identifier.lattes" value="3436184353817774"/>
+			<field name="name" value="NANTES-SOBRINHO, DANIELE"/>
+			<field name="citationName" value="NANTES-SOBRINHO, DANIELE"/>
+		</entity>
+		<entity type="Publication" ref="Publication3">
+			<semanticIdentifier>brcris::f44442570a11d11681ec70c2a83a73a4</semanticIdentifier>
+			<field name="identifier.brcris" value="f44442570a11d11681ec70c2a83a73a4"/>
+			<field name="title" value="VALIDAÇÃO AUTOMÁTICA DOS CURRÍCULOS DA PLATAFORMA LATTES À BIBLIOTECA DIGITAL BRASILEIRA DE TESES E DISSERTAÇÕES (BDTD)"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2021"/>
+			<field name="volume" value="3"/>
+			<field name="series" value="Esp Confoa"/>
+			<field name="startPage" value="164"/>
+			<field name="endPage" value="169"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Cientometria"/>
+			<field name="keyword" value="Ciência Aberta"/>
+			<field name="keyword" value="Acesso Aberto"/>
+			<field name="keyword" value="Bibliometria"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="researchArea.cnpq" value="Ciência da Informação"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication4">
+			<semanticIdentifier>brcris::e1936ada8cb50839d403609e15ea69f6</semanticIdentifier>
+			<field name="identifier.brcris" value="e1936ada8cb50839d403609e15ea69f6"/>
+			<field name="title" value="Estudo e desenvolvimento de ferramenta de migração entre sistemas de publicação de teses e dissertações"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2014"/>
+			<field name="volume" value="2"/>
+			<field name="series" value="2014"/>
+			<field name="startPage" value="1203"/>
+			<field name="type" value="journal article"/>
+			<field name="researchArea.cnpq" value="Sistemas de Informação"/>
+			<field name="researchArea.cnpq" value="Ciência da Informação"/>
+			<field name="resourceUrl" value="http://www.bad.pt/publicacoes/index.php/cadernos/article/view/1203"/>
+			<field name="author" value="Diego José Macêdo"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="author" value="Miton Shintaku"/>
+			<field name="author" value="Tainá Batista de Assis"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal2">
+			<semanticIdentifier>issn::1645-2895</semanticIdentifier>
+			<field name="identifier.issn" value="1645-2895"/>
+			<field name="title" value="Cadernos BAD"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Person" ref="Person6">
+			<semanticIdentifier>lattes::2205539000237712</semanticIdentifier>
+			<field name="identifier.lattes" value="2205539000237712"/>
+			<field name="name" value="Diego José Macêdo"/>
+			<field name="citationName" value="MACÊDO, D. J."/>
+		</entity>
+		<entity type="Person" ref="Person7">
+			<semanticIdentifier>lattes::8018556894529318</semanticIdentifier>
+			<field name="identifier.lattes" value="8018556894529318"/>
+			<field name="name" value="Tainá Batista de Assis"/>
+			<field name="citationName" value="ASSIS, T. B."/>
+		</entity>
+		<entity type="Person" ref="Person8">
+			<semanticIdentifier>lattes::8605833104600600</semanticIdentifier>
+			<field name="identifier.lattes" value="8605833104600600"/>
+			<field name="name" value="Milton Shintaku"/>
+			<field name="citationName" value="SHINTAKU, M."/>
+		</entity>
+		<entity type="Publication" ref="Publication5">
+			<semanticIdentifier>brcris::36bdcf434e0f656b71916459f2e2deca</semanticIdentifier>
+			<semanticIdentifier>doi::10.1016/j.entcs.2017.04.003</semanticIdentifier>
+			<field name="identifier.brcris" value="36bdcf434e0f656b71916459f2e2deca"/>
+			<field name="title" value="A Formalisation of Nominal &amp;#945; -equivalence with A and AC Function Symbols"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="332"/>
+			<field name="startPage" value="21"/>
+			<field name="endPage" value="38"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Nominal logic"/>
+			<field name="keyword" value="Equivalence modulo A and AC"/>
+			<field name="keyword" value="Alpha equivalence"/>
+			<field name="researchArea.cnpq" value="Teoria da Computação"/>
+			<field name="researchArea.cnpq" value="Linguagem Formais e Autômatos"/>
+			<field name="resourceUrl" value="http://https://doi.org/10.1016/j.entcs.2017.04.003][doi:10.1016/j.entcs.2017.04.003"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.1016/j.entcs.2017.04.003"/>
+			<field name="author" value="NANTES-SOBRINHO, DANIELE"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="author" value="FERNÁNDEZ, MARIBEL"/>
+			<field name="author" value="AYALA-RINCÓN, MAURICIO"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal3">
+			<semanticIdentifier>issn::1571-0661</semanticIdentifier>
+			<field name="identifier.issn" value="1571-0661"/>
+			<field name="title" value="Electronic Notes in Theoretical Computer Science"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication6">
+			<semanticIdentifier>brcris::cda04d58cd63ea2f35c84ebf58498a12</semanticIdentifier>
+			<field name="identifier.brcris" value="cda04d58cd63ea2f35c84ebf58498a12"/>
+			<field name="advisor" value="Mauricio Ayala Rincón"/>
+			<field name="coadvisor" value="Maribel Fernández"/>
+			<field name="title" value="Nominal Equational Problems Modulo Associativity, Commutativity and Associativity-Commutativity"/>
+			<field name="publicationDate" value="2019"/>
+			<field name="type" value="doctoral thesis"/>
+			<field name="keyword" value="Formal Methods"/>
+			<field name="keyword" value="Nominal Rewriting"/>
+			<field name="keyword" value="Reescrita Nominal"/>
+			<field name="keyword" value="Métodos Formais"/>
+			<field name="researchArea.cnpq" value="Teoria da Computação"/>
+			<field name="researchArea.cnpq" value="Lógica Matemática"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="service" value="CVLattes - Formações"/>
+		</entity>
+		<entity type="Course" ref="Course2">
+			<semanticIdentifier>brcris::80a756b483de11ba14aafa117d0bdd6b</semanticIdentifier>
+			<field name="identifier.brcris" value="80a756b483de11ba14aafa117d0bdd6b"/>
+			<field name="identifier.cnpq" value="60021179"/>
+			<field name="name" value="Informática"/>
+			<field name="name" value="Computer Science" lang="eng"/>
+			<field name="degree" value="doctorate degree"/>
+		</entity>
+		<entity type="Publication" ref="Publication7">
+			<semanticIdentifier>doi::10.3390/publications8020024</semanticIdentifier>
+			<semanticIdentifier>brcris::621283d18325d8b44193d84ddb4f0298</semanticIdentifier>
+			<field name="identifier.brcris" value="621283d18325d8b44193d84ddb4f0298"/>
+			<field name="title" value="R-Shiny as an Interface for Data Visualization and Data Analysis on the Brazilian Digital Library of Theses and Dissertations (BDTD)"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2020"/>
+			<field name="volume" value="8"/>
+			<field name="series" value="2"/>
+			<field name="startPage" value="24"/>
+			<field name="endPage" value="34"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="R"/>
+			<field name="keyword" value="R-Shiny"/>
+			<field name="keyword" value="Data visualization"/>
+			<field name="keyword" value="Data analysis"/>
+			<field name="keyword" value="BDTD"/>
+			<field name="keyword" value="Open Repositories"/>
+			<field name="researchArea.cnpq" value="Sistemas de Informação"/>
+			<field name="researchArea.cnpq" value="Análise de Algoritmos e Complexidade de Computação"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.3390/publications8020024"/>
+			<field name="resourceUrl" value="http://https://www.mdpi.com/2304-6775/8/2/24][doi:10.3390/publications8020024"/>
+			<field name="author" value="RAMALHO, LUCCA DE FARIAS"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal4">
+			<semanticIdentifier>issn::2304-6775</semanticIdentifier>
+			<field name="identifier.issn" value="2304-6775"/>
+			<field name="title" value="PUBLICATIONS"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Person" ref="Person9">
+			<semanticIdentifier>lattes::6421832972643821</semanticIdentifier>
+			<field name="identifier.lattes" value="6421832972643821"/>
+			<field name="name" value="RAMALHO, LUCCA DE FARIAS"/>
+			<field name="citationName" value="RAMALHO, LUCCA DE FARIAS"/>
+		</entity>
+		<entity type="Publication" ref="Publication8">
+			<semanticIdentifier>brcris::d2fe057ff461ea36981520974789a4a7</semanticIdentifier>
+			<field name="identifier.brcris" value="d2fe057ff461ea36981520974789a4a7"/>
+			<field name="title" value="Perfil das solicitações de apoio técnico no contexto de manutenção da rede brasileira de repositórios institucionais e de bibliotecas digitais locais de teses e dissertações"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="11"/>
+			<field name="series" value="1"/>
+			<field name="startPage" value="15"/>
+			<field name="endPage" value="25"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="oasisbr"/>
+			<field name="keyword" value="BDTD"/>
+			<field name="keyword" value="Repositórios Digitais"/>
+			<field name="researchArea.cnpq" value="Sistemas de Informação"/>
+			<field name="resourceUrl" value="http://https://www.reciis.icict.fiocruz.br/index.php/reciis/article/view/1377"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="author" value="Leonard Richard Rodrigues Rufino"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal5">
+			<semanticIdentifier>issn::1981-6278</semanticIdentifier>
+			<field name="identifier.issn" value="1981-6278"/>
+			<field name="title" value="RECIIS - Revista Eletrônica de Comunicação, Informação &amp; Inovação em Saúde"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Person" ref="Person10">
+			<semanticIdentifier>lattes::1521448863751526</semanticIdentifier>
+			<field name="identifier.lattes" value="1521448863751526"/>
+			<field name="name" value="Leonard Richard Rodrigues Rufino"/>
+			<field name="citationName" value="RUFINO, L. R. R."/>
+		</entity>
+		<entity type="Publication" ref="Publication9">
+			<semanticIdentifier>brcris::578d2cc903000093288383dd600031ac</semanticIdentifier>
+			<semanticIdentifier>doi::10.1017/S0960129521000050</semanticIdentifier>
+			<field name="identifier.brcris" value="578d2cc903000093288383dd600031ac"/>
+			<field name="title" value="Formalising nominal C-unification generalised with protected variables"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2021"/>
+			<field name="volume" value="1"/>
+			<field name="startPage" value="1"/>
+			<field name="endPage" value="26"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="PVS"/>
+			<field name="keyword" value="C-unification"/>
+			<field name="keyword" value="Nominal matching"/>
+			<field name="keyword" value="Commutative theory"/>
+			<field name="keyword" value="Formal Methods"/>
+			<field name="keyword" value="Nominal unification"/>
+			<field name="resourceUrl" value="http://https://doi.org/10.1017/S0960129521000050][doi:10.1017/s0960129521000050"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.1017/S0960129521000050"/>
+			<field name="author" value="NANTES-SOBRINHO, DANIELE"/>
+			<field name="author" value="SILVA, GABRIEL FERREIRA"/>
+			<field name="author" value="FERNÁNDEZ, MARIBEL"/>
+			<field name="author" value="AYALA-RINCÓN, MAURICIO"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal6">
+			<semanticIdentifier>issn::1469-8072</semanticIdentifier>
+			<field name="identifier.issn" value="1469-8072"/>
+			<field name="title" value="Mathematical Structures in Computer Science"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication10">
+			<semanticIdentifier>brcris::4b43e051706068c4eccc387b0be506f3</semanticIdentifier>
+			<semanticIdentifier>doi::10.29397/reciis.v11i0.1397</semanticIdentifier>
+			<field name="identifier.brcris" value="4b43e051706068c4eccc387b0be506f3"/>
+			<field name="title" value="Estudo para integração entre a Plataforma Lattes a Biblioteca Digital Brasileira de Teses e Dissertações (BDTD) e o Banco de Teses e Dissertações da Capes"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="11"/>
+			<field name="series" value="1"/>
+			<field name="startPage" value="15"/>
+			<field name="endPage" value="25"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="Bibliotecas Digitais de Teses e Dissertações"/>
+			<field name="keyword" value="Base de teses e dissertações"/>
+			<field name="keyword" value="Repositórios Digitais"/>
+			<field name="keyword" value="CV Lattes"/>
+			<field name="keyword" value="Algoritmos de Similaridade de strings"/>
+			<field name="researchArea.cnpq" value="Sistemas de Informação"/>
+			<field name="researchArea.cnpq" value="Análise de Algoritmos e Complexidade de Computação"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.29397/reciis.v11i0.1397"/>
+			<field name="resourceUrl" value="http://https://www.reciis.icict.fiocruz.br/index.php/reciis/article/view/1397][doi:10.29397/reciis.v11i0.1397"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="author" value="GOMES, GABRIEL LIMA"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Person" ref="Person11">
+			<semanticIdentifier>lattes::1840646614255428</semanticIdentifier>
+			<field name="identifier.lattes" value="1840646614255428"/>
+			<field name="name" value="GOMES, GABRIEL LIMA"/>
+			<field name="citationName" value="GOMES, GABRIEL LIMA"/>
+		</entity>
+		<entity type="Publication" ref="Publication11">
+			<semanticIdentifier>brcris::d98884e8355619aa55f8d9c6631a511f</semanticIdentifier>
+			<field name="identifier.brcris" value="d98884e8355619aa55f8d9c6631a511f"/>
+			<field name="title" value="Biblioteca Digital Brasileira de Teses e Dissertações: ações para melhoria na qualidade dos dados"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2014"/>
+			<field name="volume" value="2"/>
+			<field name="series" value="2014"/>
+			<field name="startPage" value="157"/>
+			<field name="endPage" value="160"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="BDTD"/>
+			<field name="keyword" value="Qualidade de metadados"/>
+			<field name="keyword" value="Mapeamento"/>
+			<field name="keyword" value="Crosswalk"/>
+			<field name="resourceUrl" value="http://www.bad.pt/publicacoes/index.php/cadernos/article/view/1197"/>
+			<field name="author" value="Tainá Batista de Assis"/>
+			<field name="author" value="Milton Shintaku"/>
+			<field name="author" value="Diego José Macêdo"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="author" value="Ronnie Fagundes de Brito"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal7">
+			<semanticIdentifier>issn::0007-9421</semanticIdentifier>
+			<field name="identifier.issn" value="0007-9421"/>
+			<field name="title" value="CADERNOS DE BIBLIOTECONOMIA, ARQUIVISTICA E DOCUMENTACAO"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Person" ref="Person12">
+			<semanticIdentifier>lattes::9015008667871372</semanticIdentifier>
+			<field name="identifier.lattes" value="9015008667871372"/>
+			<field name="name" value="Ronnie Fagundes de Brito"/>
+			<field name="citationName" value="BRITO, R. F."/>
+		</entity>
+		<entity type="Publication" ref="Publication12">
+			<semanticIdentifier>brcris::c1846ff4d7e4c1527a4160a6e7f45bd4</semanticIdentifier>
+			<field name="identifier.brcris" value="c1846ff4d7e4c1527a4160a6e7f45bd4"/>
+			<field name="title" value="Utilizando o framework LattesDataXplorer para vincular automaticamente os currículos da Plataforma Lattes à Biblioteca Digital Brasileira de Teses e Dissertações (BDTD)"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2019"/>
+			<field name="volume" value="48"/>
+			<field name="series" value="3"/>
+			<field name="startPage" value="335"/>
+			<field name="endPage" value="340"/>
+			<field name="type" value="journal article"/>
+			<field name="keyword" value="BDTD"/>
+			<field name="keyword" value="Plataforma Lattes"/>
+			<field name="keyword" value="Ciência Aberta"/>
+			<field name="keyword" value="Acesso Aberto"/>
+			<field name="researchArea.cnpq" value="CIENCIAS_EXATAS_E_DA_TERRA"/>
+			<field name="researchArea.cnpq" value="Métodos Quantitativos. Bibliometria"/>
+			<field name="resourceUrl" value="http://revista.ibict.br/ciinf/article/view/5003/4466"/>
+			<field name="author" value="Washington Luís Ribeiro de Carvalho Segundo"/>
+			<field name="author" value="Lautaro J. Matas"/>
+			<field name="author" value="Thiago Magela Rodrigues Dias"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit2">
+			<semanticIdentifier>brcris::9d75989139edb373c9d73e4b3b8bf87c</semanticIdentifier>
+			<semanticIdentifier>diSequencial::687</semanticIdentifier>
+			<semanticIdentifier>cnpq::002600000008</semanticIdentifier>
+			<field name="identifier.brcris" value="9d75989139edb373c9d73e4b3b8bf87c"/>
+			<field name="identifier.diSequencial" value="687"/>
+			<field name="identifier.cnpq" value="002600000008"/>
+			<field name="name" value="Instituto Brasileiro de Informação em Ciência e Tecnologia"/>
+			<field name="identifier.cnpj" value="00.394.411/0001-09"/>
+			<field name="acronym" value="IBICT"/>
+			<field name="identifier.cnpq" value="002600000008"/>
+			<field name="juridicNature" value="Administração Pública / Órgão Público do Poder Executivo Federal"/>
+			<field name="address.description" value="SAS Quadra 5 - Lote 6 - Bloco H"/>
+			<field name="address.neighborhood" value="Asa Sul"/>
+			<field name="address.city" value="Brasilia"/>
+			<field name="address.state" value="DF"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="70070-914"/>
+			<field name="coordinate.latitude" value="-15.8013529"/>
+			<field name="coordinate.longitude" value="-47.8835959"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit3">
+			<semanticIdentifier>diSequencial::688</semanticIdentifier>
+			<semanticIdentifier>cnpq::002601000001</semanticIdentifier>
+			<field name="identifier.diSequencial" value="688"/>
+			<field name="identifier.cnpq" value="002601000001"/>
+			<field name="name" value="Departamento de Ensino e Pesquisa"/>
+			<field name="identifier.cnpj" value="00.394.411/0001-09"/>
+			<field name="acronym" value="DEP/IBICT/RJ"/>
+			<field name="identifier.cnpq" value="002601000001"/>
+			<field name="juridicNature" value="Administração Pública / Órgão Público do Poder Executivo Federal"/>
+			<field name="address.description" value="Rua Xavier Sigaud 150"/>
+			<field name="address.neighborhood" value="Botafogo"/>
+			<field name="address.city" value="Rio de Janeiro"/>
+			<field name="address.state" value="RJ"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="22290-140"/>
+			<field name="coordinate.latitude" value="-22.953013"/>
+			<field name="coordinate.longitude" value="-43.1763158"/>
+		</entity>
+	</entities>
+	<relations>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person2"/>
+		<relation type="Adivisoring" fromEntityRef="Publication1" toEntityRef="Person2"/>
+		<relation type="ThesisSponsorship" fromEntityRef="OrgUnit1" toEntityRef="Publication1"/>
+		<relation type="CourseThesis" fromEntityRef="Course1" toEntityRef="Publication1"/>
+		<relation type="ProgramThesis" fromEntityRef="Publication1" toEntityRef="Program1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication1"/>
+		<relation type="Authorship" fromEntityRef="Publication1" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication2" toEntityRef="Journal1"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person3"/>
+		<relation type="Authorship" fromEntityRef="Publication2" toEntityRef="Person3"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person4"/>
+		<relation type="Authorship" fromEntityRef="Publication2" toEntityRef="Person4"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person5"/>
+		<relation type="Authorship" fromEntityRef="Publication2" toEntityRef="Person5"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication2"/>
+		<relation type="Authorship" fromEntityRef="Publication2" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication3"/>
+		<relation type="Authorship" fromEntityRef="Publication3" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication4" toEntityRef="Journal2"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person6"/>
+		<relation type="Authorship" fromEntityRef="Publication4" toEntityRef="Person6"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person7"/>
+		<relation type="Authorship" fromEntityRef="Publication4" toEntityRef="Person7"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person8"/>
+		<relation type="Authorship" fromEntityRef="Publication4" toEntityRef="Person8"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication4"/>
+		<relation type="Authorship" fromEntityRef="Publication4" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication5" toEntityRef="Journal3"/>
+		<relation type="Authorship" fromEntityRef="Publication5" toEntityRef="Person3"/>
+		<relation type="Authorship" fromEntityRef="Publication5" toEntityRef="Person5"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication5"/>
+		<relation type="Authorship" fromEntityRef="Publication5" toEntityRef="Person1"/>
+		<relation type="Adivisoring" fromEntityRef="Publication6" toEntityRef="Person3"/>
+		<relation type="ThesisSponsorship" fromEntityRef="OrgUnit1" toEntityRef="Publication6"/>
+		<relation type="CourseThesis" fromEntityRef="Course2" toEntityRef="Publication6"/>
+		<relation type="ProgramThesis" fromEntityRef="Publication6" toEntityRef="Program1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication6"/>
+		<relation type="Authorship" fromEntityRef="Publication6" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication7" toEntityRef="Journal4"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person9"/>
+		<relation type="Authorship" fromEntityRef="Publication7" toEntityRef="Person9"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication7"/>
+		<relation type="Authorship" fromEntityRef="Publication7" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication8" toEntityRef="Journal5"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person10"/>
+		<relation type="Authorship" fromEntityRef="Publication8" toEntityRef="Person10"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication8"/>
+		<relation type="Authorship" fromEntityRef="Publication8" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication9" toEntityRef="Journal6"/>
+		<relation type="Authorship" fromEntityRef="Publication9" toEntityRef="Person5"/>
+		<relation type="Authorship" fromEntityRef="Publication9" toEntityRef="Person3"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication9"/>
+		<relation type="Authorship" fromEntityRef="Publication9" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication10" toEntityRef="Journal5"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person11"/>
+		<relation type="Authorship" fromEntityRef="Publication10" toEntityRef="Person11"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication10"/>
+		<relation type="Authorship" fromEntityRef="Publication10" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication11" toEntityRef="Journal7"/>
+		<relation type="Authorship" fromEntityRef="Publication11" toEntityRef="Person7"/>
+		<relation type="Authorship" fromEntityRef="Publication11" toEntityRef="Person8"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person12"/>
+		<relation type="Authorship" fromEntityRef="Publication11" toEntityRef="Person12"/>
+		<relation type="Authorship" fromEntityRef="Publication11" toEntityRef="Person6"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication11"/>
+		<relation type="Authorship" fromEntityRef="Publication11" toEntityRef="Person1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication12"/>
+		<relation type="Authorship" fromEntityRef="Publication12" toEntityRef="Person1"/>
+		<relation type="IsUnitOf" fromEntityRef="OrgUnit3" toEntityRef="OrgUnit2"/>
+		<relation type="Affiliation" fromEntityRef="OrgUnit2" toEntityRef="Person1"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person1"/>
+	</relations>
+</entity-relation-data>

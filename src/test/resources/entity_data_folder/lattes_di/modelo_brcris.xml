@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<entity-relation-metamodel>
+	<entities>
+		<entity name="Person">
+			<field name="orcid" />
+			<field name="name" description="nome da pessoa" />
+			<field name="familyName" />
+			<field name="givenName" />
+			<field name="alternateName" />
+			<field name="country" />
+		</entity>		
+		<entity name="Publication">
+			<field name="doi" description="id doi" />
+			<field name="type" />
+			<field name="language" />
+			<field name="title" />
+			<field name="abstract" />
+			<field name="year" />
+		</entity>
+	</entities>
+	<relations>
+		<relation name="Authorship" description="The author of this content or rating." fromEntity="Publication" toEntity="Person">
+			<attributes>
+				<field name="affiliation" description="An organization such as a school, NGO, corporation, club, etc. - The name of the item." />
+			</attributes>
+		</relation>
+		</relations>
+</entity-relation-metamodel>

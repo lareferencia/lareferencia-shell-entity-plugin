@@ -198,13 +198,15 @@ public class EntityDataCommands {
 			profiler.messure("XMLParse");
 			
 			if(dryRun) {
-				erService.simulateParseAndPersistEntityRelationDataFromXMLDocument(doc, 
-						new DocumentValitaionReportTO(file.getAbsolutePath(),
-						DocumentValitaionReportEnum.PROCESSING,
-						DocumentValitaionReportEnum.PROCESSING.getDescription()));
-				generateSummaryProcessmentFile(erService.getDocumentValitaionReport(),file.getAbsolutePath());
+				profiler.messure("dry-run mode on");
+				erService.validateXMLEntityModelParseBeforePersist(doc, 
+						new DocumentValitaionReportTO(file.getName(),DocumentValitaionReportEnum.PROCESSING
+								,DocumentValitaionReportEnum.PROCESSING.getDescription()));
+
+				generateSummaryProcessmentFile(erService.getDocumentValitaionReport());
 			}
-			if(!dryRun) {				
+			if(!dryRun) {	
+				profiler.messure("dry-run mode off");
 				erService.parseAndPersistEntityRelationDataFromXMLDocument(doc);
 			}
 
@@ -218,30 +220,26 @@ public class EntityDataCommands {
 		
 	}
 
-	private void generateSummaryProcessmentFile(DocumentValitaionReport documentValitaionReport, String pathToCreateSummaryFile) throws JsonGenerationException, JsonMappingException, IOException {
+	private void generateSummaryProcessmentFile(DocumentValitaionReport documentValitaionReport) throws JsonGenerationException, JsonMappingException, IOException {
 		Long countAllProcessedFiles = Math.addExact(0, new Long(documentValitaionReport.getGenericErroFilesList().size()));
-		countAllProcessedFiles = Math.addExact(countAllProcessedFiles, new Long(documentValitaionReport.getInvalidaStructuredXMLFilesList().size()));
+		countAllProcessedFiles = Math.addExact(countAllProcessedFiles, new Long(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
 		countAllProcessedFiles = Math.addExact(countAllProcessedFiles, new Long(documentValitaionReport.getInvalidModelFilesList().size()));
-		countAllProcessedFiles = Math.addExact(countAllProcessedFiles, new Long(documentValitaionReport.getValidFilesList().size()));
-		
-		documentValitaionReport.getProcessedFilesList().addAll(documentValitaionReport.getGenericErroFilesList());
-		documentValitaionReport.getProcessedFilesList().addAll(documentValitaionReport.getInvalidaStructuredXMLFilesList());
-		documentValitaionReport.getProcessedFilesList().addAll(documentValitaionReport.getInvalidModelFilesList());
-		documentValitaionReport.getProcessedFilesList().addAll(documentValitaionReport.getValidFilesList());
-		
+		countAllProcessedFiles = Math.addExact(countAllProcessedFiles, new Long(documentValitaionReport.getInvalidContentDataList().size()));
 		documentValitaionReport.setTotalProcessedFiles(countAllProcessedFiles);
-		documentValitaionReport.setTotalValidFiles(new Long(documentValitaionReport.getValidFilesList().size()));
-		documentValitaionReport.setTotalInvalidStructuredXMLFiles(new Long(documentValitaionReport.getInvalidaStructuredXMLFilesList().size()));
-		documentValitaionReport.setTotalInvalidModelFiles(new Long(documentValitaionReport.getInvalidModelFilesList().size()));
 		
-	    // create object mapper instance
+		Long countTotalValidFiles = Math.subtractExact(countAllProcessedFiles, new Long(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
+		countTotalValidFiles = Math.subtractExact(countTotalValidFiles, new Long(documentValitaionReport.getInvalidModelFilesList().size()));
+		countTotalValidFiles = Math.subtractExact(countTotalValidFiles, new Long(documentValitaionReport.getGenericErroFilesList().size()));
+		countTotalValidFiles = Math.subtractExact(countTotalValidFiles, new Long(documentValitaionReport.getInvalidContentDataList().size()));
+		
+		documentValitaionReport.setTotalValidFiles(countTotalValidFiles);
+		documentValitaionReport.setTotalInvalidStructuredXMLFiles(new Long(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
+		documentValitaionReport.setTotalInvalidModelFiles(new Long(documentValitaionReport.getInvalidModelFilesList().size()));
+		documentValitaionReport.setTotalGenericErrorFiles(new Long(documentValitaionReport.getGenericErroFilesList().size()));
+		documentValitaionReport.setTotalInvalidContentData(new Long(documentValitaionReport.getInvalidContentDataList().size()));
+		
 	    ObjectMapper mapper = new ObjectMapper();
-
-	    // convert book object to JSON file
-	    String dataPathNameToRemove = pathToCreateSummaryFile.substring(pathToCreateSummaryFile.lastIndexOf("/"), pathToCreateSummaryFile.length());
-	    String summaryPath = pathToCreateSummaryFile.replace(dataPathNameToRemove,"/report.json");
-	    System.out.println("!!====>>> summaryPath: "+summaryPath);
-	    mapper.writeValue(new File(summaryPath), documentValitaionReport);
+	    mapper.writeValue(new File("./report.json"), documentValitaionReport);
 		
 		
 	}
