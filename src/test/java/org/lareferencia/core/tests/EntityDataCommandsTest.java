@@ -22,9 +22,14 @@ package org.lareferencia.core.tests;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
+import org.lareferencia.core.util.date.DateHelper;
 import org.lareferencia.shell.commands.entity.EntityDataCommands;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -49,6 +54,9 @@ public class EntityDataCommandsTest {
 	
     @Autowired
     private EntityDataCommands entityDataCommands;
+    
+	@Autowired
+	private DateHelper dateHelper;
 
     @Test
     public void loadDataOnDryRunMode() throws Exception {
@@ -73,6 +81,10 @@ public class EntityDataCommandsTest {
     
     @Test
     public void validateDateTest() {
-    	String date = "2022-05-30 14:32:17.502174";
+    	String date = "2022-05-30T14:32:17.502174";
+    	LocalDateTime lastUpdate = dateHelper.parseDate(date);
+    	assertTrue(dateHelper.isValidLocalDateTime(lastUpdate));
     }
+    
+
 }
