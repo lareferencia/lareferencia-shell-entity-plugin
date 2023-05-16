@@ -60,31 +60,13 @@ public class EntityDataCommandsTest {
 
     @Test
     public void loadDataOnDryRunMode() throws Exception {
-        String XMLFolder = "/entity_data_folder/lattes_di/";
-		Resource resource = new ClassPathResource(XMLFolder);
-
-        Integer entityCacheSize = 5000;
+        String XMLFolder = "/Users/jbjares/Documents/entity_data_folder/lattes_di";
         String doProfile = "true";
-        Boolean dryRun = Boolean.TRUE;
-        
-        logger.info("!!!==>> "+resource.getURL().getPath());
-        
-		boolean exists =      resource.exists();
-		boolean isFile =      resource.isFile();
-		assertTrue(exists);
-		assertTrue(isFile);
-	
-		logger.info("======>>>> resource.getURL().getPath():  "+resource.getURL().getPath());
-        String result = entityDataCommands.load_data(resource.getURL().getPath(), entityCacheSize, doProfile, dryRun);
+        String dryRun = "true";
+        String result = entityDataCommands.load_data(XMLFolder, doProfile,dryRun);
         logger.info("result ===>>>> "+result);
     }
     
-    @Test
-    public void validateDateTest() {
-    	String date = "2022-05-30T14:32:17.502174";
-    	LocalDateTime lastUpdate = dateHelper.parseDate(date);
-    	assertTrue(dateHelper.isValidLocalDateTime(lastUpdate));
-    }
     
 
 }

@@ -24,7 +24,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -122,11 +127,11 @@ public class EntityDataCommands {
 	**/
 	
 	@ShellMethod("Load entity-relation data from from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded ")
-	public String load_data(String path, @ShellOption(defaultValue = "1000") Integer entityCacheSize, @ShellOption(defaultValue = "false") String doProfile, @ShellOption(defaultValue = "false") Boolean dryRun) throws Exception {
+	public String load_data(@ShellOption(value="path", defaultValue = "false")String path, @ShellOption(value="dryRun", defaultValue = "false") String dryRun, @ShellOption(value = "doProfile", defaultValue = "false") String doProfile) throws Exception {
 
 	    logger.info("Running in dry-run mode: "+dryRun+". No changes will be made.");
 	    
-	    
+	    Boolean dryRunMode = Boolean.parseBoolean(dryRun);
 	    Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
 
 	     
@@ -141,19 +146,18 @@ public class EntityDataCommands {
 			logger.error( String.format("%s does not exists.", path ) );
 			throw new Exception("Path: " + path + "doesn exists.");
 		
-		} else if ( isFile ) {
-			
+		} else if ( isFile ) {	
 			logger.info( String.format("Processing path: %s", path ) );
-			load_xml_file(fileOrDirectory, profileMode,dryRun);
-		
+			load_xml_file(fileOrDirectory, profileMode,dryRunMode);
+			generateSummaryProcessmentFile(erService.getDocumentValitaionReport(),fileOrDirectory.getAbsolutePath());
 		} else { // is a directory
-			
-			load_directory(fileOrDirectory.getAbsolutePath(), profileMode,dryRun);
+			load_directory(fileOrDirectory.getAbsolutePath(), profileMode,dryRunMode);
+			generateSummaryProcessmentFile(erService.getDocumentValitaionReport(),fileOrDirectory.getAbsolutePath());
 		}
 		
 		logger.info( "Running post processing tasks" );
 		
-		if(!dryRun) {
+		if(!dryRunMode) {
 			erService.mergeEntityRelationData();
 		}
 
@@ -187,7 +191,7 @@ public class EntityDataCommands {
 	
 	private void load_xml_file(File file, Boolean profileMode, Boolean dryRun) {
 		
-
+		System.out.println("!!!====>>>> file.getAbsolutePath(): "+file.getAbsolutePath());
 		profiler = new Profiler(profileMode, "File: " + file.getAbsolutePath() + " ").start();
 		erService.setProfiler(profiler);
 		
@@ -202,8 +206,6 @@ public class EntityDataCommands {
 				erService.validateXMLEntityModelParseBeforePersist(doc, 
 						new DocumentValitaionReportTO(file.getName(),DocumentValitaionReportEnum.PROCESSING
 								,DocumentValitaionReportEnum.PROCESSING.getDescription()));
-
-				generateSummaryProcessmentFile(erService.getDocumentValitaionReport());
 			}
 			if(!dryRun) {	
 				profiler.messure("dry-run mode off");
@@ -220,28 +222,41 @@ public class EntityDataCommands {
 		
 	}
 
-	private void generateSummaryProcessmentFile(DocumentValitaionReport documentValitaionReport) throws JsonGenerationException, JsonMappingException, IOException {
-		Long countAllProcessedFiles = Math.addExact(0, new Long(documentValitaionReport.getGenericErroFilesList().size()));
-		countAllProcessedFiles = Math.addExact(countAllProcessedFiles, new Long(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
-		countAllProcessedFiles = Math.addExact(countAllProcessedFiles, new Long(documentValitaionReport.getInvalidModelFilesList().size()));
-		countAllProcessedFiles = Math.addExact(countAllProcessedFiles, new Long(documentValitaionReport.getInvalidContentDataList().size()));
-		documentValitaionReport.setTotalProcessedFiles(countAllProcessedFiles);
+	private void generateSummaryProcessmentFile(DocumentValitaionReport documentValitaionReport, String folderPath) throws JsonGenerationException, JsonMappingException, IOException {
 		
-		Long countTotalValidFiles = Math.subtractExact(countAllProcessedFiles, new Long(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
-		countTotalValidFiles = Math.subtractExact(countTotalValidFiles, new Long(documentValitaionReport.getInvalidModelFilesList().size()));
-		countTotalValidFiles = Math.subtractExact(countTotalValidFiles, new Long(documentValitaionReport.getGenericErroFilesList().size()));
-		countTotalValidFiles = Math.subtractExact(countTotalValidFiles, new Long(documentValitaionReport.getInvalidContentDataList().size()));
-		
-		documentValitaionReport.setTotalValidFiles(countTotalValidFiles);
-		documentValitaionReport.setTotalInvalidStructuredXMLFiles(new Long(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
-		documentValitaionReport.setTotalInvalidModelFiles(new Long(documentValitaionReport.getInvalidModelFilesList().size()));
-		documentValitaionReport.setTotalGenericErrorFiles(new Long(documentValitaionReport.getGenericErroFilesList().size()));
-		documentValitaionReport.setTotalInvalidContentData(new Long(documentValitaionReport.getInvalidContentDataList().size()));
-		
-	    ObjectMapper mapper = new ObjectMapper();
-	    mapper.writeValue(new File("./report.json"), documentValitaionReport);
-		
-		
+		try {
+			Long countAllProcessedFiles = Math.addExact(0, Long.valueOf(documentValitaionReport.getGenericErroFilesList().size()));
+			countAllProcessedFiles = Math.addExact(countAllProcessedFiles, Long.valueOf(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
+			countAllProcessedFiles = Math.addExact(countAllProcessedFiles, Long.valueOf(documentValitaionReport.getInvalidModelFilesList().size()));
+			countAllProcessedFiles = Math.addExact(countAllProcessedFiles, Long.valueOf(documentValitaionReport.getInvalidContentDataList().size()));
+			documentValitaionReport.setTotalProcessedFiles(countAllProcessedFiles);
+			
+			Long countTotalValidFiles = Math.subtractExact(countAllProcessedFiles, Long.valueOf(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
+			countTotalValidFiles = Math.subtractExact(countTotalValidFiles, Long.valueOf(documentValitaionReport.getInvalidModelFilesList().size()));
+			countTotalValidFiles = Math.subtractExact(countTotalValidFiles, Long.valueOf(documentValitaionReport.getGenericErroFilesList().size()));
+			countTotalValidFiles = Math.subtractExact(countTotalValidFiles, Long.valueOf(documentValitaionReport.getInvalidContentDataList().size()));
+			
+			documentValitaionReport.setTotalValidFiles(countTotalValidFiles);
+			documentValitaionReport.setTotalInvalidStructuredXMLFiles(Long.valueOf(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
+			documentValitaionReport.setTotalInvalidModelFiles(Long.valueOf(documentValitaionReport.getInvalidModelFilesList().size()));
+			documentValitaionReport.setTotalGenericErrorFiles(Long.valueOf(documentValitaionReport.getGenericErroFilesList().size()));
+			documentValitaionReport.setTotalInvalidContentData(Long.valueOf(documentValitaionReport.getInvalidContentDataList().size()));
+
+
+			ObjectMapper mapper = new ObjectMapper();
+			String fileName = "dry-run-report_" + new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(new Date()) + ".json";
+			String filePath = folderPath + File.separator + fileName;
+			mapper.writeValue(new File(filePath), documentValitaionReport);
+		}catch(Exception e) {
+			throw new RuntimeException(e.getMessage(),e);
+		}finally {
+			documentValitaionReport.setInvalidStructuredXMLFilesList(Collections.EMPTY_LIST);
+			documentValitaionReport.setInvalidModelFilesList(Collections.EMPTY_LIST);
+			documentValitaionReport.setGenericErroFilesList(Collections.EMPTY_LIST);
+			documentValitaionReport.setInvalidContentDataList(Collections.EMPTY_LIST);
+		}
+
 	}
+	
 	
 }
