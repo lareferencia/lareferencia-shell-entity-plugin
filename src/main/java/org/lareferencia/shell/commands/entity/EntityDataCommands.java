@@ -28,6 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
@@ -250,10 +251,10 @@ public class EntityDataCommands {
 		}catch(Exception e) {
 			throw new RuntimeException(e.getMessage(),e);
 		}finally {
-			documentValitaionReport.setInvalidStructuredXMLFilesList(Collections.EMPTY_LIST);
-			documentValitaionReport.setInvalidModelFilesList(Collections.EMPTY_LIST);
-			documentValitaionReport.setGenericErroFilesList(Collections.EMPTY_LIST);
-			documentValitaionReport.setInvalidContentDataList(Collections.EMPTY_LIST);
+			documentValitaionReport.setInvalidStructuredXMLFilesList(new ArrayList<>());
+			documentValitaionReport.setInvalidModelFilesList(new ArrayList<>());
+			documentValitaionReport.setGenericErroFilesList(new ArrayList<>());
+			documentValitaionReport.setInvalidContentDataList(new ArrayList<>());
 		}
 
 	}
