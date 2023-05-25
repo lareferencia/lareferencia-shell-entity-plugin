@@ -22,34 +22,19 @@ package org.lareferencia.shell.commands.entity;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lareferencia.core.entity.services.EntityDataService;
-import org.lareferencia.core.entity.xml.validation.report.DocumentValitaionReport;
-import org.lareferencia.core.entity.xml.validation.report.DocumentValitaionReportEnum;
-import org.lareferencia.core.entity.xml.validation.report.DocumentValitaionReportTO;
 import org.lareferencia.core.util.Profiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import org.w3c.dom.Document;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ShellComponent
 public class EntityDataCommands {
@@ -150,16 +135,18 @@ public class EntityDataCommands {
 		} else if ( isFile ) {	
 			logger.info( String.format("Processing path: %s", path ) );
 			load_xml_file(fileOrDirectory, profileMode,dryRunMode);
-			generateSummaryProcessmentFile(erService.getDocumentValitaionReport(),fileOrDirectory.getAbsolutePath());
+			
 		} else { // is a directory
 			load_directory(fileOrDirectory.getAbsolutePath(), profileMode,dryRunMode);
-			generateSummaryProcessmentFile(erService.getDocumentValitaionReport(),fileOrDirectory.getAbsolutePath());
 		}
 		
 		logger.info( "Running post processing tasks" );
 		
 		if(!dryRunMode) {
 			erService.mergeEntityRelationData();
+		}else {
+			erService.getEntityLoadingMonitorService().generateSummaryofTotalProcessedFiles(path);
+			erService.getEntityLoadingMonitorService().resetAllCachedData();
 		}
 
 		
@@ -204,9 +191,7 @@ public class EntityDataCommands {
 			
 			if(dryRun) {
 				profiler.messure("dry-run mode on");
-				erService.validateXMLEntityModelParseBeforePersist(doc, 
-						new DocumentValitaionReportTO(file.getName(),DocumentValitaionReportEnum.PROCESSING
-								,DocumentValitaionReportEnum.PROCESSING.getDescription()));
+				erService.validateXMLEntityModelParseBeforePersist(doc,file.getAbsolutePath());
 			}
 			if(!dryRun) {	
 				profiler.messure("dry-run mode off");
@@ -223,41 +208,7 @@ public class EntityDataCommands {
 		
 	}
 
-	private void generateSummaryProcessmentFile(DocumentValitaionReport documentValitaionReport, String folderPath) throws JsonGenerationException, JsonMappingException, IOException {
-		
-		try {
-			Long countAllProcessedFiles = Math.addExact(0, Long.valueOf(documentValitaionReport.getGenericErroFilesList().size()));
-			countAllProcessedFiles = Math.addExact(countAllProcessedFiles, Long.valueOf(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
-			countAllProcessedFiles = Math.addExact(countAllProcessedFiles, Long.valueOf(documentValitaionReport.getInvalidModelFilesList().size()));
-			countAllProcessedFiles = Math.addExact(countAllProcessedFiles, Long.valueOf(documentValitaionReport.getInvalidContentDataList().size()));
-			documentValitaionReport.setTotalProcessedFiles(countAllProcessedFiles);
-			
-			Long countTotalValidFiles = Math.subtractExact(countAllProcessedFiles, Long.valueOf(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
-			countTotalValidFiles = Math.subtractExact(countTotalValidFiles, Long.valueOf(documentValitaionReport.getInvalidModelFilesList().size()));
-			countTotalValidFiles = Math.subtractExact(countTotalValidFiles, Long.valueOf(documentValitaionReport.getGenericErroFilesList().size()));
-			countTotalValidFiles = Math.subtractExact(countTotalValidFiles, Long.valueOf(documentValitaionReport.getInvalidContentDataList().size()));
-			
-			documentValitaionReport.setTotalValidFiles(countTotalValidFiles);
-			documentValitaionReport.setTotalInvalidStructuredXMLFiles(Long.valueOf(documentValitaionReport.getInvalidStructuredXMLFilesList().size()));
-			documentValitaionReport.setTotalInvalidModelFiles(Long.valueOf(documentValitaionReport.getInvalidModelFilesList().size()));
-			documentValitaionReport.setTotalGenericErrorFiles(Long.valueOf(documentValitaionReport.getGenericErroFilesList().size()));
-			documentValitaionReport.setTotalInvalidContentData(Long.valueOf(documentValitaionReport.getInvalidContentDataList().size()));
 
-
-			ObjectMapper mapper = new ObjectMapper();
-			String fileName = "dry-run-report_" + new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(new Date()) + ".json";
-			String filePath = folderPath + File.separator + fileName;
-			mapper.writeValue(new File(filePath), documentValitaionReport);
-		}catch(Exception e) {
-			throw new RuntimeException(e.getMessage(),e);
-		}finally {
-			documentValitaionReport.setInvalidStructuredXMLFilesList(new ArrayList<>());
-			documentValitaionReport.setInvalidModelFilesList(new ArrayList<>());
-			documentValitaionReport.setGenericErroFilesList(new ArrayList<>());
-			documentValitaionReport.setInvalidContentDataList(new ArrayList<>());
-		}
-
-	}
 	
 	
 }

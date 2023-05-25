@@ -31,6 +31,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.shell.Shell;
 import org.springframework.shell.jline.InteractiveShellApplicationRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.test.context.TestPropertySource;
 
 
 @Component

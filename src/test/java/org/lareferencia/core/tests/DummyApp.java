@@ -29,11 +29,11 @@ import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDa
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.TestPropertySource;
 
 @SpringBootApplication
 @EntityScan("org.lareferencia.core.entity.domain")
 @EnableJpaRepositories("org.lareferencia.core.entity.repositories.jpa")
-@ImportResource({"classpath*:application-context.xml"})
 @EnableAutoConfiguration( exclude = { org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class, ElasticsearchDataAutoConfiguration.class })
 public class DummyApp {
 
