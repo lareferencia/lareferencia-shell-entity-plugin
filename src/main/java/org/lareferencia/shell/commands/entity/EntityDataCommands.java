@@ -28,13 +28,21 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lareferencia.core.entity.domain.EntityRelationException;
 import org.lareferencia.core.entity.services.EntityDataService;
+import org.lareferencia.core.entity.services.EntityLoadingMonitorService;
+import org.lareferencia.core.entity.services.EntityLoadingStats;
+import org.lareferencia.core.entity.services.exception.EntitiyRelationXMLLoadingException;
 import org.lareferencia.core.util.Profiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import org.w3c.dom.Document;
+
+
+import lombok.Getter;
+import lombok.Setter;
 
 @ShellComponent
 public class EntityDataCommands {
@@ -57,6 +65,9 @@ public class EntityDataCommands {
 	
 	@Autowired
 	EntityDataService erService;
+
+	@Autowired
+	private EntityLoadingMonitorService entityLoadingMonitorService;
 	
 //	@Autowired
 //	EntityLRUCache entityCache;
@@ -128,7 +139,6 @@ public class EntityDataCommands {
 		boolean isFile =      fileOrDirectory.isFile();      // Check if it's a regular file
 	
 		if ( !exists ) {
-			
 			logger.error( String.format("%s does not exists.", path ) );
 			throw new Exception("Path: " + path + "doesn exists.");
 		
@@ -142,11 +152,13 @@ public class EntityDataCommands {
 		
 		logger.info( "Running post processing tasks" );
 		
-		if(!dryRunMode) {
+		// merge data if not in dry run mode
+		if(!dryRunMode) 
 			erService.mergeEntityRelationData();
-		}
-		erService.getEntityLoadingMonitorService().generateSummaryofTotalProcessedFiles(path);
-		erService.getEntityLoadingMonitorService().resetAllCachedData();
+		
+	
+		// TODO: create JSON report
+		entityLoadingMonitorService.writeToJSON();
 
 		
 		generalProfiler.report(logger);
@@ -184,22 +196,37 @@ public class EntityDataCommands {
 		
 		try {
 			InputStream input = new FileInputStream(file);
+
+			// increment total processed files
+			entityLoadingMonitorService.incrementTotalProcessedFiles();
 		
 			Document doc = dBuilder.parse(input);
 			profiler.messure("XMLParse");
 			
-			if(dryRun) {
-				profiler.messure("dry-run mode on");
-				erService.validateXMLEntityModelParseBeforePersist(doc,file.getAbsolutePath());
-			}else {	
-				profiler.messure("dry-run mode off");
-				erService.parseAndPersistEntityRelationDataFromXMLDocument(doc);
-			}
-
+			profiler.messure("dry-run:" + dryRun);
+			EntityLoadingStats stats = erService.parseAndPersistEntityRelationDataFromXMLDocument(doc, dryRun);
+			entityLoadingMonitorService.reportEntityLoadingStats(stats);
+			profiler.messure("parseAndPersistEntityRelationDataFromXMLDocument");
 			profiler.report(logger);
+
+			entityLoadingMonitorService.incrementTotalSuccesfulFiles();
 		
+		} catch (EntitiyRelationXMLLoadingException e) {
+			// set file name for error reporting
+			e.setFileName(file.getAbsolutePath());
+			// report exception 
+			entityLoadingMonitorService.reportException(e);
+
+			// the file was not loaded so increment total failed files
+			entityLoadingMonitorService.incrementTotalFailedFiles();
+		} catch (EntityRelationException e) {
+			// TODO report this kind of exception too 
+			logger.error( String.format("Undetailed EntityRelation Exception while loading xml data into entity model - %s was not loaded - details: %s", file.getAbsolutePath(), e.getMessage() ) );
+			entityLoadingMonitorService.incrementTotalFailedFiles();
 		} catch (Exception e) {
-			logger.error( String.format("Error loading xml data into entity model - %s was not loaded - details: %s", file.getAbsolutePath(), e.getMessage() ) );
+			// TODO report this kind of exception too 
+			logger.error( String.format("General Exception while loading xml data into entity model - %s was not loaded - details: %s", file.getAbsolutePath(), e.getMessage() ) );
+			entityLoadingMonitorService.incrementTotalFailedFiles();
 		} 
 		
 		
