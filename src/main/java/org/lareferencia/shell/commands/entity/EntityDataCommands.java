@@ -144,10 +144,9 @@ public class EntityDataCommands {
 		
 		if(!dryRunMode) {
 			erService.mergeEntityRelationData();
-		}else {
-			erService.getEntityLoadingMonitorService().generateSummaryofTotalProcessedFiles(path);
-			erService.getEntityLoadingMonitorService().resetAllCachedData();
 		}
+		erService.getEntityLoadingMonitorService().generateSummaryofTotalProcessedFiles(path);
+		erService.getEntityLoadingMonitorService().resetAllCachedData();
 
 		
 		generalProfiler.report(logger);
@@ -192,8 +191,7 @@ public class EntityDataCommands {
 			if(dryRun) {
 				profiler.messure("dry-run mode on");
 				erService.validateXMLEntityModelParseBeforePersist(doc,file.getAbsolutePath());
-			}
-			if(!dryRun) {	
+			}else {	
 				profiler.messure("dry-run mode off");
 				erService.parseAndPersistEntityRelationDataFromXMLDocument(doc);
 			}
