@@ -68,61 +68,7 @@ public class EntityDataCommands {
 
 	@Autowired
 	private EntityLoadingMonitorService entityLoadingMonitorService;
-	
-//	@Autowired
-//	EntityLRUCache entityCache;
 
-	/**
-	@ShellMethod("Load entity-relation data from  from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded ")
-	public String load_data(String path, @ShellOption(defaultValue = "1000") Integer entityCacheSize, @ShellOption(defaultValue = "false") String doProfile) throws Exception {
-			
-		Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
-		
-		// cache setting
-//		if ( entityCacheSize != null && entityCacheSize > 0) {
-//			logger.info("Creating entity cache ... size: " + entityCacheSize );	
-//			entityCache.setCapacity(entityCacheSize);
-//			erService.setEntityCache(entityCache);
-//		}
-
-		Boolean profileMode = Boolean.valueOf(doProfile);		
-		File fileOrDirectory = new File(path);
-	
-		boolean exists =      fileOrDirectory.exists();      // Check if the file exists
-		boolean isFile =      fileOrDirectory.isFile();      // Check if it's a regular file
-	
-		if ( !exists ) {
-			
-			logger.error( String.format("%s does not exists.", path ) );
-			throw new Exception("Path: " + path + "doesn exists.");
-		
-		} else if ( isFile ) {
-			
-			logger.info( String.format("Processing path: %s", path ) );
-			load_xml_file(fileOrDirectory, profileMode);
-		
-		} else { // is a directory
-			
-			load_directory(fileOrDirectory.getAbsolutePath(), profileMode);
-		}
-			
-		
-//		if ( entityCacheSize != null && entityCacheSize > 0) {
-//			logger.info("Persisting entity cache ...");	
-//			entityCache.syncAndClose();
-//		}
-		
-	
-		
-		logger.info( "Running post processing tasks" );
-		erService.mergeEntityRelationData();
-		
-		generalProfiler.report(logger);
-		return String.format("Processing %s finished \n\n",path);
-		
-	}
-	**/
-	
 	@ShellMethod("Load entity-relation data from from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded ")
 	public String load_data(@ShellOption(value="path", defaultValue = "false")String path, @ShellOption(value="dryRun", defaultValue = "false") String dryRun, @ShellOption(value = "doProfile", defaultValue = "false") String doProfile) throws Exception {
 
@@ -131,17 +77,16 @@ public class EntityDataCommands {
 	    Boolean dryRunMode = Boolean.parseBoolean(dryRun);
 	    Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
 
-	     
 		Boolean profileMode = Boolean.valueOf(doProfile);		
 		File fileOrDirectory = new File(path);
-	
+
+		entityLoadingMonitorService.setLoadingProcessInProgress(true);
+
 		boolean exists =      fileOrDirectory.exists();      // Check if the file exists
 		boolean isFile =      fileOrDirectory.isFile();      // Check if it's a regular file
 	
 		if ( !exists ) {
 			logger.error( String.format("%s does not exists.", path ) );
-			throw new Exception("Path: " + path + "doesn exists.");
-		
 		} else if ( isFile ) {	
 			logger.info( String.format("Processing path: %s", path ) );
 			load_xml_file(fileOrDirectory, profileMode,dryRunMode);
@@ -156,11 +101,10 @@ public class EntityDataCommands {
 		if(!dryRunMode) 
 			erService.mergeEntityRelationData();
 		
-	
-		// TODO: create JSON report
-		entityLoadingMonitorService.writeToJSON();
+		// write to json
+		entityLoadingMonitorService.writeToJSON(path);
 
-		
+		entityLoadingMonitorService.setLoadingProcessInProgress(false);
 		generalProfiler.report(logger);
 		return String.format("Processing %s finished \n\n",path);
 
