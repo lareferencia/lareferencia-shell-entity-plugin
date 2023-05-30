@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entity-relation-data lastUpdate="2022-05-30 14:32:17.502174" source="" record="31836df792273e50c404870a7239b02a">
+	<entities>
+		<entity type="Person" ref="Person1">
+			<semanticIdentifier>lattes::9331747925363529</semanticIdentifier>
+			<field name="identifier.lattes" value="9331747925363529"/>
+			<field name="name" value="Rafaela Lora Grando"/>
+			<field name="citationName" value="GRANDO, RAFAELA LORA"/>
+			<field name="citationName" value="GRANDO, RAFAELA L."/>
+			<field name="citationName" value="LORA GRANDO, RAFAELA"/>
+			<field name="citationName" value="GRANDO, RAFAELA  L."/>
+			<field name="citationName" value="GRANDO, R. L."/>
+			<field name="nationality" value="Brasil"/>
+			<field name="birthCity" value="Rio de Janeiro"/>
+			<field name="birthState" value="RJ"/>
+			<field name="birthCountry" value="Brasil"/>
+			<field name="researchArea" value="Engenharia Ambiental"/>
+			<field name="researchArea" value="Propriedade Intelectual"/>
+			<field name="researchArea" value="economia"/>
+			<field name="researchArea" value="Biotecnologia"/>
+			<field name="researchArea" value="Gestão Tecnológica"/>
+			<field name="miniBiography" value="Graduada em Ciências Biológicas: Microbiologia pela Universidade Federal do Rio e Janeiro (UFRJ). Mestrado em Engenharia de Processos Químicos e Bioquímicos (UFRJ). Doutorado sanduíche UFRJ e Universidade Autônoma de Barcelona. MBA Gestão Inovação em Marketing na Pontifica Universidade Católica (PUC-RS). &amp;#10;Profissionalmente atuou/atua como: Analista de desenvolvimento tecnológico e competitivo no Sistema de informação sobre a Indústria Química. Analista de prospecção tecnológica no Núcleo de Inovação Tecnológica do Instituto Oswaldo Cruz. Consultora especialista em Biotecnologia, foco na construção de indicadores e métricas para valoração de empresas de Bioeconomia Projeto ProinterBio SEBRAE-RJ. Pesquisadora de Inovação no Comitê de Desenvolvimento Estratégico do Centro Biomédico (UERJ). Professora da pós-graduação da Universidade Castelo Branco. Analista de Dados no Observatório em CT&amp;I Ciência, Tecnologia e Inovação em Saúde Fiocruz."/>
+			<field name="miniBiography" value="graduation at Ciencias biologicas: microbiologia e imunolgia from Universidade Federal do Rio de Janeiro (2011), master's at Chemical Engineering from Universidade Federal do Rio de Janeiro (2013) and doctorate at Programa de Pós Graduação em Gestão e Inovação Tecnológica from Universidade Federal do Rio de Janeiro (2017). Has experience in Power Engineering" lang="eng"/>
+		</entity>
+		<entity type="Publication" ref="Publication1">
+			<semanticIdentifier>brcris::76eca0e92b9e95d4921291353119c48b</semanticIdentifier>
+			<semanticIdentifier>doi::10.18203/2349-3291.ijcp20210674</semanticIdentifier>
+			<field name="identifier.brcris" value="76eca0e92b9e95d4921291353119c48b"/>
+			<field name="title" value="Children with complex chronic conditions: an evaluation from the standpoint of academic publications"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2021"/>
+			<field name="volume" value="8"/>
+			<field name="series" value="3"/>
+			<field name="startPage" value="594"/>
+			<field name="endPage" value="601"/>
+			<field name="type" value="journal article"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.18203/2349-3291.ijcp20210674"/>
+			<field name="resourceUrl" value="doi:10.18203/2349-3291.ijcp20210674"/>
+			<field name="author" value="DE MENEZES, LIVIA A."/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="author" value="DE CARVALHO, MARIANA S. N."/>
+			<field name="author" value="CARVALHO, KARINNE M."/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal1">
+			<semanticIdentifier>issn::2349-3291</semanticIdentifier>
+			<field name="identifier.issn" value="2349-3291"/>
+			<field name="title" value="International Journal of Contemporary Pediatrics"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Community" ref="Community1">
+			<semanticIdentifier>brcris::ad6476ed641680c39535783ddca3d3a9</semanticIdentifier>
+			<field name="identifier.brcris" value="ad6476ed641680c39535783ddca3d3a9"/>
+			<field name="name" value="Equipe"/>
+		</entity>
+		<entity type="Publication" ref="Publication2">
+			<semanticIdentifier>brcris::2f98424e26fa636efda5afae37fb1a0d</semanticIdentifier>
+			<field name="identifier.brcris" value="2f98424e26fa636efda5afae37fb1a0d"/>
+			<field name="title" value="TECHNOLOGY FORESIGHT OF THE BIOGAS PRODUCTION CHAIN"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2016"/>
+			<field name="volume" value="8"/>
+			<field name="series" value="1"/>
+			<field name="startPage" value="73"/>
+			<field name="endPage" value="88"/>
+			<field name="type" value="journal article"/>
+			<field name="author" value="Adelaide Antunes"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="author" value="Fabiana Valeria da Fonseca"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal2">
+			<semanticIdentifier>issn::2178-9436</semanticIdentifier>
+			<field name="identifier.issn" value="2178-9436"/>
+			<field name="title" value="Ciência &amp; Tecnologia: Fatec-JB (Online)"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication3">
+			<semanticIdentifier>brcris::ad019673043187d1f18d50fd118f0a44</semanticIdentifier>
+			<field name="identifier.brcris" value="ad019673043187d1f18d50fd118f0a44"/>
+			<field name="title" value="PANORAMA OF BIODIESEL USING TECHNOLOGY FORESIGHT"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2016"/>
+			<field name="volume" value="8"/>
+			<field name="series" value="1"/>
+			<field name="startPage" value="55"/>
+			<field name="endPage" value="72"/>
+			<field name="type" value="journal article"/>
+			<field name="author" value="Adelaide Antunes"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="author" value="Fabiana Valeria da Fonseca"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Publication" ref="Publication4">
+			<semanticIdentifier>brcris::325c5330d3979edd6615e655ea739e9a</semanticIdentifier>
+			<field name="identifier.brcris" value="325c5330d3979edd6615e655ea739e9a"/>
+			<field name="title" value="Technological prospection on membranes containing silver nanoparticles for water disinfection."/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="11"/>
+			<field name="startPage" value="1872"/>
+			<field name="endPage" value="2105"/>
+			<field name="type" value="journal article"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="author" value="Aline Ferreira Marques Linhares"/>
+			<field name="author" value="Criatiano P Borges"/>
+			<field name="author" value="Fabiana Valeria da Fonseca"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal3">
+			<semanticIdentifier>issn::1872-2105</semanticIdentifier>
+			<field name="identifier.issn" value="1872-2105"/>
+			<field name="title" value="Recent Patents on Nanotechnology"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication5">
+			<semanticIdentifier>brcris::34ce14d4e4af99c63f78167adbb36953</semanticIdentifier>
+			<field name="identifier.brcris" value="34ce14d4e4af99c63f78167adbb36953"/>
+			<field name="advisor" value="Adelaide Maria S. Antunes"/>
+			<field name="coadvisor" value="Fabiana Valéria da Fonseca"/>
+			<field name="title" value="Prospecção tecnológica da cadeia produtiva do biogás"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="type" value="doctoral thesis"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="service" value="CVLattes - Formações"/>
+		</entity>
+		<entity type="Person" ref="Person2">
+			<semanticIdentifier>lattes::5168823546200073</semanticIdentifier>
+			<field name="identifier.lattes" value="5168823546200073"/>
+			<field name="name" value="Adelaide Maria S. Antunes"/>
+		</entity>
+		<entity type="OrgUnit" ref="OrgUnit1">
+			<semanticIdentifier>cnpq::020200000009</semanticIdentifier>
+			<semanticIdentifier>brcris::d99c83b6e285035777ff47a734418aa1</semanticIdentifier>
+			<semanticIdentifier>diSequencial::21233</semanticIdentifier>
+			<field name="identifier.cnpq" value="020200000009"/>
+			<field name="identifier.brcris" value="d99c83b6e285035777ff47a734418aa1"/>
+			<field name="identifier.diSequencial" value="21233"/>
+			<field name="name" value="Universidade Federal do Rio de Janeiro"/>
+			<field name="identifier.cnpj" value="33.663.683/0001-16"/>
+			<field name="acronym" value="UFRJ"/>
+			<field name="identifier.cnpq" value="020200000009"/>
+			<field name="juridicNature" value="Administração Pública / Autarquia Federal"/>
+			<field name="address.description" value="Avenida Pedro Calmon, 550"/>
+			<field name="address.neighborhood" value="Cidade Universitária"/>
+			<field name="address.city" value="Rio de Janeiro"/>
+			<field name="address.state" value="RJ"/>
+			<field name="address.country" value="Brasil"/>
+			<field name="address.cep" value="21941-901"/>
+			<field name="coordinate.latitude" value="-22.954685"/>
+			<field name="coordinate.longitude" value="-43.175589"/>
+		</entity>
+		<entity type="Course" ref="Course1">
+			<semanticIdentifier>brcris::d0f5de2a7108833f4baef5a7beaa0c26</semanticIdentifier>
+			<field name="identifier.brcris" value="d0f5de2a7108833f4baef5a7beaa0c26"/>
+			<field name="identifier.cnpq" value="90000007"/>
+			<field name="name" value="Programa de Pós Graduação em Gestão e Inovação Tecnológica"/>
+			<field name="degree" value="doctorate degree"/>
+		</entity>
+		<entity type="Publication" ref="Publication6">
+			<semanticIdentifier>brcris::a56fd2d96a4dc89fafe34356d2ff6785</semanticIdentifier>
+			<field name="identifier.brcris" value="a56fd2d96a4dc89fafe34356d2ff6785"/>
+			<field name="advisor" value="BOMTEMPO, J. V.;Bomtempo, José Vitor"/>
+			<field name="coadvisor" value="ALVES, F. C.; Alves, Flávia Chaves"/>
+			<field name="title" value="Framework de análise para startups de biotecnologia: Estudo comparativo Amyris e Solazyme"/>
+			<field name="publicationDate" value="2013"/>
+			<field name="type" value="master thesis"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="service" value="CVLattes - Formações"/>
+		</entity>
+		<entity type="Person" ref="Person3">
+			<semanticIdentifier>lattes::6504582268267539</semanticIdentifier>
+			<field name="identifier.lattes" value="6504582268267539"/>
+			<field name="name" value="BOMTEMPO, J. V.;Bomtempo, José Vitor"/>
+		</entity>
+		<entity type="Course" ref="Course2">
+			<semanticIdentifier>brcris::d8d9547ea6ee5c7b2b580460ab799f4d</semanticIdentifier>
+			<field name="identifier.brcris" value="d8d9547ea6ee5c7b2b580460ab799f4d"/>
+			<field name="identifier.cnpq" value="31000363"/>
+			<field name="name" value="Chemical Engineering" lang="eng"/>
+			<field name="name" value="Engenharia Química"/>
+			<field name="degree" value="master degree"/>
+		</entity>
+		<entity type="Program" ref="Program1">
+			<semanticIdentifier>capes::31001017036P2</semanticIdentifier>
+			<field name="identifier.capes" value="31001017036P2"/>
+			<field name="researchArea.capes" value="30600006"/>
+		</entity>
+		<entity type="Publication" ref="Publication7">
+			<semanticIdentifier>brcris::dd43305e70cfca5e0843b64a4d4d7710</semanticIdentifier>
+			<semanticIdentifier>doi::10.1007/s11157-017-9428-z</semanticIdentifier>
+			<field name="identifier.brcris" value="dd43305e70cfca5e0843b64a4d4d7710"/>
+			<field name="title" value="A state of the art literature review on anaerobic digestion of food waste: influential operating parameters on methane yield"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="2"/>
+			<field name="startPage" value="327"/>
+			<field name="endPage" value="345"/>
+			<field name="type" value="journal article"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.1007/s11157-017-9428-z"/>
+			<field name="resourceUrl" value="doi:10.1007/s11157-017-9428-z"/>
+			<field name="author" value="KOMILIS, DIMITRIOS"/>
+			<field name="author" value="FONT, XAVIER"/>
+			<field name="author" value="BARRENA, RAQUEL"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="author" value="SÁNCHEZ, ANTONI"/>
+			<field name="author" value="VOGIATZI, VASILIA"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal4">
+			<semanticIdentifier>issn::1569-1705</semanticIdentifier>
+			<field name="identifier.issn" value="1569-1705"/>
+			<field name="title" value="REVIEWS IN ENVIRONMENTAL SCIENCE AND BIO-TECHNOLOGY"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication8">
+			<semanticIdentifier>brcris::0a32bb6a90555664e81e04e7e24fa39a</semanticIdentifier>
+			<semanticIdentifier>doi::10.1016/j.rser.2017.05.079</semanticIdentifier>
+			<field name="identifier.brcris" value="0a32bb6a90555664e81e04e7e24fa39a"/>
+			<field name="title" value="Technology overview of biogas production in anaerobic digestion plants: A European evaluation of research and development"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="80"/>
+			<field name="startPage" value="44"/>
+			<field name="endPage" value="53"/>
+			<field name="type" value="journal article"/>
+			<field name="resourceUrl" value="doi:10.1016/j.rser.2017.05.079"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.1016/j.rser.2017.05.079"/>
+			<field name="author" value="FONT, XAVIER"/>
+			<field name="author" value="BARRENA, RAQUEL"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="author" value="SÁNCHEZ, ANTONI"/>
+			<field name="author" value="DE SOUZA ANTUNE, ADELAIDE MARIA"/>
+			<field name="author" value="DA FONSECA, FABIANA VALÉRIA"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal5">
+			<semanticIdentifier>issn::1364-0321</semanticIdentifier>
+			<field name="identifier.issn" value="1364-0321"/>
+			<field name="title" value="RENEWABLE &amp; SUSTAINABLE ENERGY REVIEWS"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication9">
+			<semanticIdentifier>brcris::b41cb60cbfd248a3b04ca589cda35de3</semanticIdentifier>
+			<field name="identifier.brcris" value="b41cb60cbfd248a3b04ca589cda35de3"/>
+			<field name="title" value="Overview of Flaxseed Patent Applications for the Reduction of Cholesterol Levels"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2016"/>
+			<field name="volume" value="21"/>
+			<field name="series" value="1"/>
+			<field name="startPage" value="1"/>
+			<field name="endPage" value="8"/>
+			<field name="type" value="journal article"/>
+			<field name="resourceUrl" value="http://https://www.ncbi.nlm.nih.gov/pubmed/26996439"/>
+			<field name="author" value="Lilia Zago"/>
+			<field name="author" value="Elvira Carvajal"/>
+			<field name="author" value="Simone Augusta Ribas"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="author" value="Iolanda Margherita Fierro"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal6">
+			<semanticIdentifier>issn::2699-6439</semanticIdentifier>
+			<field name="identifier.issn" value="2699-6439"/>
+			<field name="title" value="Recent Pat Food Nutr Agric"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication10">
+			<semanticIdentifier>doi::10.2174/2210315507666170525130202</semanticIdentifier>
+			<semanticIdentifier>brcris::8c11f15e17538225d024e5fb1742381b</semanticIdentifier>
+			<field name="identifier.brcris" value="8c11f15e17538225d024e5fb1742381b"/>
+			<field name="title" value="Yerba Mate: Uses and Applications Evaluated through Patent Documents"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="7"/>
+			<field name="series" value="4"/>
+			<field name="startPage" value="309"/>
+			<field name="endPage" value="315"/>
+			<field name="type" value="journal article"/>
+			<field name="resourceUrl" value="doi:10.2174/2210315507666170525130202"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.2174/2210315507666170525130202"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="author" value="FIERRO, IOLANDA M."/>
+			<field name="author" value="CARVAJAL, ELVIRA"/>
+			<field name="author" value="SCHUMACHER, SUZANNE O.R."/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal7">
+			<semanticIdentifier>issn::2210-3155</semanticIdentifier>
+			<field name="identifier.issn" value="2210-3155"/>
+			<field name="title" value="The Natural products Journal"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication11">
+			<semanticIdentifier>brcris::002fef832e30d5a30789224021647d69</semanticIdentifier>
+			<field name="identifier.brcris" value="002fef832e30d5a30789224021647d69"/>
+			<field name="title" value="Medicinal plants used on arthritis treatment: An overview through patent analysis"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2017"/>
+			<field name="volume" value="6"/>
+			<field name="series" value="1"/>
+			<field name="startPage" value="1999"/>
+			<field name="endPage" value="2003"/>
+			<field name="type" value="journal article"/>
+			<field name="resourceUrl" value="http://https://www.semanticscholar.org/paper/Medicinal-plants-used-on-arthritis-treatment%3A-An-Grando-Fierro/d19dedf50cbd4093d8e535b018f499e87b4ddf9a"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="author" value="FIERRO, IOLANDA M."/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal8">
+			<semanticIdentifier>issn::2278-4136</semanticIdentifier>
+			<field name="identifier.issn" value="2278-4136"/>
+			<field name="title" value="JOURNAL OF PHARMACOGNOSY AND PHYTOCHEMISTRY"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication12">
+			<semanticIdentifier>brcris::1a7b02300ee04ef2fe033169da7b7f49</semanticIdentifier>
+			<semanticIdentifier>doi::10.7198/s2237-0722201500040011</semanticIdentifier>
+			<field name="identifier.brcris" value="1a7b02300ee04ef2fe033169da7b7f49"/>
+			<field name="title" value="PANORAMA DO ETANOL UTILIZANDO PROSPECÇÃO TECNOLÓGICA"/>
+			<field name="language" value="Português"/>
+			<field name="publicationDate" value="2015"/>
+			<field name="volume" value="5"/>
+			<field name="series" value="4"/>
+			<field name="startPage" value="2604"/>
+			<field name="endPage" value="2618"/>
+			<field name="type" value="journal article"/>
+			<field name="resourceUrl" value="doi:10.7198/s2237-0722201500040011"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.7198/s2237-0722201500040011"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="author" value="Cláudia Braga Jacques Foss de Oliveira"/>
+			<field name="author" value="ANTUNES, A. M."/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal9">
+			<semanticIdentifier>issn::2237-0722</semanticIdentifier>
+			<field name="identifier.issn" value="2237-0722"/>
+			<field name="title" value="REVISTA GEINTEC: GESTÃO, INOVAÇÃO E TECNOLOGIAS"/>
+			<field name="type" value="journal"/>
+		</entity>
+		<entity type="Publication" ref="Publication13">
+			<semanticIdentifier>brcris::b2ebd0218beb1b2042ed2ecd11655e67</semanticIdentifier>
+			<semanticIdentifier>doi::10.17265/2162-5263/2019.04.005</semanticIdentifier>
+			<field name="identifier.brcris" value="b2ebd0218beb1b2042ed2ecd11655e67"/>
+			<field name="title" value="Environment and Bioeconomics: An Analysis of the Brazilian Ecosystem in Bioproducts Development"/>
+			<field name="language" value="Inglês"/>
+			<field name="publicationDate" value="2019"/>
+			<field name="volume" value="8"/>
+			<field name="series" value="4"/>
+			<field name="startPage" value="156"/>
+			<field name="endPage" value="164"/>
+			<field name="type" value="journal article"/>
+			<field name="resourceUrl" value="http://dx.doi.org/10.17265/2162-5263/2019.04.005"/>
+			<field name="author" value="Willy Jablonka"/>
+			<field name="author" value="Rafaela Lora Grando"/>
+			<field name="author" value="Renata Angeli"/>
+			<field name="author" value="Tatiane Alves Baptista"/>
+			<field name="service" value="CVLattes - Periódicos"/>
+		</entity>
+		<entity type="Journal" ref="Journal10">
+			<semanticIdentifier>issn::2162-5263</semanticIdentifier>
+			<field name="identifier.issn" value="2162-5263"/>
+			<field name="title" value="Journal of Environmental Science and Engineering B"/>
+			<field name="type" value="journal"/>
+		</entity>
+	</entities>
+	<relations>
+		<relation type="PublisherJournal" fromEntityRef="Publication1" toEntityRef="Journal1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication1"/>
+		<relation type="Authorship" fromEntityRef="Publication1" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication2" toEntityRef="Journal2"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication2"/>
+		<relation type="Authorship" fromEntityRef="Publication2" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication3" toEntityRef="Journal2"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication3"/>
+		<relation type="Authorship" fromEntityRef="Publication3" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication4" toEntityRef="Journal3"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication4"/>
+		<relation type="Authorship" fromEntityRef="Publication4" toEntityRef="Person1"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person2"/>
+		<relation type="Adivisoring" fromEntityRef="Publication5" toEntityRef="Person2"/>
+		<relation type="ThesisSponsorship" fromEntityRef="OrgUnit1" toEntityRef="Publication5"/>
+		<relation type="CourseThesis" fromEntityRef="Course1" toEntityRef="Publication5"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication5"/>
+		<relation type="Authorship" fromEntityRef="Publication5" toEntityRef="Person1"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person3"/>
+		<relation type="Adivisoring" fromEntityRef="Publication6" toEntityRef="Person3"/>
+		<relation type="ThesisSponsorship" fromEntityRef="OrgUnit1" toEntityRef="Publication6"/>
+		<relation type="IsProgramOf" fromEntityRef="Program1" toEntityRef="Course2"/>
+		<relation type="CourseThesis" fromEntityRef="Course2" toEntityRef="Publication6"/>
+		<relation type="ProgramThesis" fromEntityRef="Publication6" toEntityRef="Program1"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication6"/>
+		<relation type="Authorship" fromEntityRef="Publication6" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication7" toEntityRef="Journal4"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication7"/>
+		<relation type="Authorship" fromEntityRef="Publication7" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication8" toEntityRef="Journal5"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication8"/>
+		<relation type="Authorship" fromEntityRef="Publication8" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication9" toEntityRef="Journal6"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication9"/>
+		<relation type="Authorship" fromEntityRef="Publication9" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication10" toEntityRef="Journal7"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication10"/>
+		<relation type="Authorship" fromEntityRef="Publication10" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication11" toEntityRef="Journal8"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication11"/>
+		<relation type="Authorship" fromEntityRef="Publication11" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication12" toEntityRef="Journal9"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication12"/>
+		<relation type="Authorship" fromEntityRef="Publication12" toEntityRef="Person1"/>
+		<relation type="PublisherJournal" fromEntityRef="Publication13" toEntityRef="Journal10"/>
+		<relation type="PublicationCommunity" fromEntityRef="Community1" toEntityRef="Publication13"/>
+		<relation type="Authorship" fromEntityRef="Publication13" toEntityRef="Person1"/>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person1"/>
+	</relations>
+</entity-relation-data>

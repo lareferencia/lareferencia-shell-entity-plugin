@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entity-relation-data lastUpdate="2022-05-30 14:32:17.502174" source="lattes+di" record="fffe77ea9d62a4e1ede240c29540980b">
+	<entities>
+		<entity type="Person" ref="Person1">
+			<semanticIdentifier>lattes::3425767432758683</semanticIdentifier>
+			<field name="identifier.lattes" value="3425767432758683"/>
+			<field name="name" value="Mariana Duarte de Araujo Salgueiro"/>
+			<field name="citationName" value="SALGUEIRO, M. D. A."/>
+			<field name="nationality" value="Brasil"/>
+			<field name="birthCity" value="Rio De Janeiro"/>
+			<field name="birthState" value="RJ"/>
+			<field name="birthCountry" value="Brasil"/>
+			<field name="miniBiography" value="Formada em Ciência da Computação pela Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio), cursando Mestrado em Infomática na mesma instituição de ensino na área de Banco de Dados."/>
+			<field name="miniBiography" value="Graduated in Computer Science at Pontifical Catholic University of Rio de Janeiro (PUC-Rio), studying for a Master's Degree in Databases at the same educational institution." lang="eng"/>
+		</entity>
+		<entity type="Community" ref="Community1">
+			<semanticIdentifier>brcris::ad6476ed641680c39535783ddca3d3a9</semanticIdentifier>
+			<field name="identifier.brcris" value="ad6476ed641680c39535783ddca3d3a9"/>
+			<field name="name" value="Equipe"/>
+		</entity>
+	</entities>
+	<relations>
+		<relation type="PersonCommunity" fromEntityRef="Community1" toEntityRef="Person1"/>
+	</relations>
+</entity-relation-data>

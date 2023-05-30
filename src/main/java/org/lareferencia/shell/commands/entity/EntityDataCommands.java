@@ -28,13 +28,21 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lareferencia.core.entity.domain.EntityRelationException;
 import org.lareferencia.core.entity.services.EntityDataService;
+import org.lareferencia.core.entity.services.EntityLoadingMonitorService;
+import org.lareferencia.core.entity.services.EntityLoadingStats;
+import org.lareferencia.core.entity.services.exception.EntitiyRelationXMLLoadingException;
 import org.lareferencia.core.util.Profiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import org.w3c.dom.Document;
+
+
+import lombok.Getter;
+import lombok.Setter;
 
 @ShellComponent
 public class EntityDataCommands {
@@ -57,61 +65,53 @@ public class EntityDataCommands {
 	
 	@Autowired
 	EntityDataService erService;
-	
-//	@Autowired
-//	EntityLRUCache entityCache;
 
-	
-	@ShellMethod("Load entity-relation data from  from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded ")
-	public String load_data(String path, @ShellOption(defaultValue = "1000") Integer entityCacheSize, @ShellOption(defaultValue = "false") String doProfile) throws Exception {
-			
-		Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
-		
-		// cache setting
-//		if ( entityCacheSize != null && entityCacheSize > 0) {
-//			logger.info("Creating entity cache ... size: " + entityCacheSize );	
-//			entityCache.setCapacity(entityCacheSize);
-//			erService.setEntityCache(entityCache);
-//		}
+	@Autowired
+	private EntityLoadingMonitorService entityLoadingMonitorService;
+
+	@ShellMethod("Load entity-relation data from from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded ")
+	public String load_data(@ShellOption(value="path", defaultValue = "false")String path, @ShellOption(value="dryRun", defaultValue = "false") String dryRun, @ShellOption(value = "doProfile", defaultValue = "false") String doProfile) throws Exception {
+
+	    logger.info("Running in dry-run mode: "+dryRun+". No changes will be made.");
+	    
+	    Boolean dryRunMode = Boolean.parseBoolean(dryRun);
+	    Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
 
 		Boolean profileMode = Boolean.valueOf(doProfile);		
 		File fileOrDirectory = new File(path);
-	
+
+		entityLoadingMonitorService.setLoadingProcessInProgress(true);
+
 		boolean exists =      fileOrDirectory.exists();      // Check if the file exists
 		boolean isFile =      fileOrDirectory.isFile();      // Check if it's a regular file
 	
 		if ( !exists ) {
-			
 			logger.error( String.format("%s does not exists.", path ) );
-			throw new Exception("Path: " + path + "doesn exists.");
-		
-		} else if ( isFile ) {
-			
+		} else if ( isFile ) {	
 			logger.info( String.format("Processing path: %s", path ) );
-			load_xml_file(fileOrDirectory, profileMode);
-		
+			load_xml_file(fileOrDirectory, profileMode,dryRunMode);
+			
 		} else { // is a directory
-			
-			load_directory(fileOrDirectory.getAbsolutePath(), profileMode);
+			load_directory(fileOrDirectory.getAbsolutePath(), profileMode,dryRunMode);
 		}
-			
-		
-//		if ( entityCacheSize != null && entityCacheSize > 0) {
-//			logger.info("Persisting entity cache ...");	
-//			entityCache.syncAndClose();
-//		}
-		
-	
 		
 		logger.info( "Running post processing tasks" );
-		erService.mergeEntityRelationData();
 		
+		// merge data if not in dry run mode
+		if(!dryRunMode) 
+			erService.mergeEntityRelationData();
+		
+		// write to json
+		entityLoadingMonitorService.writeToJSON(path);
+
+		entityLoadingMonitorService.setLoadingProcessInProgress(false);
 		generalProfiler.report(logger);
 		return String.format("Processing %s finished \n\n",path);
-		
+
 	}
+
 	
-	private void load_directory(String path, Boolean profileMode) {
+	private void load_directory(String path, Boolean profileMode, Boolean dryRun) {
 		
 		File fileOrDirectory = new File(path);
 		
@@ -121,38 +121,63 @@ public class EntityDataCommands {
 	        	
 	        	if ( fileEntry.getName().endsWith(".xml") ) {
 	    			logger.info( String.format("Processing file: %s", fileEntry.getAbsolutePath() ) );
-	        		load_xml_file(fileEntry, profileMode);
+	        		load_xml_file(fileEntry, profileMode,dryRun);
 	        	}
 	        	
 	        } else {
 	        	logger.info("Entering directory: " + fileEntry.getAbsolutePath() );
-	        	load_directory( fileEntry.getAbsolutePath(), profileMode);
+	        	load_directory( fileEntry.getAbsolutePath(), profileMode,dryRun);
 	        }
 		}
 	}
 	
 	
-	private void load_xml_file(File file, Boolean profileMode) {
+	private void load_xml_file(File file, Boolean profileMode, Boolean dryRun) {
 		
-		
+		System.out.println("!!!====>>>> file.getAbsolutePath(): "+file.getAbsolutePath());
 		profiler = new Profiler(profileMode, "File: " + file.getAbsolutePath() + " ").start();
 		erService.setProfiler(profiler);
 		
 		try {
 			InputStream input = new FileInputStream(file);
+
+			// increment total processed files
+			entityLoadingMonitorService.incrementTotalProcessedFiles();
 		
 			Document doc = dBuilder.parse(input);
 			profiler.messure("XMLParse");
 			
-			erService.parseAndPersistEntityRelationDataFromXMLDocument(doc);
+			profiler.messure("dry-run:" + dryRun);
+			EntityLoadingStats stats = erService.parseAndPersistEntityRelationDataFromXMLDocument(doc, dryRun);
+			entityLoadingMonitorService.reportEntityLoadingStats(stats);
+			profiler.messure("parseAndPersistEntityRelationDataFromXMLDocument");
 			profiler.report(logger);
+
+			entityLoadingMonitorService.incrementTotalSuccesfulFiles();
 		
+		} catch (EntitiyRelationXMLLoadingException e) {
+			// set file name for error reporting
+			e.setFileName(file.getAbsolutePath());
+			// report exception 
+			entityLoadingMonitorService.reportException(e);
+
+			// the file was not loaded so increment total failed files
+			entityLoadingMonitorService.incrementTotalFailedFiles();
+		} catch (EntityRelationException e) {
+			// TODO report this kind of exception too 
+			logger.error( String.format("Undetailed EntityRelation Exception while loading xml data into entity model - %s was not loaded - details: %s", file.getAbsolutePath(), e.getMessage() ) );
+			entityLoadingMonitorService.incrementTotalFailedFiles();
 		} catch (Exception e) {
-			logger.error( String.format("Error loading xml data into entity model - %s was not loaded - details: %s", file.getAbsolutePath(), e.getMessage() ) );
+			// TODO report this kind of exception too 
+			logger.error( String.format("General Exception while loading xml data into entity model - %s was not loaded - details: %s", file.getAbsolutePath(), e.getMessage() ) );
+			entityLoadingMonitorService.incrementTotalFailedFiles();
 		} 
 		
 		
 		
 	}
+
+
+	
 	
 }
