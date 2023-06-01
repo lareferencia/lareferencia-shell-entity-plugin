@@ -32,6 +32,7 @@ import org.lareferencia.core.entity.indexing.solr.EntityIndexerSolrImpl;
 import org.lareferencia.core.entity.repositories.jpa.EntityRepository;
 import org.lareferencia.core.entity.repositories.solr.EntitySolrRepository;
 import org.lareferencia.core.entity.services.EntityDataService;
+import org.lareferencia.core.entity.services.EntityLoadingMonitorService;
 import org.lareferencia.core.entity.workers.EntityIndexingWorker;
 import org.lareferencia.core.entity.workers.EntityIndexingRunningContext;
 import org.lareferencia.core.worker.IWorker;
@@ -55,6 +56,9 @@ public class EntityIndexingCommands {
 	
 	@Autowired
 	EntityDataService erService;
+
+	@Autowired
+	EntityLoadingMonitorService entityMonitorService;
 	
 	@Autowired
 	EntityRepository entityRepository;
@@ -99,6 +103,9 @@ public class EntityIndexingCommands {
 				if (entityTypeName != null && !entityTypeName.trim().equals("") && !entityTypeName.equals("null"))
 					entityType = erService.getEntityTypeFromName(entityTypeName.trim());
 
+				// reset monitor
+				entityMonitorService.reset();
+
 				worker = (IWorker<EntityIndexingRunningContext>) applicationContext.getBean(EntityIndexingWorker.class);
 
 				EntityIndexingRunningContext runningContext = new EntityIndexingRunningContext(configFileFullPath, indexerName);
@@ -113,6 +120,11 @@ public class EntityIndexingCommands {
 				worker.setRunningContext(runningContext);
 
 				worker.run();
+
+				// write to JSON
+				entityMonitorService.writeToJSON(indexerName);
+				logger.info( entityMonitorService.indexingReport() );
+
 			} catch (Exception e) {
 				System.out.println("Error running indexing process. ) "  + e.getMessage() );
 				e.printStackTrace();

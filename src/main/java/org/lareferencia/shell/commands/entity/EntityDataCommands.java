@@ -100,11 +100,16 @@ public class EntityDataCommands {
 		// merge data if not in dry run mode
 		if(!dryRunMode) 
 			erService.mergeEntityRelationData();
-		
+
+		// set loading process as finished
+		entityLoadingMonitorService.setLoadingProcessInProgress(false);
+
 		// write to json
 		entityLoadingMonitorService.writeToJSON(path);
 
-		entityLoadingMonitorService.setLoadingProcessInProgress(false);
+		// write report to log
+		logger.info(entityLoadingMonitorService.loadingReport());
+
 		generalProfiler.report(logger);
 		return String.format("Processing %s finished \n\n",path);
 
@@ -153,7 +158,7 @@ public class EntityDataCommands {
 			profiler.messure("parseAndPersistEntityRelationDataFromXMLDocument");
 			profiler.report(logger);
 
-			entityLoadingMonitorService.incrementTotalSuccesfulFiles();
+			entityLoadingMonitorService.incrementTotalSuccessfulFiles();
 		
 		} catch (EntitiyRelationXMLLoadingException e) {
 			// set file name for error reporting
