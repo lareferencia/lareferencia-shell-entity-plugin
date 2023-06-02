@@ -102,11 +102,11 @@ public class EntityDataCommands {
 			erService.mergeEntityRelationData();
 		
 		// write to json
-		entityLoadingMonitorService.writeToJSON(path);
+		String reportFilePath = entityLoadingMonitorService.writeToJSON(path);
 
 		entityLoadingMonitorService.setLoadingProcessInProgress(false);
 		generalProfiler.report(logger);
-		return String.format("Processing %s finished \n\n",path);
+		return reportFilePath;
 
 	}
 
