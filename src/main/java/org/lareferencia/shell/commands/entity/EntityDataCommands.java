@@ -139,7 +139,7 @@ public class EntityDataCommands {
 	
 	private void load_xml_file(File file, Boolean profileMode, Boolean dryRun) {
 		
-		System.out.println("!!!====>>>> file.getAbsolutePath(): "+file.getAbsolutePath());
+		//System.out.println("!!!====>>>> file.getAbsolutePath(): "+file.getAbsolutePath());
 		profiler = new Profiler(profileMode, "File: " + file.getAbsolutePath() + " ").start();
 		erService.setProfiler(profiler);
 		
