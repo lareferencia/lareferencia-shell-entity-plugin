@@ -100,11 +100,16 @@ public class EntityDataCommands {
 		// merge data if not in dry run mode
 		if(!dryRunMode) 
 			erService.mergeEntityRelationData();
-		
+
+		// set loading process as finished
+		entityLoadingMonitorService.setLoadingProcessInProgress(false);
+
 		// write to json
 		String reportFilePath = entityLoadingMonitorService.writeToJSON(path);
 
-		entityLoadingMonitorService.setLoadingProcessInProgress(false);
+		// write report to log
+		logger.info(entityLoadingMonitorService.loadingReport());
+
 		generalProfiler.report(logger);
 		return reportFilePath;
 
@@ -134,7 +139,7 @@ public class EntityDataCommands {
 	
 	private void load_xml_file(File file, Boolean profileMode, Boolean dryRun) {
 		
-		System.out.println("!!!====>>>> file.getAbsolutePath(): "+file.getAbsolutePath());
+		//System.out.println("!!!====>>>> file.getAbsolutePath(): "+file.getAbsolutePath());
 		profiler = new Profiler(profileMode, "File: " + file.getAbsolutePath() + " ").start();
 		erService.setProfiler(profiler);
 		
@@ -153,7 +158,7 @@ public class EntityDataCommands {
 			profiler.messure("parseAndPersistEntityRelationDataFromXMLDocument");
 			profiler.report(logger);
 
-			entityLoadingMonitorService.incrementTotalSuccesfulFiles();
+			entityLoadingMonitorService.incrementTotalSuccessfulFiles();
 		
 		} catch (EntitiyRelationXMLLoadingException e) {
 			// set file name for error reporting
