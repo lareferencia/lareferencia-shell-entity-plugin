@@ -114,7 +114,7 @@ public class EntityIndexingCommands {
 				runningContext.setPageSize(pageSize);
 				runningContext.setFromPage(fromPage);
 
-				if (provenance != "null")
+				if (!provenance.equals("null"))
 					runningContext.setProvenanceSource(provenance);
 
 				worker.setRunningContext(runningContext);
