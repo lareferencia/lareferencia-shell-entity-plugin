@@ -86,7 +86,7 @@ public class EntityIndexingCommands {
 
 
 	@ShellMethod("Index entities of entityTypeName (optional) in indexerName indexing using a given configFile")
-	public void indexEntities(String configFileFullPath, String indexerName,  @ShellOption(defaultValue = "null") String entityTypeName, @ShellOption(defaultValue="null") String provenance, @ShellOption(defaultValue="1000") Integer pageSize, @ShellOption(defaultValue="1") Integer fromPage) throws EntityRelationException {
+	public String indexEntities(String configFileFullPath, String indexerName,  @ShellOption(defaultValue = "null") String entityTypeName, @ShellOption(defaultValue="null") String provenance, @ShellOption(defaultValue="1000") Integer pageSize, @ShellOption(defaultValue="1") Integer fromPage) throws EntityRelationException {
 
 		
 		EntityType entityType = null;
@@ -123,7 +123,8 @@ public class EntityIndexingCommands {
 
 				// write to JSON
 				entityMonitorService.writeToJSON(indexerName);
-				logger.info( entityMonitorService.indexingReport() );
+
+				worker.stop();
 
 			} catch (Exception e) {
 				System.out.println("Error running indexing process. ) "  + e.getMessage() );
@@ -132,7 +133,8 @@ public class EntityIndexingCommands {
 				if (worker != null) worker.stop();
 			}
         }
-		
+
+		return entityMonitorService.indexingReport();
 	}
 	
 

@@ -105,13 +105,13 @@ public class EntityDataCommands {
 		entityLoadingMonitorService.setLoadingProcessInProgress(false);
 
 		// write to json
-		String reportFilePath = entityLoadingMonitorService.writeToJSON(path);
+		entityLoadingMonitorService.writeToJSON(path);
 
 		// write report to log
-		logger.info(entityLoadingMonitorService.loadingReport());
+		//logger.info(entityLoadingMonitorService.loadingReport());
 
 		generalProfiler.report(logger);
-		return reportFilePath;
+		return entityLoadingMonitorService.loadingReport();
 
 	}
 
