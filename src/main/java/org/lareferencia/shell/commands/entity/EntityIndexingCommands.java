@@ -20,6 +20,7 @@
  */
 package org.lareferencia.shell.commands.entity;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.apache.logging.log4j.LogManager;
@@ -85,8 +86,8 @@ public class EntityIndexingCommands {
 	}
 
 
-	@ShellMethod("Index entities of entityTypeName (optional) in indexerName indexing using a given configFile")
-	public String indexEntities(String configFileFullPath, String indexerName,  @ShellOption(defaultValue = "null") String entityTypeName, @ShellOption(defaultValue="null") String provenance, @ShellOption(defaultValue="1000") Integer pageSize, @ShellOption(defaultValue="1") Integer fromPage) throws EntityRelationException {
+	@ShellMethod("Index entities of entityTypeName (optional) in indexerName indexing using a given configFile, lastUpdate (yyyy-MM-ddTHH:mm:ss) and provenance are optional")
+	public String indexEntities(String configFileFullPath, String indexerName,  @ShellOption(defaultValue = "null") String entityTypeName, @ShellOption(defaultValue="null") String provenance, @ShellOption(defaultValue="null") String lastUpdate, @ShellOption(defaultValue="1000") Integer pageSize, @ShellOption(defaultValue="1") Integer fromPage) throws EntityRelationException {
 
 		
 		EntityType entityType = null;
@@ -114,8 +115,24 @@ public class EntityIndexingCommands {
 				runningContext.setPageSize(pageSize);
 				runningContext.setFromPage(fromPage);
 
-				if (!provenance.equals("null"))
+				if ( !provenance.equals("null") ) {
+
 					runningContext.setProvenanceSource(provenance);
+					System.out.println("Indexing entities from provenance source: " + provenance + "lastUpdate will be ignored");
+
+				} else if ( !lastUpdate.equals("null") ) {
+					// parse last update into localdatetime
+
+					try {
+						LocalDateTime lastUpdateDate = LocalDateTime.parse(lastUpdate);
+						runningContext.setLastUdate(lastUpdateDate);
+						System.out.println("Indexing entities from last update: " + runningContext.getLastUdate());
+					} catch (Exception e) {
+						logger.error("Error parsing last update date. Please use ISO format: yyyy-MM-ddTHH:mm:ss");
+						return "Error parsing last update date. Please use ISO format: yyyy-MM-ddTHH:mm:ss";
+					}
+
+				}
 
 				worker.setRunningContext(runningContext);
 
@@ -142,37 +159,9 @@ public class EntityIndexingCommands {
     public void indexEntitiesSolr(String configFileFullPath, @ShellOption() String entityTypeName, @ShellOption(defaultValue="none") String provenance,
             @ShellOption(defaultValue = "1000") Integer pageSize) throws EntityRelationException {
         String indexerName = "entityIndexerSolr";
-        indexEntities(configFileFullPath, indexerName, entityTypeName, provenance, pageSize, 1);
+        indexEntities(configFileFullPath, indexerName, entityTypeName, provenance, "null", pageSize, 1);
     }
 
-//    @ShellMethod("Index entities of entityTypeName in ElasticSearch using a given configFile")
-//    public void indexEntitiesElastic(String configFileFullPath, @ShellOption() String entityTypeName,
-//            @ShellOption(defaultValue = "1000") int pageSize) throws EntityRelationException {
-//        String indexerName = "entityIndexerElastic";
-//        indexEntities(configFileFullPath, indexerName, entityTypeName, pageSize);
-//    }
-
-	
-//	@ShellMethod("Remove duplicateof entityTypeName in indexerName indexing using a given configFile")
-//	public void removeDuplicateEntitiesFromIndex(String configFileFullPath, String indexerName,  @ShellOption() String entityTypeName, @ShellOption(defaultValue="1000") int pageSize) throws EntityRelationException {
-//		
-//		EntityType entityType = null;
-//		
-//		if ( entityTypeName != null && entityTypeName.trim() != "")
-//			entityType = erService.getEntityTypeFromName(entityTypeName.trim());
-//		
-//		IWorker<EntityIndexingRunningContext> worker = (IWorker<EntityIndexingRunningContext>) applicationContext.getBean(EntityIndexingWorker.class);
-//		
-//		EntityIndexingRunningContext runningContext = new EntityIndexingRunningContext(configFileFullPath, indexerName);
-//		runningContext.setDeleteMode(true);
-//		//runningContext.setDuplicateType(Entity.DuplicateType.DUPLICATE);
-//		runningContext.setEntityType(entityType);
-//		
-//		worker.setRunningContext(runningContext);
-//		taskManager.launchWorker(worker);
-//		
-//	}
-	
 	@Bean
     @Scope("prototype")
     public EntityIndexingWorker entityRelationIndexerWorker() {
