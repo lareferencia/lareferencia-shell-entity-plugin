@@ -98,8 +98,8 @@ public class EntityDataCommands {
 		logger.info( "Running post processing tasks" );
 		
 		// merge data if not in dry run mode
-		if(!dryRunMode) 
-			erService.mergeEntityRelationData();
+		// if(!dryRunMode) 
+		// 	erService.mergeEntityRelationData();
 
 		// set loading process as finished
 		entityLoadingMonitorService.setLoadingProcessInProgress(false);
