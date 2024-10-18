@@ -21,21 +21,13 @@
  */
 package org.lareferencia.shell.commands.entity;
 
-import org.apache.solr.client.solrj.SolrClient;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.solr.core.SolrTemplate;
-import org.springframework.data.solr.repository.config.EnableSolrRepositories;
+
 
 
 @Configuration
-@EnableSolrRepositories( basePackages = "org.lareferencia.core.entity.repositories.solr"/*, namedQueriesLocation = "classpath:solr-named-queries.properties", */)
 public class SolrConfiguration  {
-	
-	
-	/** Configurations beans for solr services */
-    @Bean
-    public SolrTemplate shellSolrTemplate(SolrClient client) throws Exception {
-        return new SolrTemplate(client);
-    }
- }
+		
+
+}

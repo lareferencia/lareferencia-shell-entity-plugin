@@ -31,7 +31,6 @@ import org.lareferencia.core.entity.indexing.filters.IFieldOccurrenceFilter;
 import org.lareferencia.core.entity.indexing.service.IEntityIndexer;
 import org.lareferencia.core.entity.indexing.solr.EntityIndexerSolrImpl;
 import org.lareferencia.core.entity.repositories.jpa.EntityRepository;
-import org.lareferencia.core.entity.repositories.solr.EntitySolrRepository;
 import org.lareferencia.core.entity.services.EntityDataService;
 import org.lareferencia.core.entity.services.EntityLoadingMonitorService;
 import org.lareferencia.core.entity.workers.EntityIndexingWorker;
@@ -52,8 +51,6 @@ import org.springframework.shell.standard.ShellOption;
 public class EntityIndexingCommands {
     private static Logger logger = LogManager.getLogger(EntityIndexingCommands.class);
 	
-	@Autowired
-	EntitySolrRepository entitySolrRepository;
 	
 	@Autowired
 	EntityDataService erService;
