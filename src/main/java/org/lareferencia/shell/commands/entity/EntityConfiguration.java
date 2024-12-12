@@ -20,8 +20,13 @@
  */
 package org.lareferencia.shell.commands.entity;
 
+import org.lareferencia.core.entity.services.EntityDataService;
+import org.lareferencia.core.entity.services.EntityModelCache;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
@@ -31,4 +36,16 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class EntityConfiguration  {
 
 
+    @Bean
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public EntityModelCache entityModelCache() {
+        return new EntityModelCache();
+    }
+
+    @Bean
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public EntityDataService entityDataService() {
+        return new EntityDataService();
+    }
+    
  }

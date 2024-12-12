@@ -87,7 +87,8 @@ public class EntityIndexingCommands {
 
 
 	@ShellMethod("Index entities of entityTypeName (optional) in indexerName indexing using a given configFile, lastUpdate (yyyy-MM-ddTHH:mm:ss) and provenance are optional")
-	public String indexEntities(String configFileFullPath, String indexerName,  @ShellOption(defaultValue = "null") String entityTypeName, @ShellOption(defaultValue="null") String provenance, @ShellOption(defaultValue="null") String lastUpdate, @ShellOption(defaultValue="1000") Integer pageSize, @ShellOption(defaultValue="1") Integer fromPage) throws EntityRelationException {
+	public String indexEntities(String configFileFullPath, String indexerName,  @ShellOption(defaultValue = "null") String entityTypeName, @ShellOption(defaultValue="null") String provenance, @ShellOption(defaultValue="null") String lastUpdate, 
+		@ShellOption(defaultValue="1000") Integer pageSize, @ShellOption(defaultValue="1") Integer fromPage,  @ShellOption(defaultValue="0") Integer threadsToRun) throws EntityRelationException {
 
 		
 		EntityType entityType = null;
@@ -114,6 +115,7 @@ public class EntityIndexingCommands {
 				runningContext.setEntityType(entityType);
 				runningContext.setPageSize(pageSize);
 				runningContext.setFromPage(fromPage);
+				runningContext.setProcessToRun(threadsToRun);
 
 				if ( !provenance.equals("null") ) {
 
@@ -159,7 +161,7 @@ public class EntityIndexingCommands {
     public void indexEntitiesSolr(String configFileFullPath, @ShellOption() String entityTypeName, @ShellOption(defaultValue="none") String provenance,
             @ShellOption(defaultValue = "1000") Integer pageSize) throws EntityRelationException {
         String indexerName = "entityIndexerSolr";
-        indexEntities(configFileFullPath, indexerName, entityTypeName, provenance, "null", pageSize, 1);
+        indexEntities(configFileFullPath, indexerName, entityTypeName, provenance, "null", pageSize, 1,0);
     }
 
 	@Bean
