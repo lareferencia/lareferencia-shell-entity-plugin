@@ -1,4 +1,3 @@
-
 /*
  *   Copyright (c) 2013-2022. LA Referencia / Red CLARA and others
  *
@@ -23,9 +22,6 @@ package org.lareferencia.shell.commands.entity;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -42,6 +38,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import org.w3c.dom.Document;
+
 
 
 @ShellComponent
@@ -70,12 +67,12 @@ public class EntityDataCommands {
 	private EntityLoadingMonitorService entityLoadingMonitorService;
 
 	@ShellMethod("Load entity-relation data from from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded ")
-	public String load_data(@ShellOption(value="path", defaultValue = "false")String path, @ShellOption(value="dryRun", defaultValue = "false") String dryRun, @ShellOption(value = "doProfile", defaultValue = "false") String doProfile, @ShellOption(value = "threadsToRun", defaultValue = "1") int threadsToRun) throws Exception {
+	public String load_data(@ShellOption(value="path", defaultValue = "false")String path, @ShellOption(value="dryRun", defaultValue = "false") String dryRun, @ShellOption(value = "doProfile", defaultValue = "false") String doProfile) throws Exception {
 
-		logger.info("Running in dry-run mode: "+dryRun+". No changes will be made.");
-		
-		Boolean dryRunMode = Boolean.parseBoolean(dryRun);
-		Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
+	    logger.info("Running in dry-run mode: "+dryRun+". No changes will be made.");
+	    
+	    Boolean dryRunMode = Boolean.parseBoolean(dryRun);
+	    Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
 
 		Boolean profileMode = Boolean.valueOf(doProfile);		
 		File fileOrDirectory = new File(path);
@@ -92,10 +89,7 @@ public class EntityDataCommands {
 			load_xml_file(fileOrDirectory, profileMode,dryRunMode);
 			
 		} else { // is a directory
-			if (threadsToRun == 0) {
-				threadsToRun = Runtime.getRuntime().availableProcessors();
-			}
-			load_directory(fileOrDirectory.getAbsolutePath(), profileMode, dryRunMode, threadsToRun);
+			load_directory(fileOrDirectory.getAbsolutePath(), profileMode,dryRunMode);
 		}
 		
 		logger.info( "Running post processing tasks" );
@@ -119,37 +113,23 @@ public class EntityDataCommands {
 	}
 
 	
-	private void load_directory(String path, Boolean profileMode, Boolean dryRun, int threadsToRun) {
+	private void load_directory(String path, Boolean profileMode, Boolean dryRun) {
 		
 		File fileOrDirectory = new File(path);
-		File[] files = fileOrDirectory.listFiles();
 		
-		if (files == null) {
-			logger.error("No files found in directory: " + path);
-			return;
-		}
-
-		ExecutorService executor = Executors.newFixedThreadPool(threadsToRun);
-		
-		for (final File fileEntry : files) {
-			executor.submit(() -> {
-				if (!fileEntry.isDirectory()) {
-					if (fileEntry.getName().endsWith(".xml")) {
-						logger.info(String.format("Processing file: %s", fileEntry.getAbsolutePath()));
-						load_xml_file(fileEntry, profileMode, dryRun);
-					}
-				} else {
-					logger.info("Entering directory: " + fileEntry.getAbsolutePath());
-					load_directory(fileEntry.getAbsolutePath(), profileMode, dryRun, threadsToRun);
-				}
-			});
-		}
-		
-		executor.shutdown();
-		try {
-			executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
-		} catch (InterruptedException e) {
-			logger.error("Thread execution interrupted", e);
+		for ( final File fileEntry : fileOrDirectory.listFiles() ) {
+	        
+			if ( !fileEntry.isDirectory()  )  {
+	        	
+	        	if ( fileEntry.getName().endsWith(".xml") ) {
+	    			logger.info( String.format("Processing file: %s", fileEntry.getAbsolutePath() ) );
+	        		load_xml_file(fileEntry, profileMode,dryRun);
+	        	}
+	        	
+	        } else {
+	        	logger.info("Entering directory: " + fileEntry.getAbsolutePath() );
+	        	load_directory( fileEntry.getAbsolutePath(), profileMode,dryRun);
+	        }
 		}
 	}
 	
