@@ -35,7 +35,7 @@ public class EntityDataCommandsTest {
         String XMLFolder = "/Users/jbjares/Documents/entity_data_folder/lattes_di";
         String doProfile = "true";
         String dryRun = "false";
-        String result = entityDataCommands.load_data(XMLFolder, doProfile,dryRun);
+        String result = entityDataCommands.load_data(XMLFolder, doProfile,dryRun, 1);
         logger.info("result ===>>>> "+result);
     }
     

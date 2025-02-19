@@ -1,3 +1,4 @@
+
 /*
  *   Copyright (c) 2013-2022. LA Referencia / Red CLARA and others
  *
@@ -22,7 +23,11 @@ package org.lareferencia.shell.commands.entity;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.logging.log4j.LogManager;
@@ -40,25 +45,21 @@ import org.springframework.shell.standard.ShellOption;
 import org.w3c.dom.Document;
 
 
-
 @ShellComponent
 public class EntityDataCommands {
 	
 	private static Logger logger = LogManager.getLogger(EntityDataCommands.class);
 	
 	static javax.xml.parsers.DocumentBuilder dBuilder;
-	
-	private Profiler profiler = new Profiler(false, "");
-	
-	static {
-	
+		
+	// Utilizar ThreadLocal para almacenar la instancia de DocumentBuilder por hilo
+	private static final ThreadLocal<DocumentBuilder> threadLocalDocumentBuilder = ThreadLocal.withInitial(() -> {
 		try {
-		dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		} catch (Exception e) { // TODO: log this
-			System.out.println("Exception creating document builder");
+			return DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		} catch (Exception e) {
+			throw new RuntimeException("Error al crear DocumentBuilder", e);
 		}
-	
-	}
+	});
 	
 	@Autowired
 	EntityDataService erService;
@@ -66,32 +67,36 @@ public class EntityDataCommands {
 	@Autowired
 	private EntityLoadingMonitorService entityLoadingMonitorService;
 
+
 	@ShellMethod("Load entity-relation data from from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded ")
-	public String load_data(@ShellOption(value="path", defaultValue = "false")String path, @ShellOption(value="dryRun", defaultValue = "false") String dryRun, @ShellOption(value = "doProfile", defaultValue = "false") String doProfile) throws Exception {
+    public String load_data(@ShellOption(value = "--path", defaultValue = "false") String path,
+                            @ShellOption(value = "--dryRun", defaultValue = "false") String dryRun,
+                            @ShellOption(value = "--doProfile", defaultValue = "false") String doProfile,
+                            @ShellOption(value = "--threadsToRun", defaultValue = "0") int threadsToRun) throws Exception {
 
-	    logger.info("Running in dry-run mode: "+dryRun+". No changes will be made.");
-	    
-	    Boolean dryRunMode = Boolean.parseBoolean(dryRun);
-	    Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
+        logger.info("Running in dry-run mode: " + dryRun);
 
-		Boolean profileMode = Boolean.valueOf(doProfile);		
-		File fileOrDirectory = new File(path);
+        Boolean dryRunMode = Boolean.parseBoolean(dryRun);
+        Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
 
-		entityLoadingMonitorService.setLoadingProcessInProgress(true);
-
-		boolean exists =      fileOrDirectory.exists();      // Check if the file exists
-		boolean isFile =      fileOrDirectory.isFile();      // Check if it's a regular file
-	
-		if ( !exists ) {
-			logger.error( String.format("%s does not exists.", path ) );
-		} else if ( isFile ) {	
-			logger.info( String.format("Processing path: %s", path ) );
-			load_xml_file(fileOrDirectory, profileMode,dryRunMode);
-			
-		} else { // is a directory
-			load_directory(fileOrDirectory.getAbsolutePath(), profileMode,dryRunMode);
+		if (threadsToRun == 0) {
+			threadsToRun = Runtime.getRuntime().availableProcessors();
 		}
-		
+
+        // Crear un pool de hilos
+        ExecutorService executor = Executors.newFixedThreadPool(threadsToRun);
+
+        // Procesar archivos XML
+        processFiles(new File(path), dryRunMode, executor);
+
+        // Esperar a que todos los hilos terminen
+        executor.shutdown();
+        try {
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+            logger.error("Thread execution interrupted", e);
+        }
+
 		logger.info( "Running post processing tasks" );
 		
 		// merge data if not in dry run mode
@@ -109,52 +114,39 @@ public class EntityDataCommands {
 
 		generalProfiler.report(logger);
 		return entityLoadingMonitorService.loadingReport();
+    }
 
-	}
+
+	private void processFiles(File file, Boolean dryRunMode, ExecutorService executor) {
+        if (file.isDirectory()) {
+            for (File subFile : file.listFiles()) {
+                processFiles(subFile, dryRunMode, executor);
+            }
+        } else if (file.isFile() && file.getName().endsWith(".xml")) {
+            executor.submit(() -> load_xml_file(file, dryRunMode));
+        }
+    }	
 
 	
-	private void load_directory(String path, Boolean profileMode, Boolean dryRun) {
-		
-		File fileOrDirectory = new File(path);
-		
-		for ( final File fileEntry : fileOrDirectory.listFiles() ) {
-	        
-			if ( !fileEntry.isDirectory()  )  {
-	        	
-	        	if ( fileEntry.getName().endsWith(".xml") ) {
-	    			logger.info( String.format("Processing file: %s", fileEntry.getAbsolutePath() ) );
-	        		load_xml_file(fileEntry, profileMode,dryRun);
-	        	}
-	        	
-	        } else {
-	        	logger.info("Entering directory: " + fileEntry.getAbsolutePath() );
-	        	load_directory( fileEntry.getAbsolutePath(), profileMode,dryRun);
-	        }
-		}
-	}
+
 	
 	
-	private void load_xml_file(File file, Boolean profileMode, Boolean dryRun) {
+	private void load_xml_file(File file, Boolean dryRun) {
 		
-		//System.out.println("!!!====>>>> file.getAbsolutePath(): "+file.getAbsolutePath());
-		profiler = new Profiler(profileMode, "File: " + file.getAbsolutePath() + " ").start();
-		erService.setProfiler(profiler);
+		System.out.println("!!!====>>>> file.getAbsolutePath(): "+file.getAbsolutePath());
 		
 		try {
 			InputStream input = new FileInputStream(file);
 
 			// increment total processed files
 			entityLoadingMonitorService.incrementTotalProcessedFiles();
+
+			DocumentBuilder dBuilder = threadLocalDocumentBuilder.get();
 		
 			Document doc = dBuilder.parse(input);
-			profiler.messure("XMLParse");
 			
-			profiler.messure("dry-run:" + dryRun);
 			EntityLoadingStats stats = erService.parseAndPersistEntityRelationDataFromXMLDocument(doc, dryRun);
 			entityLoadingMonitorService.reportEntityLoadingStats(stats);
-			profiler.messure("parseAndPersistEntityRelationDataFromXMLDocument");
-			profiler.report(logger);
-
 			entityLoadingMonitorService.incrementTotalSuccessfulFiles();
 		
 		} catch (EntitiyRelationXMLLoadingException e) {
