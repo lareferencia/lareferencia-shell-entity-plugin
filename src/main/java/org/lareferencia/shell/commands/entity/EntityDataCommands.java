@@ -1,4 +1,3 @@
-
 /*
  *   Copyright (c) 2013-2022. LA Referencia / Red CLARA and others
  *
@@ -23,9 +22,6 @@ package org.lareferencia.shell.commands.entity;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -72,30 +68,15 @@ public class EntityDataCommands {
     public String load_data(@ShellOption(value = "--path", defaultValue = "false") String path,
                             @ShellOption(value = "--dryRun", defaultValue = "false") String dryRun,
                             @ShellOption(value = "--doProfile", defaultValue = "false") String doProfile,
-                            @ShellOption(value = "--threadsToRun", defaultValue = "0") int threadsToRun) throws Exception {
+                            @ShellOption(value = "--threadsToRun", defaultValue = "1", help = "This option is deprecated and will be ignored.") int threadsToRun) throws Exception {
 
         logger.info("Running in dry-run mode: " + dryRun);
 
         Boolean dryRunMode = Boolean.parseBoolean(dryRun);
         Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
 
-		if (threadsToRun == 0) {
-			threadsToRun = Runtime.getRuntime().availableProcessors();
-		}
-
-        // Crear un pool de hilos
-        ExecutorService executor = Executors.newFixedThreadPool(threadsToRun);
-
         // Procesar archivos XML
-        processFiles(new File(path), dryRunMode, executor);
-
-        // Esperar a que todos los hilos terminen
-        executor.shutdown();
-        try {
-            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
-        } catch (InterruptedException e) {
-            logger.error("Thread execution interrupted", e);
-        }
+        processFiles(new File(path), dryRunMode);
 
 		logger.info( "Running post processing tasks" );
 		
@@ -117,13 +98,13 @@ public class EntityDataCommands {
     }
 
 
-	private void processFiles(File file, Boolean dryRunMode, ExecutorService executor) {
+	private void processFiles(File file, Boolean dryRunMode) {
         if (file.isDirectory()) {
             for (File subFile : file.listFiles()) {
-                processFiles(subFile, dryRunMode, executor);
+                processFiles(subFile, dryRunMode);
             }
         } else if (file.isFile() && file.getName().endsWith(".xml")) {
-            executor.submit(() -> load_xml_file(file, dryRunMode));
+            load_xml_file(file, dryRunMode);
         }
     }	
 
@@ -144,6 +125,7 @@ public class EntityDataCommands {
 			DocumentBuilder dBuilder = threadLocalDocumentBuilder.get();
 		
 			Document doc = dBuilder.parse(input);
+			
 			
 			EntityLoadingStats stats = erService.parseAndPersistEntityRelationDataFromXMLDocument(doc, dryRun);
 			entityLoadingMonitorService.reportEntityLoadingStats(stats);
