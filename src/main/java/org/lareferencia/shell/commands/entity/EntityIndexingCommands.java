@@ -1,4 +1,3 @@
-
 /*
  *   Copyright (c) 2013-2022. LA Referencia / Red CLARA and others
  *
@@ -26,7 +25,6 @@ import java.util.Arrays;
 
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
-import org.apache.jena.tdb.TDBFactory;
 import org.apache.jena.tdb2.TDB2Factory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,10 +51,6 @@ import org.springframework.shell.standard.ShellOption;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.ReadWrite;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.riot.RDFDataMgr;
-import org.apache.jena.riot.RDFFormat;
-import org.apache.jena.tdb.TDBFactory;
-import org.apache.jena.sparql.core.DatasetGraph;
 
 
 
@@ -99,27 +93,68 @@ public class EntityIndexingCommands {
 		
 	}
 
-	@ShellMethod("Tranform Jenna tdb binary files to xml") 
-	public String transformJenaTDBToXML(@ShellOption(value = "--path") String path ) throws Exception {
+	@ShellMethod("Tranform Jenna tdb binary files to xml")
+    public String transformJenaTDBToXML(@ShellOption(value = "--path") String path ) throws Exception {
 
-		Dataset dataset = TDB2Factory.connectDataset(path);
+        Dataset dataset = TDB2Factory.connectDataset(path);
+        String outputFilePath = path + ".xml";
         
         dataset.begin(ReadWrite.READ);
         try {
-            DatasetGraph dsg = dataset.asDatasetGraph();
+            Model defaultModel = dataset.getDefaultModel();
 
-            RDFDataMgr.write(new FileOutputStream( path + ".xml" ), dsg.getDefaultGraph(), RDFFormat.RDFXML);
-		} catch (Exception e) {
-			logger.error("Error transforming Jena TDB to XML: " + e.getMessage(), e);
-			return "Error transforming Jena TDB to XML: " + e.getMessage();
+            if (defaultModel.isEmpty()) {
+                logger.warn("El grafo por defecto en TDB en la ruta '" + path + "' está vacío.");
+            } else {
+                logger.info("Tamaño del grafo por defecto: " + defaultModel.size() + " declaraciones. Escribiendo en " + outputFilePath);
+            }
+            
+            // Log información sobre grafos nombrados
+            int namedGraphCount = 0;
+            long totalNamedGraphStatements = 0;
+            java.util.Iterator<String> graphNames = dataset.listNames();
+            
+            if (!graphNames.hasNext() && defaultModel.isEmpty()) {
+                 logger.warn("No se encontraron grafos (ni por defecto ni nombrados) con datos en el TDB en la ruta '" + path + "'. El TDB podría estar vacío.");
+            } else {
+                while(graphNames.hasNext()) {
+                    namedGraphCount++;
+                    String graphName = graphNames.next();
+                    Model namedModel = dataset.getNamedModel(graphName);
+                    logger.info("Grafo nombrado encontrado: <" + graphName + ">, Tamaño: " + namedModel.size() + " declaraciones.");
+                    totalNamedGraphStatements += namedModel.size();
+                    // namedModel.close(); // Es buena práctica cerrar los modelos obtenidos si no se van a usar más, aunque en TDB suelen ser vistas.
+                }
+                if (namedGraphCount > 0) {
+                    logger.info("Total de grafos nombrados encontrados: " + namedGraphCount + " con un total de " + totalNamedGraphStatements + " declaraciones.");
+                    logger.info("Nota: Esta función actualmente solo exporta el grafo por defecto a XML.");
+                } else if (!defaultModel.isEmpty()) {
+                    logger.info("No se encontraron grafos nombrados. Solo se procesará el grafo por defecto.");
+                }
+            }
+
+            // Escribir el grafo por defecto a XML
+            // Si el grafo por defecto está vacío y hay grafos nombrados, el XML seguirá estando vacío.
+            RDFDataMgr.write(new FileOutputStream(outputFilePath), defaultModel, RDFFormat.RDFXML_PLAIN); 
+            
+        } catch (Exception e) {
+            logger.error("Error transformando Jena TDB a XML: " + e.getMessage(), e);
+            // Eliminar el archivo de salida parcial si se produjo un error
+            try {
+                java.nio.file.Files.deleteIfExists(java.nio.file.Paths.get(outputFilePath));
+            } catch (java.io.IOException ioe) {
+                logger.error("No se pudo eliminar el archivo de salida parcial " + outputFilePath + ": " + ioe.getMessage());
+            }
+            return "Error transformando Jena TDB a XML: " + e.getMessage();
 
         } finally {
-            dataset.end();
+            if (dataset != null) {
+                 dataset.close(); // Usar close() para asegurar que todos los recursos del dataset se liberan.
+            }
         }
 
-		return "Jena TDB files transformed to XML and saved in: " + path + ".xml";
+        return "Archivos Jena TDB (solo grafo por defecto) transformados a XML y guardados en: " + outputFilePath;
     }
-
 
 
 	@ShellMethod("Index entities of entityTypeName (optional) in indexerName indexing using a given configFile, lastUpdate (yyyy-MM-ddTHH:mm:ss) and provenance are optional")
