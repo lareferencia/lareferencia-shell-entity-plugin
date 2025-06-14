@@ -27,6 +27,7 @@ import java.util.Arrays;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
 import org.apache.jena.tdb.TDBFactory;
+import org.apache.jena.tdb2.TDB2Factory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lareferencia.core.entity.domain.EntityRelationException;
@@ -55,6 +56,8 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
 import org.apache.jena.tdb.TDBFactory;
+import org.apache.jena.sparql.core.DatasetGraph;
+
 
 
 
@@ -99,13 +102,13 @@ public class EntityIndexingCommands {
 	@ShellMethod("Tranform Jenna tdb binary files to xml") 
 	public String transformJenaTDBToXML(@ShellOption(value = "--path") String path ) throws Exception {
 
-        Dataset dataset = TDBFactory.createDataset(path);
+		Dataset dataset = TDB2Factory.connectDataset(path);
         
         dataset.begin(ReadWrite.READ);
         try {
-            Model model = dataset.getDefaultModel();
-            //RDFDataMgr.write(new FileOutputStream( path + ".nt" ), model, RDFFormat.NTRIPLES);
-            RDFDataMgr.write(new FileOutputStream( path + ".xml" ), model, RDFFormat.RDFXML);
+            DatasetGraph dsg = dataset.asDatasetGraph();
+
+            RDFDataMgr.write(new FileOutputStream( path + ".xml" ), dsg.getDefaultGraph(), RDFFormat.RDFXML);
 		} catch (Exception e) {
 			logger.error("Error transforming Jena TDB to XML: " + e.getMessage(), e);
 			return "Error transforming Jena TDB to XML: " + e.getMessage();
@@ -116,6 +119,7 @@ public class EntityIndexingCommands {
 
 		return "Jena TDB files transformed to XML and saved in: " + path + ".xml";
     }
+
 
 
 	@ShellMethod("Index entities of entityTypeName (optional) in indexerName indexing using a given configFile, lastUpdate (yyyy-MM-ddTHH:mm:ss) and provenance are optional")
