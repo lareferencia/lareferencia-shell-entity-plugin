@@ -106,6 +106,10 @@ public class EntityIndexingCommands {
             Model model = dataset.getDefaultModel();
             //RDFDataMgr.write(new FileOutputStream( path + ".nt" ), model, RDFFormat.NTRIPLES);
             RDFDataMgr.write(new FileOutputStream( path + ".xml" ), model, RDFFormat.RDFXML);
+		} catch (Exception e) {
+			logger.error("Error transforming Jena TDB to XML: " + e.getMessage(), e);
+			return "Error transforming Jena TDB to XML: " + e.getMessage();
+
         } finally {
             dataset.end();
         }
