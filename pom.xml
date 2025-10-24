@@ -46,25 +46,29 @@
 			<version>4.2.6</version>
 		</dependency>
 
-		<!-- Spring Data Solr - Optional dependency for Solr functionality -->
+		<!-- REMOVED: spring-boot-starter-data-solr no longer exists in Spring Boot 3.x
+		     Spring Data Solr was deprecated and removed. Using direct Solr dependencies instead.
+		     The solr-core dependency is already inherited from parent POM (version 9.5.0)
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-solr</artifactId>
 			<optional>true</optional>
 		</dependency>
+		-->
 
-		<dependency>
-			<groupId>org.springframework.shell</groupId>
-			<artifactId>spring-shell-starter</artifactId>
-			<version>2.0.0.RELEASE</version>
-		</dependency>
-		<!-- Test Libraries-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-		</dependency>
 
-		<dependency>
+	<!-- UPGRADED: Spring Shell 3.x for Spring Boot 3.x compatibility -->
+	<dependency>
+		<groupId>org.springframework.shell</groupId>
+		<artifactId>spring-shell-starter</artifactId>
+		<version>3.3.3</version>
+	</dependency>
+	
+	<!-- Test Libraries-->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+	</dependency>		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>

@@ -27,76 +27,79 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.core.annotation.Order;
-import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.shell.Shell;
-import org.springframework.shell.jline.InteractiveShellApplicationRunner;
+import org.springframework.shell.Input;
+import org.springframework.shell.InputProvider;
 import org.springframework.stereotype.Component;
-import org.springframework.test.context.TestPropertySource;
 
 
+/**
+ * UPGRADED for Spring Boot 3.x / Spring Shell 3.x
+ * Test application for entity shell commands
+ */
 @Component
-@Order(InteractiveShellApplicationRunner.PRECEDENCE - 200)
+@Order(-1000)
 public class EntityShellApplication implements ApplicationRunner {
 	
-	 private Shell shell;
-	 private ConfigurableEnvironment environment;
+	private final Shell shell;
 
 
 	public static void main(String[] args) {
 		
-		 SpringApplication springApplication = 
-	                new SpringApplicationBuilder()
-	                .sources(EntityShellApplication.class)
-	                .web(WebApplicationType.NONE)
-	                .build();
+		SpringApplication springApplication = 
+			new SpringApplicationBuilder()
+			.sources(EntityShellApplication.class)
+			.web(WebApplicationType.NONE)
+			.build();
 		 
-
-	     springApplication.run(args).close();	
+		springApplication.run(args).close();	
 	}
 	
 	
-	 public EntityShellApplication(Shell shell, ConfigurableEnvironment environment) {
-	        this.shell = shell;
-	        this.environment = environment;
-	    }
+	public EntityShellApplication(Shell shell) {
+		this.shell = shell;
+	}
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
-		  if (args.getNonOptionArgs().isEmpty() || args.getNonOptionArgs().stream().allMatch(s -> s.startsWith("@"))) {
-          		System.out.println("!!===> args.getNonOptionArgs.get(0): "+args.getNonOptionArgs().isEmpty());
-          		System.out.println("!!===> args.getOptionNames: "+args.getOptionNames().isEmpty());
-          		System.out.println("!!===> args.getSourceArgs[0]: "+(args.getSourceArgs().length==0));
-            	if(args.getNonOptionArgs().isEmpty() && 
-            			args.getNonOptionArgs().isEmpty() && 
-            			(args.getSourceArgs().length==0)) {
-            		
-                    InteractiveShellApplicationRunner.disable(environment);
-                    String input = String.join(" ", args.getSourceArgs());
-                    shell.evaluate(() -> input);
-                    shell.evaluate(() -> "exit");
-            	}
-	        } else {
-	            InteractiveShellApplicationRunner.disable(environment);
-	            
-	            final Object evaluate = shell.evaluate(() -> String.join(" ", args.getSourceArgs()));
-	            if (evaluate != null) {
-	            	if(args.getNonOptionArgs().isEmpty() && 
-	            			args.getNonOptionArgs().isEmpty() && 
-	            			(args.getSourceArgs().length==0)) {
-	            		
-	                    InteractiveShellApplicationRunner.disable(environment);
-	                    String input = String.join(" ", args.getSourceArgs());
-	                    shell.evaluate(() -> input);
-	                    shell.evaluate(() -> "exit");
-	            		
-	            	}else {
-		                System.out.println(evaluate);
-	            	}
-
-	            }
-	        }
-		
+		if (args.getNonOptionArgs().isEmpty() || args.getNonOptionArgs().stream().allMatch(s -> s.startsWith("@"))) {
+			// No command provided, allow interactive mode
+			System.out.println("No command args provided, entering interactive mode");
+			return;
+		} else {
+			/*
+			 * Execute the command and exit (non-interactive mode)
+			 * In Spring Shell 3.x, we use shell.run() with InputProvider
+			 */
+			
+			System.out.println("Executing command in non-interactive mode");
+			System.setProperty("spring.shell.interactive.enabled", "false");
+			
+			String command = String.join(" ", args.getSourceArgs());
+			System.out.println("Command: " + command);
+			
+			// Create an InputProvider that returns the command
+			InputProvider inputProvider = new InputProvider() {
+				private boolean provided = false;
+				
+				@Override
+				public Input readInput() {
+					if (!provided) {
+						provided = true;
+						return () -> command;
+					}
+					return null; // Signal end of input
+				}
+			};
+			
+			try {
+				shell.run(inputProvider);
+			} catch (Exception e) {
+				System.err.println("Error executing command: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
 	}
 
  }

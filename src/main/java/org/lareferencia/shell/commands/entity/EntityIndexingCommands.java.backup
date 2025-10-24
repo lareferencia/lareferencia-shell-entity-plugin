@@ -32,7 +32,9 @@ import org.lareferencia.core.entity.domain.EntityRelationException;
 import org.lareferencia.core.entity.domain.EntityType;
 import org.lareferencia.core.entity.indexing.filters.IFieldOccurrenceFilter;
 import org.lareferencia.core.entity.indexing.service.IEntityIndexer;
+import org.lareferencia.core.entity.indexing.solr.EntityIndexerSolrImpl;
 import org.lareferencia.core.entity.repositories.jpa.EntityRepository;
+import org.lareferencia.core.entity.repositories.solr.EntitySolrRepository;
 import org.lareferencia.core.entity.services.EntityDataService;
 import org.lareferencia.core.entity.services.EntityLoadingMonitorService;
 import org.lareferencia.core.entity.workers.EntityIndexingWorker;
@@ -58,6 +60,8 @@ import org.apache.jena.rdf.model.Model;
 public class EntityIndexingCommands {
     private static Logger logger = LogManager.getLogger(EntityIndexingCommands.class);
 	
+	@Autowired
+	EntitySolrRepository entitySolrRepository;
 	
 	@Autowired
 	EntityDataService erService;
@@ -235,6 +239,12 @@ public class EntityIndexingCommands {
     @Scope("prototype")
     public EntityIndexingWorker entityRelationIndexerWorker() {
     	return new EntityIndexingWorker();
+    }
+	
+	@Bean
+    @Scope("prototype")
+    public IEntityIndexer entityIndexerSolr () {
+    	return new EntityIndexerSolrImpl();
     }
 	
 
