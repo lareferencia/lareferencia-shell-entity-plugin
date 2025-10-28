@@ -30,12 +30,12 @@
 	<artifactId>lareferencia-shell-entity-plugin</artifactId>
 	<name>LA Referencia shell entity plugin</name>
 	<description>LA Referencia Shell App Entity-Relation plugin</description>
-	<version>4.2.6</version>
+	<version>5.0.0-alpha</version>
 
 	<parent>
 		<groupId>org.lareferencia</groupId>
 		<artifactId>lareferencia-parent</artifactId>
-		<version>4.2.6</version>
+		<version>5.0.0-alpha</version>
 	</parent>
 
 	<dependencies>
@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>org.lareferencia</groupId>
 			<artifactId>lareferencia-entity-lib</artifactId>
-			<version>4.2.6</version>
+			<version>5.0.0-alpha</version>
 		</dependency>
 
 		<!-- REMOVED: spring-boot-starter-data-solr no longer exists in Spring Boot 3.x
