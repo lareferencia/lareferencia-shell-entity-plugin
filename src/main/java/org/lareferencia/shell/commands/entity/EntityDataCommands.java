@@ -64,96 +64,228 @@ public class EntityDataCommands {
 	private EntityLoadingMonitorService entityLoadingMonitorService;
 
 
-	@ShellMethod("Load entity-relation data from from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded ")
+	@ShellMethod("Load entity-relation data from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded")
     public String load_data(@ShellOption(value = "--path", defaultValue = "false") String path,
                             @ShellOption(value = "--dryRun", defaultValue = "false") String dryRun,
                             @ShellOption(value = "--doProfile", defaultValue = "false") String doProfile,
                             @ShellOption(value = "--threadsToRun", defaultValue = "1", help = "This option is deprecated and will be ignored.") int threadsToRun) throws Exception {
 
-        logger.info("Running in dry-run mode: " + dryRun);
+        // Validate path parameter
+        if (path == null || path.equals("false") || path.trim().isEmpty()) {
+            String errorMsg = "ERROR: Path parameter is required. Please provide a valid file or directory path using --path option.";
+            logger.error(errorMsg);
+            return errorMsg;
+        }
+
+        File targetPath = new File(path);
+        
+        // Check if path exists
+        if (!targetPath.exists()) {
+            String errorMsg = String.format("ERROR: Path does not exist: %s", path);
+            logger.error(errorMsg);
+            return errorMsg;
+        }
+
+        // Check if path is readable
+        if (!targetPath.canRead()) {
+            String errorMsg = String.format("ERROR: Path is not readable: %s", path);
+            logger.error(errorMsg);
+            return errorMsg;
+        }
 
         Boolean dryRunMode = Boolean.parseBoolean(dryRun);
+        
+        logger.info("==================================================");
+        logger.info("ENTITY DATA LOADING PROCESS STARTED");
+        logger.info("==================================================");
+        logger.info("Target path: {}", path);
+        logger.info("Path type: {}", targetPath.isDirectory() ? "DIRECTORY" : "FILE");
+        logger.info("Dry-run mode: {}", dryRunMode ? "ENABLED (no data will be persisted)" : "DISABLED (data will be persisted)");
+        logger.info("==================================================");
+
         Profiler generalProfiler = new Profiler(true, "\nPath: " + path + " ").start();
 
-        // Procesar archivos XML
-        processFiles(new File(path), dryRunMode);
+        // Count XML files before processing
+        int xmlFileCount = countXmlFiles(targetPath);
+        
+        if (xmlFileCount == 0) {
+            String warningMsg = String.format("WARNING: No XML files found to process in path: %s", path);
+            logger.warn(warningMsg);
+            logger.info("==================================================");
+            logger.info("ENTITY DATA LOADING PROCESS FINISHED");
+            logger.info("Status: NO FILES TO PROCESS");
+            logger.info("==================================================");
+            return warningMsg;
+        }
 
-		logger.info( "Running post processing tasks" );
+        logger.info("Found {} XML file(s) to process", xmlFileCount);
+        logger.info("--------------------------------------------------");
+        logger.info("Starting file processing...");
+        logger.info("--------------------------------------------------");
+
+        // Process XML files
+        processFiles(targetPath, dryRunMode);
+
+		logger.info("--------------------------------------------------");
+		logger.info("File processing completed. Running post-processing tasks...");
+		logger.info("--------------------------------------------------");
 		
-		// merge data if not in dry run mode
-		if(!dryRunMode) 
-			erService.mergeEntityRelationData();
+		logger.info("Dont forget to run MERGE Process!!!!!!");
+		
 
-		// set loading process as finished
+		// Set loading process as finished
 		entityLoadingMonitorService.setLoadingProcessInProgress(false);
 
-		// write to json
+		// Write to JSON
+		logger.info("Writing loading report to JSON...");
 		entityLoadingMonitorService.writeToJSON(path);
 
-		// write report to log
-		//logger.info(entityLoadingMonitorService.loadingReport());
+		logger.info("==================================================");
+		logger.info("ENTITY DATA LOADING PROCESS FINISHED");
+		logger.info("==================================================");
 
 		generalProfiler.report(logger);
 		return entityLoadingMonitorService.loadingReport();
     }
 
 
+	private int countXmlFiles(File file) {
+		if (!file.exists()) {
+			return 0;
+		}
+		
+		if (file.isFile()) {
+			return file.getName().endsWith(".xml") ? 1 : 0;
+		}
+		
+		if (file.isDirectory()) {
+			int count = 0;
+			File[] files = file.listFiles();
+			
+			if (files == null || files.length == 0) {
+				return 0;
+			}
+			
+			for (File subFile : files) {
+				count += countXmlFiles(subFile);
+			}
+			return count;
+		}
+		
+		return 0;
+	}
+
 	private void processFiles(File file, Boolean dryRunMode) {
+		if (!file.exists()) {
+			logger.warn("Skipping non-existent path: {}", file.getAbsolutePath());
+			return;
+		}
+		
         if (file.isDirectory()) {
-            for (File subFile : file.listFiles()) {
+			File[] files = file.listFiles();
+			
+			if (files == null || files.length == 0) {
+				logger.debug("Empty directory: {}", file.getAbsolutePath());
+				return;
+			}
+			
+            for (File subFile : files) {
                 processFiles(subFile, dryRunMode);
             }
         } else if (file.isFile() && file.getName().endsWith(".xml")) {
             load_xml_file(file, dryRunMode);
-        }
+        } else if (file.isFile()) {
+			logger.debug("Skipping non-XML file: {}", file.getName());
+		}
     }	
 
 	
 
 	
 	
+	
 	private void load_xml_file(File file, Boolean dryRun) {
 		
-		System.out.println("!!!====>>>> file.getAbsolutePath(): "+file.getAbsolutePath());
+		logger.info("Processing file: {}", file.getName());
 		
 		try {
+			if (!file.canRead()) {
+				logger.error("ERROR: File is not readable: {}", file.getAbsolutePath());
+				entityLoadingMonitorService.incrementTotalFailedFiles();
+				return;
+			}
+
 			InputStream input = new FileInputStream(file);
 
-			// increment total processed files
+			// Increment total processed files
 			entityLoadingMonitorService.incrementTotalProcessedFiles();
 
 			DocumentBuilder dBuilder = threadLocalDocumentBuilder.get();
 		
 			Document doc = dBuilder.parse(input);
 			
-			
 			EntityLoadingStats stats = erService.parseAndPersistEntityRelationDataFromXMLDocument(doc, dryRun);
 			entityLoadingMonitorService.reportEntityLoadingStats(stats);
 			entityLoadingMonitorService.incrementTotalSuccessfulFiles();
+			
+			logger.info("SUCCESS: File processed successfully - {}", file.getName());
 		
 		} catch (EntitiyRelationXMLLoadingException e) {
-			// set file name for error reporting
+			// Set file name for error reporting
 			e.setFileName(file.getAbsolutePath());
-			// report exception 
+			// Report exception 
 			entityLoadingMonitorService.reportException(e);
 
-			// the file was not loaded so increment total failed files
+			// The file was not loaded so increment total failed files
 			entityLoadingMonitorService.incrementTotalFailedFiles();
+			logger.error("FAILED: Entity-relation XML loading error - {} - Reason: {}", file.getName(), e.getMessage());
+			
 		} catch (EntityRelationException e) {
-			// TODO report this kind of exception too 
-			logger.error( String.format("Undetailed EntityRelation Exception while loading xml data into entity model - %s was not loaded - details: %s", file.getAbsolutePath(), e.getMessage() ) );
 			entityLoadingMonitorService.incrementTotalFailedFiles();
+			logger.error("FAILED: Entity-relation exception while loading file - {} - Reason: {}", file.getName(), e.getMessage());
+			
 		} catch (Exception e) {
-			// TODO report this kind of exception too 
-			logger.error( String.format("General Exception while loading xml data into entity model - %s was not loaded - details: %s", file.getAbsolutePath(), e.getMessage() ) );
 			entityLoadingMonitorService.incrementTotalFailedFiles();
+			logger.error("FAILED: Unexpected exception while loading file - {} - Reason: {}", file.getName(), e.getMessage());
+			logger.debug("Stack trace:", e);
 		} 
-		
-		
-		
 	}
-
-
+	
+	
+	@ShellMethod("Merge dirty entities and relations: consolidates data from source_entity to entity tables, creating final entity and relation records")
+	public String merge_dirty_entities() {
+		
+		logger.info("==================================================");
+		logger.info("MERGE DIRTY ENTITIES AND RELATIONS PROCESS STARTED");
+		logger.info("==================================================");
+		logger.info("This process will consolidate all dirty entities and relations");
+		logger.info("from source_entity tables to entity tables.");
+		logger.info("--------------------------------------------------");
+		
+		try {
+			Profiler profiler = new Profiler(true, "Merge Dirty Entities and Relations Process").start();
+			
+			// Execute merge process
+			erService.mergeDirtyEntitiesAndRelations();
+			
+			profiler.report(logger);
+			
+			logger.info("==================================================");
+			logger.info("MERGE DIRTY ENTITIES AND RELATIONS PROCESS COMPLETED SUCCESSFULLY");
+			logger.info("==================================================");
+			
+			return "Merge process completed successfully";
+			
+		} catch (Exception e) {
+			logger.error("==================================================");
+			logger.error("MERGE DIRTY ENTITIES AND RELATIONS PROCESS FAILED");
+			logger.error("==================================================");
+			logger.error("ERROR: {}", e.getMessage());
+			logger.error("Stack trace:", e);
+			
+			return "ERROR: Merge process failed - " + e.getMessage();
+		}
+	}
 	
 	
 }
