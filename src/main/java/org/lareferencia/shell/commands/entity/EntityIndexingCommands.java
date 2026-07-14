@@ -30,6 +30,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lareferencia.core.entity.domain.EntityRelationException;
 import org.lareferencia.core.entity.domain.EntityType;
+import org.lareferencia.core.entity.indexing.elastic.ElasticEntityMappingExporter;
 import org.lareferencia.core.entity.indexing.filters.IFieldOccurrenceFilter;
 import org.lareferencia.core.entity.indexing.service.IEntityIndexer;
 import org.lareferencia.core.entity.repositories.jpa.EntityRepository;
@@ -87,6 +88,21 @@ public class EntityIndexingCommands {
 			System.out.println(beanName);
 		}
 		
+	}
+
+	@ShellMethod("Export Elasticsearch JSON mappings for entities using a given configFile")
+	public String indexEntitiesMapping(String configFileFullPath,
+			@ShellOption(defaultValue = "null") String outputFileFullPath,
+			@ShellOption(defaultValue = "null") String entityTypeName) {
+
+		try {
+			ElasticEntityMappingExporter exporter = new ElasticEntityMappingExporter();
+			return "Entity index mappings exported to: "
+					+ exporter.exportJsonToFile(configFileFullPath, entityTypeName, outputFileFullPath).toAbsolutePath();
+		} catch (Exception e) {
+			logger.error("Error exporting entity index mappings: " + e.getMessage(), e);
+			return "Error exporting entity index mappings: " + e.getMessage();
+		}
 	}
 
 	@ShellMethod("Tranform Jenna tdb binary files to xml")
