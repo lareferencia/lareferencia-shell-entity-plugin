@@ -22,6 +22,13 @@ package org.lareferencia.shell.commands.entity;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -285,6 +292,102 @@ public class EntityDataCommands {
 			
 			return "ERROR: Merge process failed - " + e.getMessage();
 		}
+	}
+
+	@ShellMethod("Mark entities from a UUID file as deleted, so they are ignored by entity indexing")
+	public String mark_entities_deleted(@ShellOption(value = "--path") String path) {
+		return set_entities_deleted(path, "true");
+	}
+
+	@ShellMethod("Set entity deleted flag from a UUID file")
+	public String set_entities_deleted(@ShellOption(value = "--path") String path,
+			@ShellOption(value = "--deleted", defaultValue = "true") String deleted) {
+
+		if (path == null || path.trim().isEmpty()) {
+			return "ERROR: Path parameter is required. Please provide a UUID file path using --path option.";
+		}
+
+		Path uuidFilePath = Path.of(path);
+		if (!Files.exists(uuidFilePath)) {
+			return "ERROR: UUID file does not exist: " + path;
+		}
+		if (!Files.isRegularFile(uuidFilePath) || !Files.isReadable(uuidFilePath)) {
+			return "ERROR: UUID file is not readable: " + path;
+		}
+
+		if (deleted == null || (!deleted.equalsIgnoreCase("true") && !deleted.equalsIgnoreCase("false"))) {
+			return "ERROR: Deleted parameter must be true or false.";
+		}
+
+		boolean deletedValue = Boolean.parseBoolean(deleted);
+		Set<UUID> entityIds = new LinkedHashSet<UUID>();
+		List<String> invalidTokens = new ArrayList<String>();
+
+		try {
+			for (String line : Files.readAllLines(uuidFilePath)) {
+				String cleanLine = line.split("#", 2)[0].trim();
+				if (cleanLine.isEmpty())
+					continue;
+
+				for (String token : cleanLine.split("[,;\\s]+")) {
+					if (token == null || token.trim().isEmpty())
+						continue;
+
+					try {
+						entityIds.add(UUID.fromString(token.trim()));
+					} catch (IllegalArgumentException e) {
+						invalidTokens.add(token.trim());
+					}
+				}
+			}
+
+			if (entityIds.isEmpty()) {
+				return "ERROR: No valid UUIDs found in file: " + path;
+			}
+
+			int updated = erService.updateEntitiesDeleted(entityIds, deletedValue);
+			int notFound = entityIds.size() - updated;
+
+			StringBuilder result = new StringBuilder();
+			result.append("Entities deleted flag updated successfully");
+			result.append(" | deleted=").append(deletedValue);
+			result.append(" | valid UUIDs=").append(entityIds.size());
+			result.append(" | updated=").append(updated);
+			result.append(" | not found=").append(notFound);
+
+			if (!invalidTokens.isEmpty()) {
+				result.append(" | invalid tokens=").append(invalidTokens.size());
+				logger.warn("Invalid UUID tokens ignored while updating deleted flag: {}", invalidTokens);
+			}
+
+			logger.info(result.toString());
+			return result.toString();
+
+		} catch (Exception e) {
+			if (isMissingEntityDeletedColumnException(e)) {
+				String message = "ERROR: Database schema is missing entity.deleted. Run database_migrate before using mark_entities_deleted.";
+				logger.error(message, e);
+				return message;
+			}
+
+			logger.error("ERROR: Failed to update entities deleted flag from file {}: {}", path, e.getMessage(), e);
+			return "ERROR: Failed to update entities deleted flag - " + e.getMessage();
+		}
+	}
+
+	private boolean isMissingEntityDeletedColumnException(Throwable throwable) {
+		Throwable current = throwable;
+		while (current != null) {
+			String message = current.getMessage();
+			if (message != null
+					&& message.contains("column \"deleted\"")
+					&& message.contains("relation \"entity\"")) {
+				return true;
+			}
+			current = current.getCause();
+		}
+
+		return false;
 	}
 	
 	
