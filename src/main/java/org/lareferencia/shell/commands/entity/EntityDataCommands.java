@@ -25,14 +25,26 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.net.ssl.SSLContext;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.conn.ssl.TrustAllStrategy;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
+import org.apache.http.ssl.SSLContexts;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lareferencia.core.entity.domain.EntityRelationException;
@@ -42,18 +54,45 @@ import org.lareferencia.core.entity.services.EntityLoadingStats;
 import org.lareferencia.core.entity.services.exception.EntitiyRelationXMLLoadingException;
 import org.lareferencia.core.util.Profiler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import org.w3c.dom.Document;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.opensearch.client.Request;
+import org.opensearch.client.Response;
+import org.opensearch.client.RestClient;
+import org.opensearch.client.RestClientBuilder;
 
 
 @ShellComponent
 public class EntityDataCommands {
 	
 	private static Logger logger = LogManager.getLogger(EntityDataCommands.class);
+
+	private static final String REMOVE_DELETED_RELATIONS_SCRIPT =
+			"boolean changed = false; "
+			+ "for (def entry : ctx._source.entrySet()) { "
+			+ "  def value = entry.getValue(); "
+			+ "  if (value instanceof List) { "
+			+ "    for (int i = value.size() - 1; i >= 0; i--) { "
+			+ "      def item = value.get(i); "
+			+ "      if (item instanceof Map && item.containsKey('id') && params.deletedIds.containsKey(item.id)) { "
+			+ "        value.remove(i); "
+			+ "        changed = true; "
+			+ "      } "
+			+ "    } "
+			+ "  } "
+			+ "} "
+			+ "if (!changed) { ctx.op = 'noop'; }";
 	
 	static javax.xml.parsers.DocumentBuilder dBuilder;
+
+	private final ObjectMapper jsonMapper = new ObjectMapper();
 		
 	// Utilizar ThreadLocal para almacenar la instancia de DocumentBuilder por hilo
 	private static final ThreadLocal<DocumentBuilder> threadLocalDocumentBuilder = ThreadLocal.withInitial(() -> {
@@ -69,6 +108,24 @@ public class EntityDataCommands {
 
 	@Autowired
 	private EntityLoadingMonitorService entityLoadingMonitorService;
+
+	@Value("${elastic.host:localhost}")
+	private String host;
+
+	@Value("${elastic.port:9200}")
+	private Integer port;
+
+	@Value("${elastic.username:admin}")
+	private String username;
+
+	@Value("${elastic.password:admin}")
+	private String password;
+
+	@Value("${elastic.useSSL:false}")
+	private Boolean useSSL;
+
+	@Value("${elastic.authenticate:false}")
+	private Boolean authenticate;
 
 
 	@ShellMethod("Load entity-relation data from xml. If path points to a directory all contained .xml files will be loaded, otherwise only referenced file will be loaded")
@@ -375,6 +432,77 @@ public class EntityDataCommands {
 		}
 	}
 
+	@ShellMethod("Remove deleted entities and their nested references from an Elasticsearch/OpenSearch index")
+	public String remove_deleted_entities_from_index(@ShellOption(value = "--indexName") String indexName,
+			@ShellOption(value = "--pageSize", defaultValue = "1000") int pageSize) {
+
+		if (indexName == null || indexName.trim().isEmpty()) {
+			return "ERROR: indexName parameter is required. Please provide an index name using --indexName option.";
+		}
+		if (indexName.contains("/") || indexName.contains("\\")) {
+			return "ERROR: indexName must be a single Elasticsearch/OpenSearch index name.";
+		}
+		if (pageSize <= 0) {
+			return "ERROR: pageSize must be greater than zero.";
+		}
+
+		logger.info("==================================================");
+		logger.info("DELETED ENTITY INDEX CLEANUP STARTED");
+		logger.info("==================================================");
+		logger.info("Target index: {}", indexName);
+		logger.info("Page size: {}", pageSize);
+
+		long deletedEntityIds = 0;
+		long deletedRootDocuments = 0;
+		long updatedRelationshipDocuments = 0;
+		long noopRelationshipDocuments = 0;
+		int page = 0;
+		int batches = 0;
+
+		try (RestClient elasticClient = buildElasticRestClient()) {
+			while (true) {
+				List<UUID> deletedIdsPage = erService.getDeletedEntityIds(page, pageSize);
+				if (deletedIdsPage.isEmpty())
+					break;
+
+				List<String> deletedIds = toStringIds(deletedIdsPage);
+				deletedEntityIds += deletedIds.size();
+				batches++;
+
+				deletedRootDocuments += deleteRootDocumentsFromIndex(elasticClient, indexName, deletedIds);
+				ElasticUpdateResult relationUpdate = removeDeletedRelationsFromIndex(elasticClient, indexName, deletedIds);
+				updatedRelationshipDocuments += relationUpdate.updated;
+				noopRelationshipDocuments += relationUpdate.noops;
+
+				logger.info("Cleanup batch {} completed | deleted IDs={} | root documents deleted={} | relationship documents updated={} | noops={}",
+						batches, deletedIds.size(), deletedRootDocuments, updatedRelationshipDocuments, noopRelationshipDocuments);
+				page++;
+			}
+
+			StringBuilder result = new StringBuilder();
+			result.append("Deleted entity index cleanup completed");
+			result.append(" | index=").append(indexName);
+			result.append(" | deleted entity IDs=").append(deletedEntityIds);
+			result.append(" | root documents deleted=").append(deletedRootDocuments);
+			result.append(" | documents with relationships updated=").append(updatedRelationshipDocuments);
+			result.append(" | relationship noops=").append(noopRelationshipDocuments);
+			result.append(" | batches=").append(batches);
+
+			logger.info(result.toString());
+			return result.toString();
+
+		} catch (Exception e) {
+			if (isMissingEntityDeletedColumnException(e)) {
+				String message = "ERROR: Database schema is missing entity.deleted. Run database_migrate before using remove_deleted_entities_from_index.";
+				logger.error(message, e);
+				return message;
+			}
+
+			logger.error("ERROR: Failed to remove deleted entities from index {}: {}", indexName, e.getMessage(), e);
+			return "ERROR: Failed to remove deleted entities from index - " + e.getMessage();
+		}
+	}
+
 	private boolean isMissingEntityDeletedColumnException(Throwable throwable) {
 		Throwable current = throwable;
 		while (current != null) {
@@ -388,6 +516,103 @@ public class EntityDataCommands {
 		}
 
 		return false;
+	}
+
+	private RestClient buildElasticRestClient() throws Exception {
+		final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+		credentialsProvider.setCredentials(AuthScope.ANY,
+				new UsernamePasswordCredentials(username.trim(), password.trim()));
+
+		final SSLContext sslContext = SSLContexts.custom()
+				.loadTrustMaterial(null, TrustAllStrategy.INSTANCE)
+				.build();
+
+		RestClientBuilder builder = RestClient.builder(new HttpHost(host.trim(), port, useSSL ? "https" : "http"))
+				.setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
+					@Override
+					public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder) {
+						HttpAsyncClientBuilder builder = httpClientBuilder;
+
+						if (useSSL)
+							builder = builder.setSSLContext(sslContext);
+
+						if (authenticate)
+							builder = builder.setDefaultCredentialsProvider(credentialsProvider);
+
+						return builder;
+					}
+				});
+
+		return builder.build();
+	}
+
+	private List<String> toStringIds(List<UUID> entityIds) {
+		List<String> result = new ArrayList<String>();
+		for (UUID entityId : entityIds)
+			result.add(entityId.toString());
+
+		return result;
+	}
+
+	private long deleteRootDocumentsFromIndex(RestClient elasticClient, String indexName, List<String> deletedIds)
+			throws Exception {
+		Map<String, Object> terms = new LinkedHashMap<String, Object>();
+		terms.put("_id", deletedIds);
+
+		Map<String, Object> query = new LinkedHashMap<String, Object>();
+		query.put("terms", terms);
+
+		Map<String, Object> body = new LinkedHashMap<String, Object>();
+		body.put("query", query);
+
+		JsonNode response = performJsonRequest(elasticClient, "POST", "/" + indexName + "/_delete_by_query", body);
+		return response.path("deleted").asLong(0);
+	}
+
+	private ElasticUpdateResult removeDeletedRelationsFromIndex(RestClient elasticClient, String indexName,
+			List<String> deletedIds) throws Exception {
+		Map<String, Boolean> deletedIdMap = new LinkedHashMap<String, Boolean>();
+		for (String deletedId : deletedIds)
+			deletedIdMap.put(deletedId, Boolean.TRUE);
+
+		Map<String, Object> params = new LinkedHashMap<String, Object>();
+		params.put("deletedIds", deletedIdMap);
+
+		Map<String, Object> script = new LinkedHashMap<String, Object>();
+		script.put("lang", "painless");
+		script.put("source", REMOVE_DELETED_RELATIONS_SCRIPT);
+		script.put("params", params);
+
+		Map<String, Object> query = new LinkedHashMap<String, Object>();
+		query.put("match_all", Collections.emptyMap());
+
+		Map<String, Object> body = new LinkedHashMap<String, Object>();
+		body.put("script", script);
+		body.put("query", query);
+
+		JsonNode response = performJsonRequest(elasticClient, "POST", "/" + indexName + "/_update_by_query", body);
+		return new ElasticUpdateResult(response.path("updated").asLong(0), response.path("noops").asLong(0));
+	}
+
+	private JsonNode performJsonRequest(RestClient elasticClient, String method, String endpoint, Map<String, Object> body)
+			throws Exception {
+		Request request = new Request(method, endpoint);
+		request.addParameter("conflicts", "proceed");
+		request.addParameter("refresh", "true");
+		request.setJsonEntity(jsonMapper.writeValueAsString(body));
+
+		Response response = elasticClient.performRequest(request);
+		return jsonMapper.readTree(response.getEntity().getContent());
+	}
+
+	private static class ElasticUpdateResult {
+		long updated;
+		long noops;
+
+		ElasticUpdateResult(long updated, long noops) {
+			this.updated = updated;
+			this.noops = noops;
+		}
 	}
 	
 	
