@@ -24,6 +24,7 @@ import java.io.File;
 import java.nio.charset.Charset;
 
 import org.apache.commons.io.FileUtils;
+import org.lareferencia.core.entity.services.EntityFieldsUpdateReport;
 import org.lareferencia.core.entity.services.EntityMetamodelService;
 import org.lareferencia.core.entity.xml.XMLEntityRelationMetamodel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,20 @@ public class EntityMetamodelCommands {
 		erManager.persist(config);
 		
 		return String.format("%s was loaded.", filename);
+	}
+
+	@ShellMethod("Add missing fields to existing entity types from xml")
+	public String update_model_fields(String filename) throws Exception {
+		
+		File file = new File(filename);
+		
+		String contents = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
+		
+		XMLEntityRelationMetamodel config = erManager.loadConfigFromXml(contents);
+		
+		EntityFieldsUpdateReport report = erManager.updateEntityFields(config);
+		
+		return report.toString();
 	}
 	
 	@ShellMethod("Export metamodel to xml")
