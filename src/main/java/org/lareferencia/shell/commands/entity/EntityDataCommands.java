@@ -434,7 +434,8 @@ public class EntityDataCommands {
 
 	@ShellMethod("Remove deleted entities and their nested references from an Elasticsearch/OpenSearch index")
 	public String remove_deleted_entities_from_index(@ShellOption(value = "--indexName") String indexName,
-			@ShellOption(value = "--pageSize", defaultValue = "1000") int pageSize) {
+			@ShellOption(value = "--pageSize", defaultValue = "1000") int pageSize,
+			@ShellOption(value = "--timeoutSeconds", defaultValue = "300") int timeoutSeconds) {
 
 		if (indexName == null || indexName.trim().isEmpty()) {
 			return "ERROR: indexName parameter is required. Please provide an index name using --indexName option.";
@@ -445,12 +446,16 @@ public class EntityDataCommands {
 		if (pageSize <= 0) {
 			return "ERROR: pageSize must be greater than zero.";
 		}
+		if (timeoutSeconds <= 0) {
+			return "ERROR: timeoutSeconds must be greater than zero.";
+		}
 
 		logger.info("==================================================");
 		logger.info("DELETED ENTITY INDEX CLEANUP STARTED");
 		logger.info("==================================================");
 		logger.info("Target index: {}", indexName);
 		logger.info("Page size: {}", pageSize);
+		logger.info("Request timeout: {} seconds", timeoutSeconds);
 
 		long deletedEntityIds = 0;
 		long deletedRootDocuments = 0;
@@ -459,7 +464,7 @@ public class EntityDataCommands {
 		int page = 0;
 		int batches = 0;
 
-		try (RestClient elasticClient = buildElasticRestClient()) {
+		try (RestClient elasticClient = buildElasticRestClient(timeoutSeconds)) {
 			while (true) {
 				List<UUID> deletedIdsPage = erService.getDeletedEntityIds(page, pageSize);
 				if (deletedIdsPage.isEmpty())
@@ -518,7 +523,7 @@ public class EntityDataCommands {
 		return false;
 	}
 
-	private RestClient buildElasticRestClient() throws Exception {
+	private RestClient buildElasticRestClient(int timeoutSeconds) throws Exception {
 		final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
 		credentialsProvider.setCredentials(AuthScope.ANY,
 				new UsernamePasswordCredentials(username.trim(), password.trim()));
@@ -526,8 +531,13 @@ public class EntityDataCommands {
 		final SSLContext sslContext = SSLContexts.custom()
 				.loadTrustMaterial(null, TrustAllStrategy.INSTANCE)
 				.build();
+		final int timeoutMillis = (int) Math.min(Integer.MAX_VALUE, timeoutSeconds * 1000L);
 
 		RestClientBuilder builder = RestClient.builder(new HttpHost(host.trim(), port, useSSL ? "https" : "http"))
+				.setRequestConfigCallback(requestConfigBuilder -> requestConfigBuilder
+						.setConnectTimeout(timeoutMillis)
+						.setConnectionRequestTimeout(timeoutMillis)
+						.setSocketTimeout(timeoutMillis))
 				.setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
 					@Override
 					public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder) {
