@@ -76,14 +76,31 @@ public class EntityDataCommands {
 
 	private static final String REMOVE_DELETED_RELATIONS_SCRIPT =
 			"boolean changed = false; "
-			+ "for (def entry : ctx._source.entrySet()) { "
-			+ "  def value = entry.getValue(); "
-			+ "  if (value instanceof List) { "
-			+ "    for (int i = value.size() - 1; i >= 0; i--) { "
-			+ "      def item = value.get(i); "
-			+ "      if (item instanceof Map && item.containsKey('id') && params.deletedIds.containsKey(item.id)) { "
-			+ "        value.remove(i); "
-			+ "        changed = true; "
+			+ "if (params.relationFields != null && params.relationFields.size() > 0) { "
+			+ "  for (def relationField : params.relationFields) { "
+			+ "    if (ctx._source.containsKey(relationField)) { "
+			+ "      def value = ctx._source[relationField]; "
+			+ "      if (value instanceof List) { "
+			+ "        for (int i = value.size() - 1; i >= 0; i--) { "
+			+ "          def item = value.get(i); "
+			+ "          if (item instanceof Map && item.containsKey('id') && params.deletedIds.containsKey(item.id)) { "
+			+ "            value.remove(i); "
+			+ "            changed = true; "
+			+ "          } "
+			+ "        } "
+			+ "      } "
+			+ "    } "
+			+ "  } "
+			+ "} else { "
+			+ "  for (def entry : ctx._source.entrySet()) { "
+			+ "    def value = entry.getValue(); "
+			+ "    if (value instanceof List) { "
+			+ "      for (int i = value.size() - 1; i >= 0; i--) { "
+			+ "        def item = value.get(i); "
+			+ "        if (item instanceof Map && item.containsKey('id') && params.deletedIds.containsKey(item.id)) { "
+			+ "          value.remove(i); "
+			+ "          changed = true; "
+			+ "        } "
 			+ "      } "
 			+ "    } "
 			+ "  } "
@@ -435,7 +452,8 @@ public class EntityDataCommands {
 	@ShellMethod("Remove deleted entities and their nested references from an Elasticsearch/OpenSearch index")
 	public String remove_deleted_entities_from_index(@ShellOption(value = "--indexName") String indexName,
 			@ShellOption(value = "--pageSize", defaultValue = "1000") int pageSize,
-			@ShellOption(value = "--timeoutSeconds", defaultValue = "300") int timeoutSeconds) {
+			@ShellOption(value = "--timeoutSeconds", defaultValue = "300") int timeoutSeconds,
+			@ShellOption(value = "--relationFields", defaultValue = "") String relationFields) {
 
 		if (indexName == null || indexName.trim().isEmpty()) {
 			return "ERROR: indexName parameter is required. Please provide an index name using --indexName option.";
@@ -449,6 +467,11 @@ public class EntityDataCommands {
 		if (timeoutSeconds <= 0) {
 			return "ERROR: timeoutSeconds must be greater than zero.";
 		}
+		List<String> relationFieldList = parseRelationFields(relationFields);
+		String relationFieldValidationError = validateRelationFields(relationFieldList);
+		if (relationFieldValidationError != null) {
+			return relationFieldValidationError;
+		}
 
 		logger.info("==================================================");
 		logger.info("DELETED ENTITY INDEX CLEANUP STARTED");
@@ -456,6 +479,7 @@ public class EntityDataCommands {
 		logger.info("Target index: {}", indexName);
 		logger.info("Page size: {}", pageSize);
 		logger.info("Request timeout: {} seconds", timeoutSeconds);
+		logger.info("Relation fields: {}", relationFieldList.isEmpty() ? "all list fields" : relationFieldList);
 
 		long deletedEntityIds = 0;
 		long deletedRootDocuments = 0;
@@ -475,7 +499,7 @@ public class EntityDataCommands {
 				batches++;
 
 				deletedRootDocuments += deleteRootDocumentsFromIndex(elasticClient, indexName, deletedIds);
-				ElasticUpdateResult relationUpdate = removeDeletedRelationsFromIndex(elasticClient, indexName, deletedIds);
+				ElasticUpdateResult relationUpdate = removeDeletedRelationsFromIndex(elasticClient, indexName, deletedIds, relationFieldList);
 				updatedRelationshipDocuments += relationUpdate.updated;
 				noopRelationshipDocuments += relationUpdate.noops;
 
@@ -491,6 +515,7 @@ public class EntityDataCommands {
 			result.append(" | root documents deleted=").append(deletedRootDocuments);
 			result.append(" | documents with relationships updated=").append(updatedRelationshipDocuments);
 			result.append(" | relationship noops=").append(noopRelationshipDocuments);
+			result.append(" | relation fields=").append(relationFieldList.isEmpty() ? "all list fields" : relationFieldList);
 			result.append(" | batches=").append(batches);
 
 			logger.info(result.toString());
@@ -564,6 +589,33 @@ public class EntityDataCommands {
 		return result;
 	}
 
+	private List<String> parseRelationFields(String relationFields) {
+		List<String> result = new ArrayList<String>();
+		if (relationFields == null || relationFields.trim().isEmpty()) {
+			return result;
+		}
+
+		String[] relationFieldNames = relationFields.split(",");
+		for (String relationFieldName : relationFieldNames) {
+			String trimmed = relationFieldName.trim();
+			if (!trimmed.isEmpty()) {
+				result.add(trimmed);
+			}
+		}
+
+		return result;
+	}
+
+	private String validateRelationFields(List<String> relationFields) {
+		for (String relationField : relationFields) {
+			if (!relationField.matches("[A-Za-z0-9_-]+")) {
+				return "ERROR: relationFields must be top-level relation object field names such as 'journal', not id subfields such as 'journal.id'.";
+			}
+		}
+
+		return null;
+	}
+
 	private long deleteRootDocumentsFromIndex(RestClient elasticClient, String indexName, List<String> deletedIds)
 			throws Exception {
 		Map<String, Object> terms = new LinkedHashMap<String, Object>();
@@ -580,21 +632,21 @@ public class EntityDataCommands {
 	}
 
 	private ElasticUpdateResult removeDeletedRelationsFromIndex(RestClient elasticClient, String indexName,
-			List<String> deletedIds) throws Exception {
+			List<String> deletedIds, List<String> relationFields) throws Exception {
 		Map<String, Boolean> deletedIdMap = new LinkedHashMap<String, Boolean>();
 		for (String deletedId : deletedIds)
 			deletedIdMap.put(deletedId, Boolean.TRUE);
 
 		Map<String, Object> params = new LinkedHashMap<String, Object>();
 		params.put("deletedIds", deletedIdMap);
+		params.put("relationFields", relationFields);
 
 		Map<String, Object> script = new LinkedHashMap<String, Object>();
 		script.put("lang", "painless");
 		script.put("source", REMOVE_DELETED_RELATIONS_SCRIPT);
 		script.put("params", params);
 
-		Map<String, Object> query = new LinkedHashMap<String, Object>();
-		query.put("match_all", Collections.emptyMap());
+		Map<String, Object> query = buildDeletedRelationQuery(deletedIds, relationFields);
 
 		Map<String, Object> body = new LinkedHashMap<String, Object>();
 		body.put("script", script);
@@ -602,6 +654,32 @@ public class EntityDataCommands {
 
 		JsonNode response = performJsonRequest(elasticClient, "POST", "/" + indexName + "/_update_by_query", body);
 		return new ElasticUpdateResult(response.path("updated").asLong(0), response.path("noops").asLong(0));
+	}
+
+	private Map<String, Object> buildDeletedRelationQuery(List<String> deletedIds, List<String> relationFields) {
+		if (relationFields.isEmpty()) {
+			Map<String, Object> query = new LinkedHashMap<String, Object>();
+			query.put("match_all", Collections.emptyMap());
+			return query;
+		}
+
+		List<Map<String, Object>> should = new ArrayList<Map<String, Object>>();
+		for (String relationField : relationFields) {
+			Map<String, Object> terms = new LinkedHashMap<String, Object>();
+			terms.put(relationField + ".id", deletedIds);
+
+			Map<String, Object> termsQuery = new LinkedHashMap<String, Object>();
+			termsQuery.put("terms", terms);
+			should.add(termsQuery);
+		}
+
+		Map<String, Object> bool = new LinkedHashMap<String, Object>();
+		bool.put("should", should);
+		bool.put("minimum_should_match", 1);
+
+		Map<String, Object> query = new LinkedHashMap<String, Object>();
+		query.put("bool", bool);
+		return query;
 	}
 
 	private JsonNode performJsonRequest(RestClient elasticClient, String method, String endpoint, Map<String, Object> body)
