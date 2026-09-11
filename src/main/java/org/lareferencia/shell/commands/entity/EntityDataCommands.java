@@ -451,6 +451,7 @@ public class EntityDataCommands {
 
 	@ShellMethod("Remove deleted entities and their nested references from an Elasticsearch/OpenSearch index")
 	public String remove_deleted_entities_from_index(@ShellOption(value = "--indexName") String indexName,
+			@ShellOption(value = "--entity") String entityTypeName,
 			@ShellOption(value = "--pageSize", defaultValue = "1000") int pageSize,
 			@ShellOption(value = "--timeoutSeconds", defaultValue = "300") int timeoutSeconds,
 			@ShellOption(value = "--relationFields", defaultValue = "") String relationFields) {
@@ -460,6 +461,9 @@ public class EntityDataCommands {
 		}
 		if (indexName.contains("/") || indexName.contains("\\")) {
 			return "ERROR: indexName must be a single Elasticsearch/OpenSearch index name.";
+		}
+		if (entityTypeName == null || entityTypeName.trim().isEmpty()) {
+			return "ERROR: entity parameter is required. Please provide an entity type using --entity option.";
 		}
 		if (pageSize <= 0) {
 			return "ERROR: pageSize must be greater than zero.";
@@ -477,6 +481,7 @@ public class EntityDataCommands {
 		logger.info("DELETED ENTITY INDEX CLEANUP STARTED");
 		logger.info("==================================================");
 		logger.info("Target index: {}", indexName);
+		logger.info("Entity type: {}", entityTypeName);
 		logger.info("Page size: {}", pageSize);
 		logger.info("Request timeout: {} seconds", timeoutSeconds);
 		logger.info("Relation fields: {}", relationFieldList.isEmpty() ? "all list fields" : relationFieldList);
@@ -490,7 +495,7 @@ public class EntityDataCommands {
 
 		try (RestClient elasticClient = buildElasticRestClient(timeoutSeconds)) {
 			while (true) {
-				List<UUID> deletedIdsPage = erService.getDeletedEntityIds(page, pageSize);
+				List<UUID> deletedIdsPage = erService.getDeletedEntityIds(entityTypeName.trim(), page, pageSize);
 				if (deletedIdsPage.isEmpty())
 					break;
 
@@ -498,10 +503,13 @@ public class EntityDataCommands {
 				deletedEntityIds += deletedIds.size();
 				batches++;
 
-				deletedRootDocuments += deleteRootDocumentsFromIndex(elasticClient, indexName, deletedIds);
-				ElasticUpdateResult relationUpdate = removeDeletedRelationsFromIndex(elasticClient, indexName, deletedIds, relationFieldList);
-				updatedRelationshipDocuments += relationUpdate.updated;
-				noopRelationshipDocuments += relationUpdate.noops;
+				if (relationFieldList.isEmpty()) {
+					deletedRootDocuments += deleteRootDocumentsFromIndex(elasticClient, indexName, deletedIds);
+				} else {
+					ElasticUpdateResult relationUpdate = removeDeletedRelationsFromIndex(elasticClient, indexName, deletedIds, relationFieldList);
+					updatedRelationshipDocuments += relationUpdate.updated;
+					noopRelationshipDocuments += relationUpdate.noops;
+				}
 
 				logger.info("Cleanup batch {} completed | deleted IDs={} | root documents deleted={} | relationship documents updated={} | noops={}",
 						batches, deletedIds.size(), deletedRootDocuments, updatedRelationshipDocuments, noopRelationshipDocuments);
@@ -511,6 +519,7 @@ public class EntityDataCommands {
 			StringBuilder result = new StringBuilder();
 			result.append("Deleted entity index cleanup completed");
 			result.append(" | index=").append(indexName);
+			result.append(" | entity=").append(entityTypeName.trim());
 			result.append(" | deleted entity IDs=").append(deletedEntityIds);
 			result.append(" | root documents deleted=").append(deletedRootDocuments);
 			result.append(" | documents with relationships updated=").append(updatedRelationshipDocuments);
